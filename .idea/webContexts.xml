@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Landing/Login/login.html" value="file://$PROJECT_DIR$/src/main/webapp/Landing/Login" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Landing/PricingPlan/PricingPlan.css" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Physical Member/FullSidebar.html" value="file://$PROJECT_DIR$/src/main/webapp/Physical Member" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Physical Member/Payments/Payments.html" value="file://$PROJECT_DIR$/src/main/webapp/Physical Member/Payments" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Physical Member/Workout_Plans/Virtual_Workout_Plans.html" value="file://$PROJECT_DIR$/src/main/webapp/Physical Member/Workout_Plans" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Physical Member/Workout_Plans/Workout_Plan.html" value="file://$PROJECT_DIR$/src/main/webapp/Physical Member/Workout_Plans" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.html" value="file://$PROJECT_DIR$/src/main/webapp" />
+      </map>
+    </option>
+  </component>
+</project>
