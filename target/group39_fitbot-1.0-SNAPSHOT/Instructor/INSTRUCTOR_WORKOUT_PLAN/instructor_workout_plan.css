@@ -1,0 +1,347 @@
+
+/* ----------------------------------------------------home ---------------------------------------- */
+
+.home_content_workout_fitworkout
+{
+    display: flex;
+    background-color: white;
+    margin: 30px 72px 30px 72px;
+    flex-direction: row;
+}
+
+.home_content_workout_fitworkout
+ .workout1_fitworkout
+ ,.workout2_fitworkout
+{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    margin: 10px;
+    flex: 50%;
+    flex-direction: row;
+    padding: 10px;
+}
+
+
+.workout1_fitworkout
+ .create_new{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #F2F2F2;
+    margin: 10px;
+    flex: 50%;
+    /*box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);*/
+}
+
+.workout1_fitworkout
+ .create_new .workout_header{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #F2F2F2;
+    margin: 10px;
+    flex: 50%;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+
+.workout1_fitworkout
+ .create_new .drag_space_fitworkout
+{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #F2F2F2;
+    margin: 10px;
+    flex: 50%;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.drag_space_fitworkout
+ .drag_box_fitworkout
+{
+   width: 90%;
+   background-color: grey;
+   margin: 30px;
+   height: 100px;
+   position: relative;
+}
+
+
+.workout1_fitworkout
+ .history{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #F2F2F2;
+    margin: 10px;
+    flex: 50%;
+}
+
+.history .history_header_fitworkout
+{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #F2F2F2;
+    margin: 10px;
+    flex: 50%;
+    font-size: 22px;
+    font-weight: bold;
+    color: grey;
+}
+
+
+.workout2_fitworkout
+{
+  background-color: #F2F2F2;
+  margin: 30px;
+}
+
+.workout2_fitworkout
+ .workout_right_fitworkout
+{
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.workout2_fitworkout
+ .workout_right2_fitworkout
+{
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.workout_right2_fitworkout
+ a{
+    text-decoration: none;
+}
+
+.workout2_fitworkout
+ .workout_right2_fitworkout
+ i{
+  font-size: 25px;
+}
+
+/* -----------------------------accordian list----------------------------------- */
+
+.history .workout_accordian{
+    background-color: #F2F2F2;
+    margin: 10px;
+    flex: 50%;
+}
+
+
+.history_title {
+    background-color: #FBFAFA;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+  
+  .active, .history_title:hover {
+    background-color: #C4C4C4;
+  }
+  
+  .history_title:after {
+    content: '\2304';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\02C4";
+  }
+  
+  .history_info {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 18px;
+    background-color: #FBFAFA;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+
+
+  .history_info .workout_info1_fitworkout
+{
+      display: inline-block;
+      padding-right: 30px;
+  }
+
+  .history_title .acco_table_fitworkout
+ td{
+       text-align: right;
+       padding-right: 90px;
+  }
+
+  .history_title .line_workout{
+    width: 100%;
+    border-bottom: 3px solid black;
+    position: relative;
+  }
+
+
+  .acco_table_fitworkout
+ a{
+    color: #7CD0FF;
+  }
+
+
+/* ---------------------search box left------------------------------ */
+
+.search_box_workout_fitworkout
+{
+    width: 330px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+
+.search_box_workout_fitworkout
+ input{
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.search_box_workout_fitworkout
+ button{
+    width: 80px;
+    padding: 6px;
+    color: white;
+    background: #0E2C4B;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+ .search_box_workout_fitworkout
+ button:hover{
+     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+     background-color: white;
+     color: #0E2C4B;
+     border-color: #0E2C4B;
+} 
+
+
+/* ---------------------------search box right---------------------------- */
+
+.search_box_workout_right_fitworkout
+{
+    border-radius: 10px;
+    margin:auto;
+    width: 90%;
+    margin: auto;
+    display: inline-block;
+}
+
+.search_box_workout_right_fitworkout
+ input{
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.search_box_workout_right_fitworkout
+ button{
+    width: 100px;
+    float: right;
+    padding: 6px;
+    color: white;
+    margin-right: 36px;
+    background: #0E2C4B;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.search_box_workout_right_fitworkout
+ button:hover{
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    color: #0E2C4B;
+    border-color: #0E2C4B;
+} 
+
+/* --------------------table-------------------------------- */
+
+
+ .workout_table table{
+     position: relative;
+     border-collapse: separate;
+     border-spacing: 0 10px;
+}
+
+.workout_table {
+    border-collapse:separate;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.workout_table table td, th {
+  background-color: white;
+  width: 180px;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  
+}
+
+
+.workout_table table .workout_plan_row{
+   border-left: 15px solid #7CD0FF;
+   box-shadow: 0px 0px 5px 0px grey;
+}
+
+.workout_plan_row i{
+  font-size: 22px;
+}
+
+.workout_plan_row button{
+  cursor: pointer;
+  color: #B52121;
+}
+
+
+
+/*------------ new html file--------------------------*/
+
+.workout_plan_add_create{
+    background-color: #F2F2F2;
+    margin: 30px;
+    padding: 25px;
+}
+.workout_plan_add_create h2{
+    margin-bottom: 30px;
+    color: #0E2C4B;
+}
+.workout_search_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*align-items: left;*/
+    width: 90%;
+}
+
+.workout_search_section .search_bar input{
+    height: 25px;
+    border-radius: 8px;
+
+}

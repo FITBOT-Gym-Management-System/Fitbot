@@ -60,6 +60,7 @@ public class LoginController extends HttpServlet {
 
             assert loginData != null;
             int status = loginData.getStatus();
+            System.out.println(status);
 
             if(status == 1){
                 HttpSession session = req.getSession(true);
@@ -91,8 +92,9 @@ public class LoginController extends HttpServlet {
                             break;
                         case "Maintainer":
                             out.print("7");
+                            break;
                         default:
-                            //                        out.print("You can't log now..please contact our administration");
+                            //out.print("You can't log now..please contact our administration");
                             out.print("8");
                             break;
                     }
