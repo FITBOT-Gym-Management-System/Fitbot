@@ -15,6 +15,10 @@ public class Branch {
     public Branch() {
     }
 
+    public Branch(String branch_id, String branch_name) {
+        this.branch_id = branch_id;
+        this.branch_name = branch_name;
+    }
 
     public Branch(String branch_id, String branch_name, String branch_address, String branch_email, LocalDate branch_date_of_commencement, String branch_primary_contact, String branch_secondary_contact, String branch_image) {
         this.branch_id = branch_id;

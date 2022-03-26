@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Stylesheet -->
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/LeftSidebar/LeftSidebar.css">
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Dashboard/dashboard.css">
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Requests/requests.css">
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Daily_Tasks/daily_tasks.css">
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Equipments/equipments.css">
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Maintainer_Form/maintainer_form.css">
+      <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/RightSidebar/RightSidebar.css">
+
+      <link rel="stylesheet" href="asserts/Calender/lib/main.css">
+
+      <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+
+
+<body>
+        <!-- Content below the header -->
+        <div class="maintain_requests_view" id="maintain_requests_view">
+            <div class="overview_boxes_maintainer_dash">
+
+                <div class="box_in_dash_maintainer">
+                    <div class="box_icon_div">
+                        <!--                    <i class='bx bxs-comment-dots bx-tada' ></i>-->
+                        <i class='bx bx-comment-dots' ></i>
+                    </div>
+
+                    <!-- <div class="line"></div>-->
+                    <div class ="inside_dashbox">
+                        <div class="box-topic">New Request</div>
+                        <div class="boxes_value_inBox new_req_value" id="new_req_value"></div>
+                    </div>
+                </div>
+
+                <div class="box_in_dash_maintainer">
+                    <div class="box_icon_div">
+                        <!--                    <i class='bx bxs-chevrons-down bx-fade-down' ></i>-->
+                        <i class='bx bxs-chevrons-down'></i>
+                    </div>
+
+                    <!--<div class="line"></div>-->
+                    <div class ="inside_dashbox">
+                        <div class="box-topic">Current Progress</div>
+                        <div class="boxes_value_inBox prog_req_value" id="prog_req_value"></div>
+                    </div>
+                </div>
+
+                <div class="box_in_dash_maintainer">
+                    <div class="box_icon_div">
+                        <i class='bx bxs-check-square' ></i>
+                    </div>
+
+                    <!--  <div class="line"></div>-->
+                    <div class ="inside_dashbox">
+                        <div class="box-topic">Completed</div>
+                        <div class="boxes_value_inBox compt_req_value" id="compt_req_value"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Content below the header -->
+            <div class="all_maint_requests">
+
+                <div class="title_maint_requests">
+                    <div class="all_maint_gym_requests">
+                        All Maintenance Requests
+                    </div>
+                    <div class="search-container">
+
+<!--                            <input type="text" placeholder="Search by branch" name="search_branch_requests">-->
+<!--                            <button type="submit" onclick=""><i class='bx bx-search'></i></button>-->
+
+                        <div class="workout_plan_virtual_search"><input type="text" id="maintenance_request_input_search" onclick="searchMaintenanceRequest()"></div>
+                        <div class="messages_physical_container_left_search_icon"><i class='bx bx-search-alt'></i></div>
+                    </div>
+                </div>
+
+                <div class="maint_request-details">
+                    <table class="maintain_requ_tab" id="maintain_requ_tab">
+                        <tr class ="maint_request_info">
+                            <th>Branch </th>
+                            <th>Equipment Type</th>
+                            <th>Re-Date</th>
+                            <th>Co-Date</th>
+                            <th>Status</th>
+                            <th>Accepted</th>
+                            <th></th>
+                        </tr>
+                        <tbody class="maintain_requ_tab_body" id="maintain_requ_tab_body" >
+                            <tr class ="request_details_row" id="request_details_row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <section>
+
+                <div class="maintain_form_view" id="maintain_form_view" >
+                    <div class="maintain_form_container">
+                        <div class="maintain_form_title">
+                            <h2>Maintenance Completion Form</h2>
+                        </div>
+
+                        <form action="post" class="maintain_form" id="maintain_form" action="">
+                            <br><h4>Request Details</h4>
+                            <div class="form_row_main">
+                                <div class="form_lable">
+                                    <label for="branch_name">Branch</label><br>
+                                    <input type="text" id="branch_name" name="branch_name" class="form_label_input branch_name" placeholder="Enter branch" >
+                                    <!--                    <h6 id ="validation_branch" class="validation_label">Branch ID cannot be empty</h6>-->
+                                </div>
+                                <div class="form_lable_right">
+                                    <label for="equipment_type">Equipment Type</label><br>
+                                    <input type="text" id="equipment_type" name="equipment_type" class="form_label_input equipment_type" placeholder="Enter equipment type" >
+                                    <!--                    <h6 id ="validation_branch_name" class="validation_label">Branch Name cannot be empty</h6>-->
+                                </div>
+                            </div>
+
+                            <div class="form_row_main">
+                                <div class="form_lable">
+                                    <label for="maintain_description">Description</label><br>
+                                    <input type="text" id="maintain_description" name="maintain_description" class="form_label_input maintain_description" placeholder="Enter description" >
+                                    <!--                    <h6 id ="validation_branch_address" class="validation_label">Branch Address cannot be empty</h6>-->
+                            </div>
+                            </div>
+
+                            <div class="form_row_main">
+                                <div class="form_lable">
+                                    <label for="maintain_request_date">Request Send Date</label><br>
+                                    <input type="text"  id= "maintain_request_date" name="maintain_request_date" class="form_label_input maintain_request_date" placeholder="Enter date" >
+                                    <!--                    <h6 id ="validation_branchcontactno1" class="validation_label">Primary Contact cannot be empty</h6>-->
+                                </div>
+                                <div class="form_lable_right">
+                                    <label for="maintain_request_time">Request Send Time</label><br>
+                                    <input type="text" id="maintain_request_time"  name="maintain_request_time" class="form_label_input maintain_request_time" placeholder="Enter time" >
+                                    <!--                    <h6 id ="validation_branchcontactno2" class="validation_label">Secondary Contact cannot be empty</h6>-->
+                                </div>
+                            </div>
+                            <br><h4>Completed Details</h4>
+                            <div class="form_row_main">
+                                <div class="form_lable">
+                                    <label for="maintain_pic">Image after maintained<span class="require_star">*</span></label><br>
+                                    <input type="file" id="maintain_pic" name="maintain_pic" class="form_label_input maintain_pic" placeholder="Enter pic" >
+                                </div>
+
+                                <div class="form_lable_right">
+                                    <label for="maintain_add_note">Add Note<span class="require_star">*</span></label><br>
+                                    <input type="text" id="maintain_add_note" name="maintain_add_note" class="form_label_input maintain_add_note" placeholder="Enter Note" >
+                                    <!--                    <h6 id ="validation_branch_email" class="validation_label">Note is empty</h6>-->
+                                </div>
+
+                            </div>
+
+                            <div class="add_btn_class">
+
+                                <input type="submit" class="btn_add_maintain" id="btn_add_maintain" value="Submit" ><br>
+                                <input type="button" class="btn_cancel_maintain" id="btn_cancel_maintain" value="Cancel" ><br>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+             </div>
+
+            </section>
+
+    </div>
+
+
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="asserts/JSLibrary/sweetalert2.all.min.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js" defer></script>
+        <script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/LeftSidebar/LeftSidebar.js" defer></script>
+        <script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Dashboard/dashboard.js" defer></script>
+        <script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Requests/requests.js" defer></script>
+        <script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Daily_Tasks/daily_tasks.js" defer></script>
+        <script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Equipments/equipments.js" defer></script>
+        <script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Maintainer_Form/maintainer_form.js" defer></script>
+
+        <script src="asserts/Calender/lib/main.js" defer></script>
+
+      </body>
+      </html>
