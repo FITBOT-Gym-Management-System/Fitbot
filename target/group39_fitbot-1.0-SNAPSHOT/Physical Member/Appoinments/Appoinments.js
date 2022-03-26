@@ -30,7 +30,7 @@ function close_appointment_Popup(){
 
 function appointment_save_changes(){
     $('#appointment_container_form').submit(function(e){
-        // e.preventDefault();
+        e.preventDefault();
 
         let flagValue1 = true;
         let flagValue2 = true;
@@ -47,7 +47,7 @@ function appointment_save_changes(){
         function validateAppoinmentDate() {
 
             if(appointmentDate.length == 0){
-                alert("Yohan");
+                //alert("Yohan");
                 $('#appointment_date_error').show();
                 flagValue1 = false;
                 return;
@@ -235,4 +235,38 @@ function appointment_save_changes(){
         editProfileBackgroundOff();
         e.preventDefault();
     });
+}
+
+// appoitment history popup
+function viewAppoitmentData(appoit_date,startTime,finishTime){
+    $('#after_appointment_popup_details').show();
+    editProfileBackgroundOn();
+
+    $('#appoitment_history_detail_container').append(
+        `<div class="payment_detail_container_input appoitment_detail_container_input">
+                            <div>
+                                <span><b>Appointment Date</b></span><br>
+                                <span>${appoit_date}</span>
+                            </div>
+
+                            <div>
+                                <span><b>Start Time</b></span><br>
+                                <span>${startTime}</span>
+                            </div>
+                        </div>
+
+                        <div class="payment_detail_container_input appoitment_detail_container_input">
+                            <div>
+                                <span><b>Finish Time</b></span><br>
+                                <span>${finishTime}</span>
+                            </div>
+
+                        </div>`
+    );
+}
+
+function close_after_appointment_details(){
+    $('.appoitment_detail_container_input').remove();
+    $('#after_appointment_popup_details').hide();
+    editProfileBackgroundOff();
 }

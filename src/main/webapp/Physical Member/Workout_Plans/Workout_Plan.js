@@ -9,17 +9,24 @@ function Workout_plan_dashboard(){
 // alert("workout");
 
 function virtual_workoutplan_open(){
+    editProfileBackgroundOn();
     $('#virtual_workout_packages').show();
 }
 
 function close_virtual_workoutplan_Popup(){
+    editProfileBackgroundOff();
     $('#virtual_workout_packages').hide();
 }
 function close_virtual_workoutplan_Popup1(){
+    editProfileBackgroundOff();
     $('.virtual_workout_packages_popup_image_detial').remove();
     $('#virtual_workout_packages1').hide();
 }
 function physical_workoutplan_open(){
+    physical_workoutplan_open_demo("workout_plan");
+}
+
+function physical_workoutplan_open_demo(plan_type){
     // $('#physical_workout_packages1').show();
     //alert("Yohan");
     //check member has an instructor
@@ -76,11 +83,12 @@ function physical_workoutplan_open(){
                     console.log("Instructor ID "+user_id);
                     let has_assign = 0;
                     let request_date = notification_date;
+                    //let plan_type = "workout_plan";
 
                     $.ajax({
                         method:"POST",
                         url:"requestWorkoutPlan",
-                        data: {user_id:user_id,has_assign:has_assign,request_date:request_date},
+                        data: {user_id:user_id,has_assign:has_assign,request_date:request_date,plan_type:plan_type},
                         // dataType:"json",
                         // contentType:"application/json",
                         success: function (result){
@@ -324,6 +332,7 @@ function checkBoxChecked(workout_id,id,num_plan){
 function load_virtual_detail_popup(workout_description,workout_img_url,exercise_name){
     // alert("Yohan");
     // alert(workout_description);
+    editProfileBackgroundOn();
     console.log(workout_img_url);
     console.log(workout_description);
     $('#virtual_workout_packages_popup_image').append(

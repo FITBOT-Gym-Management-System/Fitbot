@@ -500,6 +500,7 @@ function getRightSidebarDetail(){
                  <span class="weight_value">${result["weight"]}Kg</span>`
             );
           viewMonthlyGoalReports();
+          upcomingTaskWithGoal();
         },
         error: function(error){
             console.log(error+"edit profile");
@@ -1205,21 +1206,24 @@ function getAppointmentData(){
           $('#no_appointment').html('Has Appointment');
           $('#appointment_date').html(appoin_date);
           $('#appointment_time').html(appoin_time);
-          $('.edit_profile_container_detail_input4_btn1').attr("disabled", true);
+          // $('.edit_profile_container_detail_input4_btn1').attr("disabled", true);
           $('#appointment_button_div').css("border", "2px solid grey");
           $('.edit_profile_container_detail_input4_btn1').css("border", "2px solid grey");
           $('#appointment_button_div').css("background-color", "grey");
           $('.edit_profile_container_detail_input4_btn1').css("background-color", "grey");
+          $("#appointment_button_div").prop("disabled", true);
         }
       }
+      let appoit_date = x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2);
+      let startTime = ("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2);
+      let finishTime = ("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2);
       $('#appointment_container_table').append(
-          '<tr class="payment_history_container_row">'+
-          '<td>'+x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2)+'</td>'+
-          '<td>'+("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2)+'</td>'+
-          '<td>'+("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2)+'</td>'+
-          // '<td>'+x.equipment+'</td>'+
-          '<td>'+'<a href="#" class="show_more_button">SHOW MORE</a>'+'</td>'+
-          '</tr>'
+          `<tr class="payment_history_container_row">
+          <td>${appoit_date}</td>
+          <td>${startTime}</td>
+          <td>${finishTime}</td>
+          <td><a href="#" class="show_more_button" onclick='viewAppoitmentData("${appoit_date}","${startTime}","${finishTime}")'>SHOW MORE</a></td>
+          </tr>`
       );
       countVal += 1;
     });
