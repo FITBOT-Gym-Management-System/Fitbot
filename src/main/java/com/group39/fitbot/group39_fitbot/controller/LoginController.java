@@ -60,6 +60,7 @@ public class LoginController extends HttpServlet {
 
             assert loginData != null;
             int status = loginData.getStatus();
+            System.out.println(status);
 
             if(status == 1){
                 HttpSession session = req.getSession(true);
