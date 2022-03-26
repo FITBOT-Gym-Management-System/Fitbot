@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Stylesheet -->
+
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/LeftSidebar/LeftSidebar.css">
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Dashboard/dashboard.css">
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Requests/requests.css">
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Daily_Tasks/daily_tasks.css">
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Equipments/equipments.css">
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Maintainer_Form/maintainer_form.css">
+    <link rel="stylesheet" href="http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/RightSidebar/RightSidebar.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<section class="home-section">
+    <div class="daily_tasks_maintainer" id="daily_tasks_maintainer">
+
+            <div class="daily_tasks_home_page_all" >
+                <div class="Ins_header_equipmentsPage">Today Shedule</div>
+                <div class="daily_tasks_home_page" id="daily_tasks_home_page">
+<!--                <div class="tasks_home_page_maintainer">-->
+<!--                    <div class="daily_tasks_home_page_branch_name">Nugegoda Branch</div>-->
+<!--                    <div class="daily_tasks_home_page_type_and_id">Tradmile - E0001</div>-->
+<!--                    <div class="daily_tasks_home_page_description">Heavy duty steal frame built to last for your lifetime.</div>-->
+<!--                    <div class="daily_tasks_home_page_next_modification_date">2022/04/02</div>-->
+<!--                </div>-->
+
+                </div>
+
+                <div id="maintainer_big_container_background" class="profile_physical_big_container_background"></div>
+                <div class="maintaine_daily_task_completed_form">
+                    <div class="maintain_form_view" id="maintain_form_view" >
+                        <div class="maintain_form_container">
+                            <div class="maintain_form_title">
+                                <h2>Maintenance Completion Form</h2>
+                            </div>
+
+                            <form action="post" class="maintain_form" id="maintain_form" action="">
+                                <br><h4>Completed Details</h4>
+                                <div class="form_row_main">
+                                    <div class="form_lable">
+                                        <label for="maintain_daily_task_pic">Image after maintained<span class="require_star">*</span></label><br>
+                                        <input type="file" id="maintain_daily_task_pic" name="maintain_pic" class="form_label_input maintain_pic" placeholder="Enter pic" >
+                                    </div>
+
+                                    <div class="form_lable_right">
+                                        <label for="maintain_daily_task_add_note">Add Note<span class="require_star">*</span></label><br>
+                                        <input type="text" id="maintain_daily_task_add_note" name="maintain_add_note" class="form_label_input maintain_add_note" placeholder="Enter Note" >
+                                        <!--                    <h6 id ="validation_branch_email" class="validation_label">Note is empty</h6>-->
+                                    </div>
+
+                                </div>
+
+                                <div class="add_btn_class">
+
+                                    <input type="submit" class="btn_add_maintain maintainer_task_submit" id="maintainer_task_submit" value="Submit" ><br>
+                                    <input type="button" class="btn_cancel_maintain maintainer_task_cancel" id="maintainer_task_cancel" value="Cancel" ><br>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+<!--        get in physical member profile page -->
+
+    </div>
+
+</section>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="asserts/JSLibrary/sweetalert2.all.min.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js" defer></script>
+<script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/LeftSidebar/LeftSidebar.js" defer></script>
+<script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Dashboard/dashboard.js" defer></script>
+<script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Requests/requests.js" defer></script>
+<script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Daily_Tasks/daily_tasks.js" defer></script>
+<script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Equipments/equipments.js" defer></script>
+<script src="http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Maintainer_Form/maintainer_form.js" defer></script>
+
+<script src="asserts/Calender/lib/main.js" defer></script>
+
+
+</body>
+</html>
