@@ -6,3 +6,7 @@ function Diet_plan_dashboard(){
     anchor_workout_i.style.color = "black";
     workout_text.style.color = "black";
 }
+
+function requestDietPlanData(){
+    physical_workoutplan_open_demo("diet_plan");
+}

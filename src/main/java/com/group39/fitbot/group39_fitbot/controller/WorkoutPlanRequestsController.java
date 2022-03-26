@@ -24,6 +24,7 @@ public class WorkoutPlanRequestsController extends HttpServlet {
         String instructor_id = req.getParameter("user_id"); //instructor_id
         int has_assign = Integer.parseInt(req.getParameter("has_assign"));
         LocalDate request_date = LocalDate.parse(req.getParameter("request_date"));
+        String plan_type = req.getParameter("plan_type");
 
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
@@ -31,14 +32,14 @@ public class WorkoutPlanRequestsController extends HttpServlet {
         WorkoutPlanRequests workoutPlanRequests = new WorkoutPlanRequests(instructor_id,has_assign,request_date,memberID);
 
         try {
-            int hasAssign = WorkoutDAO.checkWorkoutRequestDetails(memberID,instructor_id);
+            int hasAssign = WorkoutDAO.checkWorkoutRequestDetails(memberID,instructor_id,plan_type);
 
             if(hasAssign == 0){
                 //already sent a request to get workout plan
                 out.print("2");
             }else if(hasAssign == 1){
                 //new request (but table exist one or more requests)
-                boolean added = WorkoutDAO.insertWorkoutRequestDetails(workoutPlanRequests);
+                boolean added = WorkoutDAO.insertWorkoutRequestDetails(workoutPlanRequests,plan_type);
 
                 if(added){
                     out.print("1");
@@ -47,7 +48,7 @@ public class WorkoutPlanRequestsController extends HttpServlet {
                 }
             }else{
                 //new request
-                boolean added = WorkoutDAO.insertWorkoutRequestDetails(workoutPlanRequests);
+                boolean added = WorkoutDAO.insertWorkoutRequestDetails(workoutPlanRequests,plan_type);
 
                 if(added){
                     out.print("1");
