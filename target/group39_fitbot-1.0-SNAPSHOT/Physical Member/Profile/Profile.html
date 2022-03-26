@@ -13,6 +13,7 @@
             <div class="profile_physical_container_details">
                 <div class="profile_physical_container_details_image" id="profile_physical_container_details_image">
 <!--                    <img src="http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Images/profile_image.jpg" alt="profile_image" id="imgshow">-->
+                    <img src="http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Images/profile_image.png" alt="profile_image" id="imgshow">
                 </div>
                 <div class="profile_physical_container_member_details">
                     <div class="profile_physical_container_member_details_line"></div>
@@ -160,15 +161,31 @@
                     <form action="physicalMember" method="post">
                         <div class="edit_profile_container_detail_input1">
                             <div>
-                                <label for="edit_profile_container_detail_name">New Password</label><br>
+                                <label for="edit_profile_container_detail_name">Old Password<span class="edit_profile_container_detail_name_required">*</span></label><br>
+                                <input type="password" name="edit_profile_container_detail_name" class="edit_profile_container_detail_name" id="edit_profile_container_change_new_password1">
+                                <h5 id="edit_profile_container_change_new_password1_error">**You can't leave this empty</h5>
+                            </div>
+
+<!--                            <div>-->
+<!--                                <label for="edit_profile_container_detail_last_name">Confirm Password</label><br>-->
+<!--                                <input type="password" name="edit_profile_container_detail_last_name" class="edit_profile_container_detail_last_name" id="edit_profile_container_change_confirm_password1">-->
+<!--                            </div>-->
+                        </div>
+<!--                        **-->
+                        <div class="edit_profile_container_detail_input1">
+                            <div>
+                                <label for="edit_profile_container_detail_name">New Password<span class="edit_profile_container_detail_name_required">*</span></label><br>
                                 <input type="password" name="edit_profile_container_detail_name" class="edit_profile_container_detail_name" id="edit_profile_container_change_new_password">
+                                <h5 id="edit_profile_container_change_new_password_error">**You can't leave this empty</h5>
                             </div>
 
                             <div>
-                                <label for="edit_profile_container_detail_last_name">Confirm Password</label><br>
+                                <label for="edit_profile_container_detail_last_name">Confirm Password<span class="edit_profile_container_detail_name_required">*</span></label><br>
                                 <input type="password" name="edit_profile_container_detail_last_name" class="edit_profile_container_detail_last_name" id="edit_profile_container_change_confirm_password">
+                                <h5 id="edit_profile_container_change_confirm_password_error">**You can't leave this empty</h5>
                             </div>
                         </div>
+<!--                        **-->
 
                         <div class="edit_profile_container_detail_input4">
                             <a class="edit_profile_container_detail_input4_btn1" onclick="edit_profile_change_password_back()">Back</a>

@@ -3,6 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <display-name>FITBOT</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/error/500.html</location>-->
+<!--    </error-page>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.html</location>
+    </error-page>
+
+    <session-config>
+        <session-timeout>45</session-timeout>
+    </session-config>
+
     <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>com.group39.fitbot.group39_fitbot.controller.RegistrationController</servlet-class>
@@ -451,6 +471,24 @@
     <servlet-mapping>
         <servlet-name>CompleteWorkoutRetrieve</servlet-name>
         <url-pattern>/completeWorkoutRetrieve</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckPassword</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.CheckPasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckPassword</servlet-name>
+        <url-pattern>/checkPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetWorkoutPlan</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.GetWorkoutPlanDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetWorkoutPlan</servlet-name>
+        <url-pattern>/getWorkoutPlan</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -16,7 +16,7 @@ public class PhysicalInstructorDAO {
     public static List<PhysicalInstructor> physicalInstructorGetData() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         List<PhysicalInstructor> physicalInstructorList = new ArrayList<>();
-        String query = "SELECT * FROM instructor";
+        String query = "SELECT instructor_id,first_name,last_name,gender,email,nic,dob,address,primary_contact,secondary_contact,main_skill,profile_image_url,branch_id FROM instructor";
 
         PreparedStatement pst = connection.prepareStatement(query);
 

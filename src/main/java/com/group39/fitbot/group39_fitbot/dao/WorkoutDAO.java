@@ -3,6 +3,7 @@ package com.group39.fitbot.group39_fitbot.dao;
 import com.group39.fitbot.group39_fitbot.database.DBConnection;
 import com.group39.fitbot.group39_fitbot.model.Notification;
 import com.group39.fitbot.group39_fitbot.model.Workout;
+import com.group39.fitbot.group39_fitbot.model.WorkoutPlanData;
 import com.group39.fitbot.group39_fitbot.model.WorkoutPlanRequests;
 
 import java.sql.*;
@@ -182,6 +183,36 @@ public class WorkoutDAO {
         }
 
         return completeWorkouts;
+    }
+
+//    WorkoutPlanData
+    public static List<WorkoutPlanData> getWorkoutPlanData(String member_id) throws SQLException, ClassNotFoundException {
+        WorkoutPlanData workoutPlanData = new WorkoutPlanData();
+        List<WorkoutPlanData> workoutPlanDataList = new ArrayList<>();
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "SELECT * FROM workout_plan WHERE member_id = ?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1,member_id);
+
+        ResultSet resultSet = pst.executeQuery();
+
+        while(resultSet.next()){
+            if(resultSet != null){
+                workoutPlanDataList.add( new WorkoutPlanData(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getDate(9).toLocalDate())
+                );
+            }
+        }
+        return workoutPlanDataList;
     }
 
 }
