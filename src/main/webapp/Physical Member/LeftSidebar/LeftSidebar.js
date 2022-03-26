@@ -694,12 +694,17 @@ function setProfileImage(){
       // let myBlob = new Blob();
 
 
-      let myFile = blobToFile(result, "my-image.png");
+      //let myFile = blobToFile(result, "my-image.png");
+
+      // const buffer = result // e.g., <Buffer 89 50 4e ... >
+      // const b64 = new Buffer(buffer).toString('base64')
+      // const mimeType = some_type // e.g., image/png
 
       console.log("Image get success");
-      $('#profile_physical_container_details_image').append(
-          `<img src="${myFile}" alt="profile_image" id="imgshow">`
-      );
+      // $('#profile_physical_container_details_image').append(
+      //     `<img src={data:${mimeType};base64,${b64}} />`
+      //     // `<img src="${myFile}" alt="profile_image" id="imgshow">`
+      // );
     },
     error: function (error) {
       console.log(error);
@@ -1428,49 +1433,120 @@ function viewBMI(chartName){
 }
 
 function viewCaloriesBurned(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
+  let completed_date_arr;
 
-  new Chart("myChart2", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        label: "Calories",
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
+  $.ajax({
+    method:"POST",
+    url:"getWorkoutPlan",
+    dataType:"json",
+    // contentType:"application/json",
+    success: function (result){
+      console.log(result);
+
+      let arrDate = new Array();
+      let arrCalories = new Array();
+      let i = 0;
+
+      $.map(result,function(x){
+        completed_date_arr = x.completed_date["year"]+"-"+x.completed_date["month"]+"-"+x.completed_date["day"];
+        // arrDate[i] = x["update_date"];
+        arrDate[i] = completed_date_arr;
+        arrCalories[i] = x["total_calories"];
+        i += 1;
+      });
+      console.log(arrDate);
+      console.log(arrCalories);
+
+      //arrDate.sort();
+
+      new Chart("myChart2", {
+        type: "line",
+        data: {
+          labels: arrDate,
+          datasets: [{
+            label: 'BMI ',
+            // data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+            data: arrCalories,
+            borderColor: "blue",
+            fill: false
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Calories vs Date"
+          },
+          legend: {display: true},
+          scales: {
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'BMI'
+              }
+            }],
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Weight'
+              }
+            }]
+          }
+        }
+      });
     },
-    options: {
-      title: {
-        display: true,
-        text: "Calories Burned"
-      },
-      legend: {display: true},
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Weight'
-          }
-        }],
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Time'
-          }
-        }]
-      }
+    error: function(error){
+      console.log(error+"edit profile");
     }
   });
+
+
+
+
+
+
+  // let xValues = [100,200,300,400,500,600,700,800,900,1000];
+  //
+  // new Chart("myChart2", {
+  //   type: "line",
+  //   data: {
+  //     labels: xValues,
+  //     datasets: [{
+  //       label: "Calories",
+  //       data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+  //       borderColor: "red",
+  //       fill: false
+  //     }, {
+  //       data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+  //       borderColor: "green",
+  //       fill: false
+  //     }, {
+  //       data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+  //       borderColor: "blue",
+  //       fill: false
+  //     }]
+  //   },
+  //   options: {
+  //     title: {
+  //       display: true,
+  //       text: "Calories Burned"
+  //     },
+  //     legend: {display: true},
+  //     scales: {
+  //       yAxes: [{
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: 'Weight'
+  //         }
+  //       }],
+  //       xAxes: [{
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: 'Time'
+  //         }
+  //       }]
+  //     }
+  //   }
+  // });
 }
 function viewWorkoutPlanReports(){
   let xValues = [100,200,300,400,500,600,700,800,900,1000];

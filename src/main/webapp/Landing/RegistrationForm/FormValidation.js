@@ -106,6 +106,18 @@ $(document).ready(function () {
             $('#phone_number_check').html("**Phone number can contain only numbers from 0-9 and + or - sign");
             $('#phone_number_check').css("color","red");
             return false;
+        }else if(parseInt(phoneNumberValue.length) < 0){
+            $('#phone_number_check').show();
+            phoneNumberError = false;
+            $('#phone_number_check').html("**Phone number can contain only positive numbers");
+            $('#phone_number_check').css("color","red");
+            return false;
+        }else if(parseInt(phoneNumberValue.length) >= 12){
+            $('#phone_number_check').show();
+            phoneNumberError = false;
+            $('#phone_number_check').html("**Phone number length can contain only numbers between 10 to 12");
+            $('#phone_number_check').css("color","red");
+            return false;
         }else{
             $('#phone_number_check').hide();
             phoneNumberError = true;
@@ -400,6 +412,7 @@ $(document).ready(function () {
                                         })
                                     }, 1500);
                                     $('#verify_email_register').show();
+                                    editPaymentBackgroundOn();
                                     //window.location.href ="http://localhost:8080/group39_fitbot_war_exploded/medical";
                                 }else if(result.trim() == "2"){
                                     Swal.fire({

@@ -27,6 +27,11 @@ public class BranchDetailsController extends HttpServlet {
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
 
+//        if(session.getAttribute("email") == null) {
+//            resp.sendRedirect("index.html");
+//            return ;
+//        }
+
         try {
             String branchID = BranchDetailsDAO.retriveBranchDetails(memberID);
 

@@ -14,16 +14,16 @@ function edit_profile_popup(){
     $('#edit_profile_container').show();
 }
 
-function edit_profile_submit(){
-    let first_name = $('#edit_profile_container_detail_name').val().trim();
-    let last_name = $('#edit_profile_container_detail_last_name').val().trim();
-    let weight = $('#edit_profile_container_detail_weight').val().trim();
-    let height = $('#edit_profile_container_detail_last_height').val().trim();
-    let date_of_birth = $('#edit_profile_container_detail_dob').val().trim();
-    let contact_number = $('#edit_profile_container_detail_last_conatct').val().trim();
-
-    // alert(first_name);
-}
+// function edit_profile_submit(){
+//     let first_name = $('#edit_profile_container_detail_name').val().trim();
+//     let last_name = $('#edit_profile_container_detail_last_name').val().trim();
+//     let weight = $('#edit_profile_container_detail_weight').val().trim();
+//     let height = $('#edit_profile_container_detail_last_height').val().trim();
+//     let date_of_birth = $('#edit_profile_container_detail_dob').val().trim();
+//     let contact_number = $('#edit_profile_container_detail_last_conatct').val().trim();
+//
+//     // alert(first_name);
+// }
 
 function close_edit_profile_Popup(){
     $('#edit_profile_container').hide();
