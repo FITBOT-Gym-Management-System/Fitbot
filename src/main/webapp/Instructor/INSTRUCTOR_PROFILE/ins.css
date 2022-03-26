@@ -1,0 +1,172 @@
+/* ----------------------------------------------------home ---------------------------------------- */
+
+.home_content_profile{
+
+    position: relative;
+    margin: 30px 72px 30px 72px;
+    background-color: white;
+}
+
+.home_content_profile .edit_profile{
+    display: inline-block;
+    padding: 10px;
+    background-color: #0E2C4B;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    float:right;
+    margin: 10px 10px 0px 0px;
+}
+
+.home_content_profile .text{
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-top: 12px;
+}
+
+.flex-container_fitinsprofile {
+
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: DodgerBlue; */
+}
+
+.flex-container_fitinsprofile .first_fitinsprofile {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: green; */
+    width: 100%;
+    height: 300px;
+    margin: 10px;
+}
+
+.flex-container_fitinsprofile .first_fitinsprofile .leftcontainer_fitinsprofile{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
+    left: 0;
+    height: 300px;
+}
+
+.flex-container_fitinsprofile .first_fitinsprofile .leftcontainer_fitinsprofile .image_instructor{
+    /* padding: 10px 60px 10px 100px; */
+    width: 400px;
+    margin: 30px;
+    text-align: center;
+    /* background-color: red; */
+}
+
+.image_instructor .ins_image{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+}
+
+.flex-container_fitinsprofile .first_fitinsprofile .leftcontainer_fitinsprofile .line {
+    border-left: 4px solid black;
+    height: 290px;
+    position: absolute;
+    left: 40%;
+    margin-left: -3px;
+    top: 80px;
+}
+
+.flex-container_fitinsprofile .first_fitinsprofile .rightcontainer_fitinsprofile{
+    display: flex;
+    flex-direction: column;
+/*/flex-wrap: wrap;/*/
+    /* padding-top: 80px; */
+    background-color: white;
+    width: 55%;
+    height: 300px;
+/*/right: 0;/*/
+}
+
+.flex-container_fitinsprofile .first_fitinsprofile .rightcontainer_fitinsprofile .p{
+    float: left;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.rightcontainer_fitinsprofile .ins_name_profile{
+    margin-bottom: 20px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.rightcontainer_fitinsprofile .details_instructor{
+    padding: 10px;
+    display: flex;
+/*/flex-direction: column;/*/
+    height: 200px;
+    width: 500px;
+    box-shadow: 5px 5px 5px #888888;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    font-size: 20px;
+    line-height: 45px;
+    justify-content: space-between;
+}
+
+/*  .details_instructor .box1 {*/
+/*       float: left;*/
+/*       text-align: left;*/
+/*  }*/
+
+/*  .details_instructor .box2 {*/
+/*    float:right;*/
+/*    text-align: left;*/
+
+
+.flex-container .second_fitinsprofile {
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    margin: 10px;
+
+}
+
+.flex-container_fitinsprofile .second_fitinsprofile .word_bio{
+    text-align: left;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 0 0 20px 20px;
+}
+
+.flex-container_fitinsprofile .second_fitinsprofile .bio{
+    text-align: justify;
+    padding: 0 20px 20px 20px;
+    line-height: 30px;
+    font-size: 20px;
+    color: black;
+}
+
+
+.flex-container_fitinsprofile .third_fitinsprofile {
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    margin: 10px;
+}
+
+.flex-container_fitinsprofile .third_fitinsprofile .instructor_offers{
+    text-align: left;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 0 0 20px 10px;
+}
+
+.flex-container_fitinsprofile .third_fitinsprofile .offer1, .offer2, .offer3, .offer4, .offer4, .offer5, .offer6, .offer7{
+    display: inline-block;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 5px 5px 5px #888888;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
