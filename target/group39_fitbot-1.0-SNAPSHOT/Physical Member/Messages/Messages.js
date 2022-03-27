@@ -41,7 +41,7 @@ function selected_instructor_physical(number) {
         $('.receive_messages_of_physical_member_chat1').hide();
         $('.receive_messages_of_physical_member_chat2').hide();
 
-        let str_ins_id = globalInstructorID.slice(4).toString();
+        let str_ins_id = globalInstructorID.slice(3).toString();
         let number_previous = parseInt(str_ins_id);
 
         $('.message_number' + number_previous).css("background-color","white");
@@ -51,7 +51,7 @@ function selected_instructor_physical(number) {
         $('.message_number' + number).css("color","white");
     }
 
-    let instructor_id = "Ins_" + number;
+    let instructor_id = "Ins" + number;
     globalInstructorID = instructor_id;
 
     $('#send_messages_of_physical_member').show();
