@@ -8,33 +8,38 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class MemberRegisterCountController extends HttpServlet {
+public class ManagerBranchRevenueController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Member Registartion Variation Monthly Method Called");
+        System.out.println("Branch Revenue Methodn called");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Member RegisterCount Post Method Called");
+        HttpSession session = req.getSession();
+        String branchID = (String) session.getAttribute("BranchID");
+
         try {
-            List<XY> memberregistercount= new ArrayList<>();
-            memberregistercount = ReportDataDAO.getMemberRegisterCount();
-            System.out.println(memberregistercount);
+            List<XY> income = new ArrayList<>();
+            income = ReportDataDAO.getBranchIncome(branchID);
+            System.out.println(income);
             Gson gson = new Gson();
-            String workoutJSON = gson.toJson(memberregistercount);
+            String employeeJSON = gson.toJson(income);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().write(workoutJSON);
+            resp.getWriter().write(employeeJSON);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 }

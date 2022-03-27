@@ -909,7 +909,33 @@
         <servlet-name>employeeid</servlet-name>
         <url-pattern>/employeeid</url-pattern>
     </servlet-mapping>
+  
+    <servlet>
+        <servlet-name>managerbranchrevenue</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.ManagerBranchRevenueController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerbranchrevenue</servlet-name>
+        <url-pattern>/managerbranchrevenue</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>managerbranchmemberregister</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchMemberRegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerbranchmemberregister</servlet-name>
+        <url-pattern>/managerbranchmemberregister</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>managerbranchmembercount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchMemberStatisticsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerbranchmembercount</servlet-name>
+        <url-pattern>/managerbranchmembercount</url-pattern>
+    </servlet-mapping>
 
     <!--instructors-->
     <servlet>
