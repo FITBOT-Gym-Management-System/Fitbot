@@ -420,7 +420,7 @@ function searchWorkout(){
 function searchDefaultWorkout(){
     $('#workout_physical_container_left_search_text_input1').keyup(function(){
         let value = $(this).val().toLowerCase();
-        $('.workout_physical_container_exercise_name').filter(function() {
+        $('.workout_history_container_row').filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });

@@ -3,6 +3,7 @@ package com.group39.fitbot.group39_fitbot.controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.group39.fitbot.group39_fitbot.dao.BranchDAO;
 import com.group39.fitbot.group39_fitbot.dao.LoginDAO;
 import com.group39.fitbot.group39_fitbot.dao.MemberDAO;
 import com.group39.fitbot.group39_fitbot.dao.RegistartionDAO;
@@ -73,6 +74,8 @@ public class LoginController extends HttpServlet {
                 if(checkLogin(login,loginData)) {
                     switch (userType) {
                         case "physical_member":
+                            String branchID = BranchDAO.getBranchID(loginData.getMember_id());
+                            session.setAttribute("branchID",branchID);
                             out.print("1");
                             break;
                         case "virtual_member":
