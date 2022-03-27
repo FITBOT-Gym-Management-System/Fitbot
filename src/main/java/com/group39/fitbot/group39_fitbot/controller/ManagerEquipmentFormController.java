@@ -30,6 +30,8 @@ public class ManagerEquipmentFormController extends HttpServlet {
         String branchID = (String) session.getAttribute("BranchID");
         System.out.println(branchID);
 
+        Date date30 = Date.valueOf(req.getParameter("date30"));
+
         equipment.setBranch_id(branchID);
         equipment.setCategory(req.getParameter("category"));
         equipment.setDescription(req.getParameter("description"));
@@ -53,7 +55,7 @@ public class ManagerEquipmentFormController extends HttpServlet {
 
         boolean added = false;
         try {
-            added = ManagerEquipmentFormDAO.addNewEquipment(equipment);
+            added = ManagerEquipmentFormDAO.addNewEquipment(equipment,date30);
         } catch(SQLException e) {
             e.printStackTrace();
         } catch(ClassNotFoundException e) {

@@ -126,3 +126,8 @@
   color: #0E2C4B;
   border-color: #0E2C4B;
 }
+
+
+  .validation_equipment_label {
+      color: red;
+  }

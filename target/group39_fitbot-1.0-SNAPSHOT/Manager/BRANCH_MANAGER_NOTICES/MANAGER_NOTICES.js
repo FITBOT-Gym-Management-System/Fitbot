@@ -11,6 +11,9 @@ function manager_notices_page() {
 
 function add_notice_popup(){
     $('#add_notice_container').show();
+    $("#validation_noticetitle_id").hide();
+    $("#validation_noticedate_id").hide();
+    $("#validation_noticedescription_id").hide();
 }
 
 function close_add_notice_Popup(){
@@ -22,6 +25,10 @@ function close_add_notice_Popup(){
 
 function submitNoticeForm(){
 
+    $("#validation_noticetitle_id").hide();
+    $("#validation_noticedate_id").hide();
+    $("#validation_noticedescription_id").hide();
+
     let title = $('#title').val();
     let dates = $('#dates').val();
     let description = $('#description').val();
@@ -29,6 +36,10 @@ function submitNoticeForm(){
     let title_error = false;
     let dates_error = false;
     let description_error = false;
+
+    const date = new Date();
+    let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
+    console.log(currentDate);
 
     //notice title
     if (title.length == ""){
@@ -40,7 +51,7 @@ function submitNoticeForm(){
     }
 
     //notice date
-    if (dates.length == ""){
+    if (dates.length == "" && $('#dates') == currentDate){
         $("#validation_noticedate_id").show();
         dates_error = true;
     }

@@ -614,13 +614,15 @@ function managerins_view_count(){
 
 
 function member_view(){
-  // const date = new Date();
-  // let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
-  // console.log(currentDate);
+  const date = new Date();
+  let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
+  console.log(currentDate);
+
   $.ajax({
     method: 'POST',
     url: "managermember",
     dataType: 'json',
+    data:{currentDate:currentDate},
   }).done(function (result) {
     let count = 0;
     console.log(result);
@@ -713,7 +715,7 @@ function manager_member_attendence(member_id,id_check){
 function manager_change_paymentstatus(payment_id){
   console.log(payment_id);
   console.log("prasadiii");
-  $('#payment_accepted_container').show();
+
   $.ajax({
     method: 'POST',
     url: "change_payment_status",
@@ -721,6 +723,8 @@ function manager_change_paymentstatus(payment_id){
     // dataType: 'json',
   }).done(function (result){
     console.log(result);
+    $('#payment_accepted_container').show();
+    managerpayment_view();
   }).fail(function (a, b, err) {
     alert("Error");
     console.log(a, b, err);
@@ -733,32 +737,37 @@ function manager_reject_payment(payment_id){
   console.log("boodima");
   $('#payment_reject_container').show();
 
-    Swal.fire({
-      title: 'Are you sure?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#0E2C4B',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Reject!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          method: 'POST',
-          url: "manager_reject_payment",
-          data: {payment_id:payment_id},
-          // dataType: 'json',
-        }).done(function (result){
-          console.log(result);
-        }).fail(function (a, b, err) {
-          alert("Error");
-          console.log(a, b, err);
-        });
-      }else if (result.isDenied){
-        // Swal.fire('Changes are not saved', '', 'info')
-        console.log("Log out cancel");
-      }
-    })
+  Swal.fire({
+    title: 'Are you sure?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#0E2C4B',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Reject!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        method: 'POST',
+        url: "manager_reject_payment",
+        data: {payment_id:payment_id},
+        // dataType: 'json',
+      }).done(function (result){
+        console.log(result);
+
+        managerpayment_view();
+
+      }).fail(function (a, b, err) {
+        alert("Error");
+        console.log(a, b, err);
+      });
+
+    }else if (result.isDenied){
+      // Swal.fire('Changes are not saved', '', 'info')
+      console.log("Log out cancel");
+    }
+  })
 }
+
 
 function inquiry_view() {
   $.ajax({
@@ -826,16 +835,21 @@ function updateequipmenttable() {
     console.log(result);
     $("#manager_equipment_table_tbody").html(' ')
     $.map(result, function (x) {
-      alert(x.purchase_date["year"]);
+
+      let last_date ;
+      if(x.last_modified_date == null){
+        last_date = "-";
+        console.log(last_date);
+      }
       $('#manager_equipment_table_tbody').append(
-          '<tr class="manager_equipment_row">' +
-          '<td>' + x.equipment_id + '</td>' +
-          '<td>' + x.category + '</td>' +
-          '<td>' + x.purchase_date + '</td>' +
-          '<td>' + x.last_modified_date + '</td>' +
-          '<td>' + x.next_maintenance_date + '</td>' +
-          '<td>' + '<div class="button_row"><div class="add_btn_class"><input type="button" class="btn_add" value="Update" onClick=""></div> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Delete" onClick=""></div></div>' + '</td>' +
-          '</tr>'
+          `<tr class="manager_equipment_row">
+                <td> ${x.equipment_id} </td>
+                <td> ${x.category} </td>
+                <td> ${x.purchase_date} </td>
+                <td> ${x.last_modified_date} </td>
+                <td> last_date </td>
+                <td> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onclick="managerDisableEquipment('${x.equipment_id}')"></div></td>
+                </tr>`
       );
     });
 
@@ -843,6 +857,42 @@ function updateequipmenttable() {
     alert("Error");
     console.log(a, b, err);
   });
+}
+
+
+function managerDisableEquipment(equipment_id){
+  console.log(equipment_id);
+
+  Swal.fire({
+    title: 'Are you sure to disable this equipment?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#0E2C4B',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Disable!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        method: 'POST',
+        url: "disableEquipment",
+        data: {equipment_id:equipment_id},
+        // dataType: 'json',
+      }).done(function (result){
+        console.log(result);
+
+        updateequipmenttable();
+
+      }).fail(function (a, b, err) {
+        alert("Error");
+        console.log(a, b, err);
+      });
+
+    }else if (result.isDenied){
+      // Swal.fire('Changes are not saved', '', 'info')
+      console.log("Log out cancel");
+    }
+  })
+
 
 }
 
@@ -854,13 +904,27 @@ function updaterequest_table(){
     dataType: 'json',
   }).done(function (result) {
     console.log(result);
+
+
     $("#manager_request_table_tbody").html(' ')
     $.map(result, function (x) {
+
+      let status_name;
+      if(x.status == 1){
+        status_name = "New";
+      }
+      else if(x.status == 2){
+        status_name = "Progress";
+      }
+      else if(x.status == 3){
+        status_name = "Completed";
+      }
+
       $('#manager_request_table_tbody').append(
           '<tr class="manager_request_row">' +
           '<td>' + x.equipment_id + '</td>' +
           '<td>' + x.category + '</td>' +
-          '<td>' + x.status + '</td>' +
+          '<td>' + status_name + '</td>' +
           '<td>' + x.next_maintenance_date + '</td>' +
           '</tr>'
       );

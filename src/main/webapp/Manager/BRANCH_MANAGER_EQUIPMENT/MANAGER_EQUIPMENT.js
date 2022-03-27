@@ -19,10 +19,12 @@ function manager_equipment_form_page() {
 }
 
 
+function canceladdequip(){
+    $('#equipment_form input[type="text"],input[type="date"], textarea').val('');
+}
 
 function submitaddequip(){
 
-    alert("shalani");
     let equipment_id = $('#equipment_id').val();
     let description = $('#description').val();
     let category = $('#category').val();
@@ -30,6 +32,8 @@ function submitaddequip(){
     let serial_no = $('#serial_no').val();
     let last_modified_date = $('#last_modified_date').val();
     let next_maintenance_date = $('#next_maintenance_date').val();
+    // let status = $('#status').val();
+
     //
     // if (notice_no == "") {
     //     window.alert("Please enter notice number.");
@@ -60,12 +64,14 @@ function submitaddequip(){
     // console.log(dates);
     // console.log(description);
 
+    let date = new Date();
+    let date30 = date.getFullYear()+"-"+("0"+((date.getMonth()+2)%12)).slice(-2)+"-"+("0"+date.getDay()+30).slice(-2);
+    console.log(date30);
+
     $.ajax({
-
-
         method: 'POST',
         url: "addequipment",
-        data: {equipment_id:equipment_id,description:description, category:category, purchase_date:purchase_date, serial_no:serial_no},
+        data: {equipment_id:equipment_id,description:description, category:category, purchase_date:purchase_date, serial_no:serial_no,date30:date30},
 
         success:function (result){
             // event.preventDefault();
@@ -104,15 +110,22 @@ function updateequipmenttable() {
         nextbuttons(result,chunk);
         initiateEquipmentNextButtons(result,chunk)
         $.map(result.slice(0,chunk), function (x) {
+
+            let last_date ;
+            if(x.last_modified_date == null){
+                last_date = "-";
+                console.log(last_date);
+            }
+
             $('#manager_equipment_table_tbody').append(
-                '<tr class="manager_equipment_row">' +
-                '<td>' + x.equipment_id + '</td>' +
-                '<td>' + x.category + '</td>' +
-                '<td>' + x.purchase_date + '</td>' +
-                '<td>' + x.last_modified_date + '</td>' +
-                '<td>' + x.next_maintenance_date + '</td>' +
-                '<td>' + '<div class="button_row"><div class="add_btn_class"><input type="button" class="btn_add" value="Update" onclick=""></div> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onClick=""></div></div>' + '</td>' +
-                '</tr>'
+                `<tr class="manager_equipment_row">
+                <td> ${x.equipment_id} </td>
+                <td> ${x.category} </td>
+                <td> ${x.purchase_date} </td>
+                <td> last_date </td>
+                <td> ${x.next_maintenance_date} </td>
+                <td> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onclick="managerDisableEquipment('${x.equipment_id}')"></div></td>
+                </tr>`
             );
         });
 
@@ -127,7 +140,7 @@ function updateequipmenttable() {
 function updateUpcomingMaintainance(){
     // alert("yohaaaaaaaaaaaaaaaan");
     let date = new Date();
-    let date30 = date.getFullYear()+"-"+("0"+((date.getMonth()+2)%12)).slice(-2)+"-"+("0"+date.getDay()).slice(-2);
+    let date30 = date.getFullYear()+"-"+("0"+((date.getMonth()+2)%12)).slice(-2)+"-"+("0"+date.getDay()+30).slice(-2);
     console.log(date30);
 
     $.ajax({
@@ -158,6 +171,7 @@ function updateUpcomingMaintainance(){
 
 
 
+
 function searchEquipment(){
     $('#manager_equipment_search').keyup(function(){
         // alert("yohan2");
@@ -179,15 +193,22 @@ function initiateEquipmentNextButtons(result,chunk) {
             let pageno = parseInt($(this).html());
             $("#manager_equipment_table_tbody").html(' ')
             $.map(result.slice(pageno * chunk - chunk, pageno * chunk), function (x) {
+
+                let last_date ;
+                if(x.last_modified_date == null){
+                    last_date = "-";
+                    console.log(last_date);
+                }
+
                 $('#manager_equipment_table_tbody').append(
-                    '<tr class="manager_equipment_row">' +
-                    '<td>' + x.equipment_id + '</td>' +
-                    '<td>' + x.category + '</td>' +
-                    '<td>' + x.purchase_date + '</td>' +
-                    '<td>' + x.last_modified_date + '</td>' +
-                    '<td>' + x.next_maintenance_date + '</td>' +
-                    '<td>' + '<div class="button_row"><div class="add_btn_class"><input type="button" class="btn_add" value="Update" onclick=""></div> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onClick=""></div></div>' + '</td>' +
-                    '</tr>'
+                    `<tr class="manager_equipment_row">
+                <td> ${x.equipment_id} </td>
+                <td> ${x.category} </td>
+                <td> ${x.purchase_date} </td>
+                <td> last_date</td>
+                <td> ${x.next_maintenance_date} </td>
+                <td> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onclick="managerDisableEquipment('${x.equipment_id}')"></div></td>
+                </tr>`
                 );
             })
         })

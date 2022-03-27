@@ -45,6 +45,7 @@ public class LoginController extends HttpServlet {
 
         try {
             login_password = toHexStr(obtainSHA(login_password));
+            System.out.println(login_password);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

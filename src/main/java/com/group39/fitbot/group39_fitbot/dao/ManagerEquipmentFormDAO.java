@@ -11,9 +11,9 @@ public class ManagerEquipmentFormDAO {
 
     }
 
-    public static boolean addNewEquipment(ManagerEquipment equipment) throws SQLException, ClassNotFoundException{
+    public static boolean addNewEquipment(ManagerEquipment equipment,Date date30) throws SQLException, ClassNotFoundException{
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO equipment (equipment_id,branch_id,category,description,purchase_date,serial_no) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO equipment (equipment_id,branch_id,category,description,purchase_date,serial_no,next_maintenance_date,status) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
         System.out.println("im sachinka");
         System.out.println(equipment);
@@ -24,6 +24,8 @@ public class ManagerEquipmentFormDAO {
         pst.setString(4,equipment.getDescription());
         pst.setDate(5, equipment.getPurchase_date());
         pst.setString(6, equipment.getSerial_no());
+        pst.setDate(7, date30);
+        pst.setInt(8,1);
         return pst.executeUpdate() > 0;
     }
 

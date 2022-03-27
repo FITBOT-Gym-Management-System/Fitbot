@@ -3,18 +3,22 @@ package com.group39.fitbot.group39_fitbot.model;
 import java.sql.Date;
 //import java.sql.Time;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ManagerAddRequest {
     private String equipment_id;
     private String category;
     private String description;
-    private Date re_date;
+    private LocalDate re_date;
     private LocalTime re_time;
     private String branchmanager_id;
     private String branch_id;
 
-    public ManagerAddRequest(String equipment_id, String category, String description, Date re_date, LocalTime re_time, String branchmanager_id, String branch_id) {
+    public ManagerAddRequest() {
+    }
+
+    public ManagerAddRequest(String equipment_id, String category, String description, LocalDate re_date, LocalTime re_time, String branchmanager_id, String branch_id) {
         this.equipment_id = equipment_id;
         this.category = category;
         this.description = description;
@@ -22,10 +26,6 @@ public class ManagerAddRequest {
         this.re_time = re_time;
         this.branchmanager_id = branchmanager_id;
         this.branch_id = branch_id;
-    }
-
-    public ManagerAddRequest() {
-
     }
 
     public String getEquipment_id() {
@@ -52,11 +52,11 @@ public class ManagerAddRequest {
         this.description = description;
     }
 
-    public Date getRe_date() {
+    public LocalDate getRe_date() {
         return re_date;
     }
 
-    public void setRe_date(Date re_date) {
+    public void setRe_date(LocalDate re_date) {
         this.re_date = re_date;
     }
 

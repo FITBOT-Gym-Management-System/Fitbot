@@ -5,10 +5,10 @@ import java.sql.Date;
 public class ManagerRequest {
     private String equipment_id;
     private String category;
-    private String status;
+    private int status;
     private Date next_maintenance_date;
 
-    public ManagerRequest(String equipment_id, String category, String status, Date next_maintenance_date) {
+    public ManagerRequest(String equipment_id, String category, int status, Date next_maintenance_date) {
         this.equipment_id = equipment_id;
         this.category = category;
         this.status = status;
@@ -31,11 +31,11 @@ public class ManagerRequest {
         this.category = category;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -52,7 +52,7 @@ public class ManagerRequest {
         return "ManagerRequest{" +
                 "equipment_id='" + equipment_id + '\'' +
                 ", category='" + category + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 ", next_maintenance_date=" + next_maintenance_date +
                 '}';
     }
