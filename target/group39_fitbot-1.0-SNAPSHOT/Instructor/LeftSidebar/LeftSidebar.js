@@ -169,11 +169,11 @@ $(document).ready(function(){
     
     if(load[2] == 0){
       $(sideBar_links_variable).load('http://localhost:8080/group39_fitbot_war_exploded/Instructor/INSTRUCTOR_MY_STUDENT/ins_MYSTUDENT.html #home_section_instructor_students',function(responseTxt, statusTxt, xhr){
-        // console.log("sachinkaaaaaaaaaaaa");
-        loadStudent();
-        loadStudentBoxData();
+        $('#student_view').hide();
+        studentcount();
+        printmystudents();
 
-
+        // loadStudentBoxData();
       if(statusTxt == "error")
           alert("Error: " + xhr.status + ": " + xhr.statusText);
       });
@@ -323,7 +323,6 @@ function closeNav() {
 }
 
 function getBranchIdForIns(){
-  alert("Call saaaaaaaaaaa");
 
   $.ajax({
     method:'POST',
