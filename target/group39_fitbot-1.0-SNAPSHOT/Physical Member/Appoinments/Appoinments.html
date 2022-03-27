@@ -12,7 +12,7 @@
                         <span class="payble_date">Make appoinment before 24 hours</span>
                     </div>
                     <div class="payment_button" id="payment_button">
-                        <a href="#" class="appointment_button_div" id="appointment_button_div" onclick="makeAppointmentPhysical()">MAKE APPOINTMENT</a>
+                        <a href="#" type="button" class="appointment_button_div" id="appointment_button_div" onclick="makeAppointmentPhysical()">MAKE APPOINTMENT</a>
                     </div>
                 </div>
                 <div class="appointment_cal_date">
@@ -109,6 +109,27 @@
 
                     </form>
                 </div>
+            </div>
+
+        </div>
+
+<!--        appointment history-->
+        <div class="payment_popup_details" id="after_appointment_popup_details">
+            <div class="payment_detail_header">
+                <span>Appointment Details</span>
+                <div onclick="close_after_appointment_details()" class="close_payment_detail_btn">
+                    <i class='bx bx-x close_btn_forgot'></i>
+                </div>
+            </div>
+            <div class="payment_detail_container" id="appoitment_history_detail_container">
+<!--                <form method="post" action="" class="payment_detail_container_form">-->
+
+<!--&lt;!&ndash;                    <div class="payment_detail_container_form_headers"><span>Customer Details</span></div>&ndash;&gt;-->
+
+<!--                    <div class="payment_detail_container_cus_details" id="payment_detail_container_cus_details">-->
+
+<!--                    </div>-->
+                </form>
             </div>
 
         </div>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons icons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>Fitbot</title>
+    <link rel="shortcut icon" href="image/fitbot.png">
+    <link rel="stylesheet" href="instructor_workout_plan.css">
+    <link rel="stylesheet" href="leftbar.css">
+    <link rel="stylesheet" href="rightbar.css">
+    
+</head>
+<body>
+
+    <section class="home_section_instructor_appoinments">
+
+        
+    <!-- -----------------------home ----------------------------------------------- -->
+
+    <div class="home_content_workout_fitworkout" id="home_content_workout_fitworkout">
+
+           <div class="workout1_fitworkout">
+                    
+                    <div class="create_new">
+                                  <!-- <div class="workout_header">Give workout Plan</div> -->
+                                  <div class="drag_space_fitworkout">
+                                    <p>CREATE WORKOUT PLAN</p>
+                                     <div class="drag_box_fitworkout"></div>
+
+                                    <div class= "search_box_workout_fitworkout">
+                                      <input type ="text" placeholder="Search for a member">
+                                      <button type="submit">Search</button>
+                                  </div> 
+                                  </div>
+                    </div>
+
+                    <div class="history">
+                          <div class="history_header_fitworkout">Workout Plan History</div>
+                        <div class="workout_table">
+                            <table id="table1">
+
+                                <tr>
+                                    <th>Created Date</th>
+                                    <th>Workout Plan</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr class="workout_plan_row">
+                                    <th>11/01/2021</th>
+                                    <td>Cardio</td>
+                                    <td><a href="#"><i class='bx bxs-pencil' ></i></a></td>
+                                    <td><button type="button"><i class='bx bxs-minus-circle'></i></button></td>
+                                </tr>
+
+                                <tr class="workout_plan_row">
+                                    <th>09/01/2021</th>
+                                    <td>Bulk-up</td>
+                                    <td><a href="#"><i class='bx bxs-pencil' ></i></a></td>
+                                    <td><button type="button"><i class='bx bxs-minus-circle'></i></button></td>
+                                </tr>
+
+                                <tr class="workout_plan_row">
+                                    <th>02/01/2021</th>
+                                    <td>Crossfit</td>
+                                    <td><a href="#"><i class='bx bxs-pencil' ></i></a></td>
+                                    <td><button type="button"><i class='bx bxs-minus-circle'></i></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
+<!--                                  <div class="workout_accordian">-->
+<!--                                          <button class="history_title">-->
+<!--                                                  <table class="acco_table_fitworkout" id="acco_table_fitworkout">-->
+<!--                                                      <tr>-->
+<!--                                                         <td>Cardio</td>-->
+<!--                                                         <td><a href="#">Edit</a></td>-->
+<!--                                                      </tr>-->
+<!--                                                  </table>-->
+<!--                                                  <div class="line_workout"></div>-->
+<!--                                          </button>-->
+<!--                                          <div class="history_info">-->
+<!--                                             &lt;!&ndash; <p>Lorem ipsum dolor sit amet</p> &ndash;&gt;-->
+<!--                                                  <div class="workout_info1_fitworkout">-->
+<!--                                                    <p>Reciever</p>-->
+<!--                                                    <p>Type</p>-->
+<!--                                                    <p>Duration</p>-->
+<!--                                                    <p>Rest Time</p>-->
+<!--                                                    <p>Equipment</p>-->
+<!--                                                  </div>-->
+
+<!--                                                  <div class="workout_info2_fitworkout">-->
+<!--                                                    <p>Shalani Chethana</p>-->
+<!--                                                    <p>Beginner</p>-->
+<!--                                                    <p>30 minutes</p>-->
+<!--                                                    <p>60-90 seconds </p>-->
+<!--                                                    <p>No equipment needed</p>-->
+<!--                                                  </div>-->
+<!--                                          </div>-->
+<!--                                          -->
+
+<!--                                          <button class="history_title">-->
+<!--                                            <table class="acco_table_fitworkout">-->
+<!--                                                <tr>-->
+<!--                                                   <td>Bulk-up</td>-->
+<!--                                                   <td><a href="#">Edit</a></td>-->
+<!--                                                </tr>-->
+<!--                                            </table>-->
+<!--                                            <div class="line_workout"></div>-->
+<!--                                          </button>-->
+<!--                                          <div class="history_info">-->
+<!--                                       &lt;!&ndash; <p>Lorem ipsum dolor sit amet</p> &ndash;&gt;-->
+<!--                                              <div class="workout_info1_fitworkout">-->
+<!--                                                <p>Reciever</p>-->
+<!--                                                <p>Type</p>-->
+<!--                                                <p>Duration</p>-->
+<!--                                                <p>Rest Time</p>-->
+<!--                                                <p>Equipment</p>-->
+<!--                                              </div>-->
+
+<!--                                              <div class="workout_info2_fitworkout">-->
+<!--                                                <p>Shalani Chethana</p>-->
+<!--                                                <p>Beginner</p>-->
+<!--                                                <p>30 minutes</p>-->
+<!--                                                <p>60-90 seconds </p>-->
+<!--                                                <p>No equipment needed</p>-->
+<!--                                              </div>-->
+<!--                                          </div>-->
+<!--                                          -->
+
+<!--                                          <button class="history_title">-->
+<!--                                            <table class="acco_table_fitworkout">-->
+<!--                                                <tr>-->
+<!--                                                   <td>Crossfit</td>-->
+<!--                                                   <td><a href="#">Edit</a></td>-->
+<!--                                                </tr>-->
+<!--                                            </table>-->
+<!--                                            <div class="line_workout"></div>-->
+<!--                                          </button>-->
+<!--                                          <div class="history_info">-->
+<!--                                       &lt;!&ndash; <p>Lorem ipsum dolor sit amet</p> &ndash;&gt;-->
+<!--                                              <div class="v_info1_fitworkout">-->
+<!--                                                <p>Reciever</p>-->
+<!--                                                <p>Type</p>-->
+<!--                                                <p>Duration</p>-->
+<!--                                                <p>Rest Time</p>-->
+<!--                                                <p>Equipment</p>-->
+<!--                                              </div>-->
+
+<!--                                              <div class="workout_info2_fitworkout">-->
+<!--                                                <p>Shalani Chethana</p>-->
+<!--                                                <p>Beginner</p>-->
+<!--                                                <p>30 minutes</p>-->
+<!--                                                <p>60-90 seconds </p>-->
+<!--                                                <p>No equipment needed</p>-->
+<!--                                              </div>-->
+<!--                                           </div>-->
+
+
+<!--                                           <button class="history_title">-->
+<!--                                            <table class="acco_table_fitworkout">-->
+<!--                                                <tr>-->
+<!--                                                   <td>Trim-up</td>-->
+<!--                                                   <td><a href="#">Edit</a></td>-->
+<!--                                                </tr>-->
+<!--                                            </table>-->
+<!--                                            <div class="line_workout"></div>-->
+<!--                                           </button>-->
+<!--                                           <div class="history_info">-->
+<!--                                            &lt;!&ndash; <p>Lorem ipsum dolor sit amet</p> &ndash;&gt;-->
+<!--                                                  <div class="workout_info1_fitworkout">-->
+<!--                                                    <p>Reciever</p>-->
+<!--                                                    <p>Type</p>-->
+<!--                                                    <p>Duration</p>-->
+<!--                                                    <p>Rest Time</p>-->
+<!--                                                    <p>Equipment</p>-->
+<!--                                                  </div>-->
+
+<!--                                                  <div class="workout_info2_fitworkout">-->
+<!--                                                    <p>Shalani Chethana</p>-->
+<!--                                                    <p>Beginner</p>-->
+<!--                                                    <p>30 minutes</p>-->
+<!--                                                    <p>60-90 seconds </p>-->
+<!--                                                    <p>No equipment needed</p>-->
+<!--                                                  </div>-->
+<!--                                           </div>-->
+
+<!--                                          <button class="history_title">-->
+<!--                                                  <table class="acco_table_fitworkout">-->
+<!--                                                      <tr>-->
+<!--                                                         <td>Bodybuilding basic</td>-->
+<!--                                                         <td><a href="#">Edit</a></td>-->
+<!--                                                      </tr>-->
+<!--                                                  </table>-->
+<!--                                                  <div class="line_workout"></div>-->
+<!--                                          </button>-->
+<!--                                          <div class="history_info">-->
+<!--                                             &lt;!&ndash; <p>Lorem ipsum dolor sit amet</p> &ndash;&gt;-->
+<!--                                                  <div class="workout_info1_fitworkout">-->
+<!--                                                    <p>Reciever</p>-->
+<!--                                                    <p>Type</p>-->
+<!--                                                    <p>Duration</p>-->
+<!--                                                    <p>Rest Time</p>-->
+<!--                                                    <p>Equipment</p>-->
+<!--                                                  </div>-->
+
+<!--                                                  <div class="workout_info2_fitworkout">-->
+<!--                                                    <p>Shalani Chethana</p>-->
+<!--                                                    <p>Beginner</p>-->
+<!--                                                    <p>30 minutes</p>-->
+<!--                                                    <p>60-90 seconds </p>-->
+<!--                                                    <p>No equipment needed</p>-->
+<!--                                                  </div>-->
+<!--                                          </div>-->
+
+
+<!--                                           <button class="history_title">-->
+<!--                                                  <table class="acco_table_fitworkout">-->
+<!--                                                      <tr>-->
+<!--                                                         <td>Dumbbell workout</td>-->
+<!--                                                         <td><a href="#">Edit</a></td>-->
+<!--                                                      </tr>-->
+<!--                                                  </table>-->
+<!--                                                  <div class="line_workout"></div>-->
+<!--                                          </button>-->
+<!--                                          <div class="history_info">-->
+<!--                                             &lt;!&ndash; <p>Lorem ipsum dolor sit amet</p> &ndash;&gt;-->
+<!--                                                  <div class="workout_info1_fitworkout">-->
+<!--                                                    <p>Reciever</p>-->
+<!--                                                    <p>Type</p>-->
+<!--                                                    <p>Duration</p>-->
+<!--                                                    <p>Rest Time</p>-->
+<!--                                                    <p>Equipment</p>-->
+<!--                                                  </div>-->
+
+<!--                                                  <div class="workout_info2_fitworkout">-->
+<!--                                                    <p>Shalani Chethana</p>-->
+<!--                                                    <p>Beginner</p>-->
+<!--                                                    <p>30 minutes</p>-->
+<!--                                                    <p>60-90 seconds </p>-->
+<!--                                                    <p>No equipment needed</p>-->
+<!--                                                  </div>-->
+<!--                                          </div>-->
+<!--                                  </div>-->
+
+                          </div>
+
+            </div>
+
+       <div class="workout2_fitworkout">
+                    
+               <div class="workout_right_fitworkout">Workout</div>
+               <div class="workout_right2_fitworkout">
+
+                     <a href="http://localhost:8080/group39_fitbot_war_exploded/Instructor/INSTRUCTOR_ADD_WORKOUT/ins_add_workout.html "> Add New Workout<i class='bx bx-plus-circle'></i></a>
+               </div>
+
+
+
+
+              <div class= "search_box_workout_right_fitworkout">
+                <input type ="text" placeholder="Search for a member">
+                <button type="submit">Search</button>
+              </div> 
+
+             <div class="workout_table">
+                  <table id="table">
+<!--                      onchange="dataOrderEquipments(this.value)"-->
+                    <tr>
+                        <th>Workout</th>
+                        <th>Type</th>
+                        <th><select name="select_Filter_List_order"  class="select_Filter_List_order" id="select_Filter_List_order">
+                            <option value="all">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select></th>
+                        <th>Equipment</th>
+                    </tr>
+
+                    <tr class="workout_plan_row">
+                        <td>Cardio</td>
+                        <td>Full body</td>
+                        <td>Female</td>
+                        <td>None</td>
+                    </tr>
+
+                    <tr class="workout_plan_row">
+                         <td>Cardio</td>
+                         <td>Full body</td>
+                         <td>Female</td>
+                         <td>None</td>
+                    </tr>
+
+
+                  </table>
+              </div>
+       </div>
+
+      
+    </div>
+
+
+
+
+    </section>
+
+
+
+
+    <script src="leftbar.js"></script>
+    <script src="accordian.js"></script>
+    <script src="delete.js"></script>
+
+   
+</body>
+</html>

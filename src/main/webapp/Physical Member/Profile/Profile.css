@@ -567,3 +567,7 @@
     color:white;
     background-color: #0E2C4B;
 }
+
+.edit_profile_container_detail_name_required{
+    color:red;
+}

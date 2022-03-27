@@ -1,3 +1,42 @@
+
+function upcomingTaskWithGoal(){
+    $.ajax({
+        method:"POST",
+        url:"memberGoalGetData",
+        // dataType:"json",
+        // contentType:"application/json",
+        success: function (result){
+            // result["weight_goal"],result["calory_goal"]
+            let xValues = ["Weight","Calories"];
+            $('#upcoming_task_profile').append(
+                `<div class="right_side_bar_task_1">
+                    <div>
+                        <span>${xValues[0]} Goal -</span>
+                        <span>  ${result["weight_goal"]}Kg</span>
+                    </div>
+<!--                <input type="checkbox" id="gymnastic_checkbox1" class="gymnastic_checkbox">-->
+                </div>`
+            );
+
+            $('#upcoming_task_profile').append(
+                `<div class="right_side_bar_task_2">
+                    <div>
+                        <span>${xValues[1]} Goal -</span>
+                        <span>  ${result["calory_goal"]}Cal</span>
+                    </div>
+<!--                <input type="checkbox" id="gymnastic_checkbox1" class="gymnastic_checkbox">-->
+                </div>`
+            );
+
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+
+
 //close button
 // function closeNav() {
 //   let right_sidebar = document.querySelector(".right_side_nav");
