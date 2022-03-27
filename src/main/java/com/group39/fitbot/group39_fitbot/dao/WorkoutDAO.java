@@ -167,24 +167,42 @@ public class WorkoutDAO {
         return pst.executeUpdate() > 0;
     }
 
-    public static List<Integer> retrieveCompleteExerciseData(String member_id) throws SQLException, ClassNotFoundException {
-        Workout workout = new Workout();
+    public static List<Workout> retrieveCompleteExerciseData(String member_id) throws SQLException, ClassNotFoundException {
+        int workoutPlan_id = getWorkoutPlanId(member_id);
+        //Workout workout = new Workout();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT workout_id FROM complete_exercise WHERE member_id=?;";
+//        String query = "SELECT workout_id FROM complete_exercise WHERE member_id=?;";
+        String query = "SELECT workout.workout_id,workout.workout_description,workout.total_reps,workout.workout_gender,workout.rest_time,\n" +
+                "workout.workout_type,workout.duration,workout.exercise,workout.equipment_type,workout.workout_img_url,workout.calories_burn\n" +
+                "FROM workout\n" +
+                "INNER JOIN workout_workout_plan ON workout.workout_id = workout_workout_plan.workout_id\n" +
+                "WHERE workout.workout_id NOT IN(SELECT DISTINCT(complete_exercise.workout_id) FROM complete_exercise WHERE member_id = ?) AND workout_plan_id= ?";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,member_id);
+        pst.setInt(2,workoutPlan_id);
 
-        List<Integer> completeWorkouts = new ArrayList<>();
+        List<Workout> workout = new ArrayList<>();
 
         ResultSet resultSet = pst.executeQuery();
 
         while(resultSet.next()){
             if(resultSet != null){
-                completeWorkouts.add(resultSet.getInt(1));
+                workout.add(new Workout(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10),
+                        resultSet.getInt(11))
+                );
             }
         }
 
-        return completeWorkouts;
+        return workout;
     }
 
 //    WorkoutPlanData

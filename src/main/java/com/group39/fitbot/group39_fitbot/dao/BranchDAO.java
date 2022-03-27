@@ -77,4 +77,21 @@ public class BranchDAO {
 
         return pst.executeUpdate()>0;
     }
+
+    public static String getBranchID(String memberID) throws SQLException ,ClassNotFoundException {
+        Branch branch = new Branch();
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = " SELECT branch_id FROM register where member_id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1,memberID);
+        ResultSet resultSet = pst.executeQuery();
+
+        String branchID = null;
+        if (resultSet.next()){
+            branchID = resultSet.getString(1);
+        }
+        return branchID;
+    }
+
 }
