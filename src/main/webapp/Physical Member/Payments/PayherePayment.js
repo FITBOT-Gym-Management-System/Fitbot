@@ -140,11 +140,6 @@ function pay_bill_view(payment_id,cus_first_name,cus_last_name,cus_address,payme
                                 <span><b>Address</b></span><br>
                                 <span>${cus_address}</span>
                             </div>
-
-                            // <div>
-                            //     <span><b>City</b></span><br>
-                            //     <span>${cus_city}</span>
-                            // </div>
                         </div>`
     );
 

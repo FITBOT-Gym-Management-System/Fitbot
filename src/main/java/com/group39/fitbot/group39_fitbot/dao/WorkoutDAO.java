@@ -3,6 +3,7 @@ package com.group39.fitbot.group39_fitbot.dao;
 import com.group39.fitbot.group39_fitbot.database.DBConnection;
 import com.group39.fitbot.group39_fitbot.model.Notification;
 import com.group39.fitbot.group39_fitbot.model.Workout;
+import com.group39.fitbot.group39_fitbot.model.WorkoutPlanData;
 import com.group39.fitbot.group39_fitbot.model.WorkoutPlanRequests;
 
 import java.sql.*;
@@ -118,10 +119,10 @@ public class WorkoutDAO {
         return workouts;
     }
 
-    public static boolean insertWorkoutRequestDetails(WorkoutPlanRequests workoutPlanRequests) throws SQLException, ClassNotFoundException {
+    public static boolean insertWorkoutRequestDetails(WorkoutPlanRequests workoutPlanRequests,String plan_type) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
-        String query = "INSERT INTO workout_plan_requests(instructor_id,has_assign,request_date,member_id) VALUES(?,?,?,?)";
+        String query = "INSERT INTO workout_plan_requests(instructor_id,has_assign,request_date,member_id,plan_type) VALUES(?,?,?,?,?)";
 
         PreparedStatement pst = connection.prepareStatement(query);
 
@@ -129,17 +130,19 @@ public class WorkoutDAO {
         pst.setInt(2,workoutPlanRequests.getHas_assign());
         pst.setDate(3,Date.valueOf(workoutPlanRequests.getRequest_date()));
         pst.setString(4,workoutPlanRequests.getMember_id());
+        pst.setString(5,plan_type);
 
         return pst.executeUpdate() > 0;
     }
 
-    public static int checkWorkoutRequestDetails(String member_id,String instructor_id) throws SQLException, ClassNotFoundException {
+    public static int checkWorkoutRequestDetails(String member_id,String instructor_id,String plan_type) throws SQLException, ClassNotFoundException {
         Workout workout = new Workout();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT has_assign FROM workout_plan_requests WHERE instructor_id = ? AND member_id = ?";
+        String query = "SELECT has_assign FROM workout_plan_requests WHERE instructor_id = ? AND member_id = ? AND plan_type=?";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,instructor_id);
         pst.setString(2,member_id);
+        pst.setString(3,plan_type);
 
         ResultSet resultSet = pst.executeQuery();
 
@@ -182,6 +185,36 @@ public class WorkoutDAO {
         }
 
         return completeWorkouts;
+    }
+
+//    WorkoutPlanData
+    public static List<WorkoutPlanData> getWorkoutPlanData(String member_id) throws SQLException, ClassNotFoundException {
+        WorkoutPlanData workoutPlanData = new WorkoutPlanData();
+        List<WorkoutPlanData> workoutPlanDataList = new ArrayList<>();
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "SELECT * FROM workout_plan WHERE member_id = ?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1,member_id);
+
+        ResultSet resultSet = pst.executeQuery();
+
+        while(resultSet.next()){
+            if(resultSet != null){
+                workoutPlanDataList.add( new WorkoutPlanData(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getDate(9).toLocalDate())
+                );
+            }
+        }
+        return workoutPlanDataList;
     }
 
 }

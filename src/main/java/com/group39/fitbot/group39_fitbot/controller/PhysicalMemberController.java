@@ -28,10 +28,16 @@ public class PhysicalMemberController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         System.out.println("Physical Member post method called");
+
         HttpSession session = req.getSession();
         String userName = (String) session.getAttribute("userName");
         String memberID = (String) session.getAttribute("MemberID");
         String memberType = (String) session.getAttribute("userType");
+
+        if(session.getAttribute("MemberID") == null) {
+            resp.sendRedirect("Landing/index.html");
+            return;
+        }
 
         Login login = new Login();
         login.setMember_id(memberID);

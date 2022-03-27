@@ -1,0 +1,133 @@
+.daily_tasks_home_page_all{
+    margin: 30px 72px;
+}
+
+.daily_tasks_home_page{
+    /*background-color: #75CDFF;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.tasks_home_page_maintainer{
+    height: fit-content;
+    width: 300px;
+    text-align: center;
+    padding: 50px;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 50px;
+
+}
+
+/*.maintaine_daily_task_completed_form{*/
+/*    height: 500px;*/
+/*    width: 500px;*/
+/*    background-color: #75CDFF;*/
+/*}*/
+
+.daily_tasks_home_page_branch_name{
+    font-size: 20px;
+    font-weight: bold;
+    /*background-color: #9BDBFF;*/
+    height: max-content;
+    margin-bottom: 10px;
+}
+
+.daily_tasks_home_page_type_and_id{
+    margin-bottom: 50px;
+}
+
+.daily_tasks_home_page_description{
+    margin-bottom: 30px;
+}
+
+.daily_tasks_home_page_next_modification_date{
+    font-size: 24px;
+    font-weight: bold;
+    font-weight: bolder;
+}
+
+.daily_tasks_home_page .button_form{
+    padding: 10px 15px;
+    background-color:#0E2C4B;
+    color:white;
+    border-radius:5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bolder;
+    border: 2px solid #0E2C4B;
+}
+.daily_tasks_home_page .button_form:hover{
+    background-color:white;
+    color:#0E2C4B;
+    border: 2px solid #0E2C4B;
+}
+
+/*.profile_physical_container_btn a{*/
+/*    padding: 10px 15px;*/
+/*    background-color:#0E2C4B;*/
+/*    color:white;*/
+/*    border-radius:5px;*/
+/*    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.profile_physical_container_btn a:hover {*/
+/*    background-color:white;*/
+/*    color:#0E2C4B;*/
+/*    border: 1.5px solid #0E2C4B;*/
+/*}*/
+
+/*<div class="profile_physical_container_btn">*/
+/*<a value="Edit Profile" id="profile_physical_container_btn_a" onclick="edit_profile_popup()">Edit Profile</a>*/
+/*</div>*/
+
+
+.maintaine_daily_task_completed_form{
+    /*display: none;*/
+    /*position: absolute;*/
+    /*transform: translate(-50%, -50%);*/
+    /*!*z-index: 100;*!*/
+    /*-webkit-animation: fadeIn 2s;*/
+    /*animation: fadeIn 1s;*/
+    /*-ms-transform: translate(-50%,-50%);*/
+    background-color: #44D201;
+
+
+}
+
+/*
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}*/
+
+.maintainer_big_container_background {
+    /*position: fixed;*/
+    /*display: none;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*background-color: rgba(0,0,0,0.5);*/
+    /*z-index: 2;*/
+    /*cursor: pointer;*/
+    height: 100px;
+    width: 100px;
+    background-color: #F66B6B;
+}
+
+
+

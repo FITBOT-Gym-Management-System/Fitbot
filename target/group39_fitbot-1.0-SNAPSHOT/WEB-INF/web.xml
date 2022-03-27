@@ -3,6 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <display-name>FITBOT</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/error/500.html</location>-->
+<!--    </error-page>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.html</location>
+    </error-page>
+
+    <session-config>
+        <session-timeout>45</session-timeout>
+    </session-config>
+
     <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>com.group39.fitbot.group39_fitbot.controller.RegistrationController</servlet-class>
@@ -453,6 +473,23 @@
         <url-pattern>/completeWorkoutRetrieve</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CheckPassword</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.CheckPasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckPassword</servlet-name>
+        <url-pattern>/checkPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetWorkoutPlan</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.GetWorkoutPlanDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetWorkoutPlan</servlet-name>
+        <url-pattern>/getWorkoutPlan</url-pattern>
+    </servlet-mapping>
 
 
     <servlet>
@@ -653,6 +690,410 @@
     <servlet-mapping>
         <servlet-name>managerinstructorview_count</servlet-name>
         <url-pattern>/managerinstructorview_count</url-pattern>
+    </servlet-mapping>
+
+<!--    Admin related urls-->
+    <servlet>
+        <servlet-name>admin</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.AdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>owner</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.OwnerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>owner</servlet-name>
+        <url-pattern>/owner</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employee</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.EmployeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee</servlet-name>
+        <url-pattern>/employee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addemployee</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.EmployeeAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addemployee</servlet-name>
+        <url-pattern>/addemployee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employeecount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.EmployeeCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employeecount</servlet-name>
+        <url-pattern>/employeecount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminbranch</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminbranch</servlet-name>
+        <url-pattern>/adminbranch</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>addbranch</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addbranch</servlet-name>
+        <url-pattern>/addbranch</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>branchview</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>branchview</servlet-name>
+        <url-pattern>/branchview</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>removeemployee</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.RemoveEmployeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>removeemployee</servlet-name>
+        <url-pattern>/removeemployee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>branchmanagerlist</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchManagerListController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>branchmanagerlist</servlet-name>
+        <url-pattern>/branchmanagerlist</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorlist</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorListController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorlist</servlet-name>
+        <url-pattern>/instructorlist</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminmember</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.AdminMemberController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminmember</servlet-name>
+        <url-pattern>/adminmember</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminmembercount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.AdminMemberCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminmembercount</servlet-name>
+        <url-pattern>/adminmembercount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminbanmember</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BanMemberController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminbanmember</servlet-name>
+        <url-pattern>/adminbanmember</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminunbanmember</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.UnBanMemberController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminunbanmember</servlet-name>
+        <url-pattern>/adminunbanmember</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminmemberview</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.AdminMemberViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminmemberview</servlet-name>
+        <url-pattern>/adminmemberview</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>branchmembercount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchMembersCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>branchmembercount</servlet-name>
+        <url-pattern>/branchmembercount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>branchequipmentcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchEquipmentCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>branchequipmentcount</servlet-name>
+        <url-pattern>/branchequipmentcount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ownerdashboardcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.OwnerDashboardCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ownerdashboardcount</servlet-name>
+        <url-pattern>/ownerdashboardcount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>memberregisteringcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MemberRegisterCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>memberregisteringcount</servlet-name>
+        <url-pattern>/memberregisteringcount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employeetypecount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.EmployeeTypeCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employeetypecount</servlet-name>
+        <url-pattern>/employeetypecount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>incomemembertype</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.IncomeMemberTypeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incomemembertype</servlet-name>
+        <url-pattern>/incomemembertype</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>incomechart</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.IncomeChartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incomechart</servlet-name>
+        <url-pattern>/incomechart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>admindashboardcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.AdminDashboardCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admindashboardcount</servlet-name>
+        <url-pattern>/admindashboardcount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employeeid</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.EmployeeIDController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employeeid</servlet-name>
+        <url-pattern>/employeeid</url-pattern>
+    </servlet-mapping>
+
+
+    <!--instructors-->
+    <servlet>
+        <servlet-name>instructor</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructor</servlet-name>
+        <url-pattern>/instructor</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorsStudent</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentLoadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorsStudent</servlet-name>
+        <url-pattern>/instructorsStudent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorsStudentBoxData</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentBoxDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorsStudentBoxData</servlet-name>
+        <url-pattern>/instructorsStudentBoxData</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorsAppointmentpage</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorAppointmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorsAppointmentpage</servlet-name>
+        <url-pattern>/instructorsAppointmentpage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorsOldLeave</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorOldLeaveHistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorsOldLeave</servlet-name>
+        <url-pattern>/instructorsOldLeave</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorsLeaveFormOpen</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorsLeaveFormOpenController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorsLeaveFormOpen</servlet-name>
+        <url-pattern>/instructorsLeaveFormOpen</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorsLeaveFormSubmit</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorsLeaveFormUpdateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorsLeaveFormSubmit</servlet-name>
+        <url-pattern>/instructorsLeaveFormSubmit</url-pattern>
+    </servlet-mapping>
+
+
+    <!--    maintainer-->
+    <servlet>
+        <servlet-name>maintainer</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainer</servlet-name>
+        <url-pattern>/maintainer</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerRequest</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerRequestController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerRequest</servlet-name>
+        <url-pattern>/maintainerRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerWrite</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerWriteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerWrite</servlet-name>
+        <url-pattern>/maintainerWrite</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerStatus</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerStatusChangeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerStatus</servlet-name>
+        <url-pattern>/maintainerStatus</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerForm</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerFormSubmitController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerForm</servlet-name>
+        <url-pattern>/maintainerForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerEqupiments</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerEquipmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerEqupiments</servlet-name>
+        <url-pattern>/maintainerEqupimentsLoad</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerEquipmentPageBranchName</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerEquipmentPageBranchNameController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerEquipmentPageBranchName</servlet-name>
+        <url-pattern>/maintainerEquipmentPageBranchName</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>maintainerDailyTasks</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerDailyTasksController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerDailyTasks</servlet-name>
+        <url-pattern>/maintainerDailyTasks</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerList</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerListController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerList</servlet-name>
+        <url-pattern>/maintainerList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerActivityChart</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerActivityChartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerActivityChart</servlet-name>
+        <url-pattern>/maintainerActivityChart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerTaskAssign</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerTaskAssignController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerTaskAssign</servlet-name>
+        <url-pattern>/maintainerTaskAssign</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>maintainerDailyTaskForm</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerDailyTaskFormController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerDailyTaskForm</servlet-name>
+        <url-pattern>/maintainerDailyTaskForm</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -100,15 +100,17 @@ function branch_select(){
 
 $(document).ready(function(){
     $('#verify_email_register').hide();
-
+    editPaymentBackgroundOff();
 });
 
 function close_verify_email_register(){
     $('#verify_email_register').hide();
+    editPaymentBackgroundOff();
 }
 
 function back_verify_email_register(){
     $('#verify_email_register').hide();
+    editPaymentBackgroundOff();
 }
 
 function forward_verify_email_register(){
@@ -135,6 +137,7 @@ function forward_verify_email_register(){
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        editPaymentBackgroundOff();
                         window.location.href ="http://localhost:8080/group39_fitbot_war_exploded/medical";
                     }
                     // else if (result.isDenied){
@@ -177,4 +180,11 @@ function forward_verify_email_register(){
             // })
         }
     });
+}
+
+function editPaymentBackgroundOn(){
+    $('.payment_physical_big_container_background').css('display','block');
+}
+function editPaymentBackgroundOff(){
+    $('.payment_physical_big_container_background').css('display','none');
 }

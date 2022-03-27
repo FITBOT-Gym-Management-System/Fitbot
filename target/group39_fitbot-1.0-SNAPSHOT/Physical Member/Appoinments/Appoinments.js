@@ -35,14 +35,19 @@ function appointment_save_changes(){
         let flagValue1 = true;
         let flagValue2 = true;
         let flagValue3 = true;
-        let equipment = $('#edit_profile_container_detail_last_name').val().trim();
+        let equipment = $('#edit_profile_container_detail_last_name').val();
+        let appointmentDate = $('#edit_profile_container_detail_name').val();
 
-        $('#edit_profile_container_detail_name').keyup(function () {
-            validateAppoinmentDate();
-        });
+        // $('#edit_profile_container_detail_name').keyup(function () {
+        //     validateAppoinmentDate();
+        // });
+
+        validateAppoinmentDate();
+
         function validateAppoinmentDate() {
-            let appointmentDate = $('#edit_profile_container_detail_name').val();
+
             if(appointmentDate.length == 0){
+                //alert("Yohan");
                 $('#appointment_date_error').show();
                 flagValue1 = false;
                 return;
@@ -53,7 +58,7 @@ function appointment_save_changes(){
             let arr_date = appointmentDate.split('-');
             const date = new Date();
             let year_age = date.getFullYear() - arr_date[0];
-            let month_age = date.getMonth()+1 - arr_date[1];
+            let month_age = (date.getMonth()+1) - arr_date[1];
             let date_age =  arr_date[2] - date.getDate();
 
             function tempory(){
@@ -138,6 +143,7 @@ function appointment_save_changes(){
         if(flagValue1 == false || flagValue2 == false || flagValue3 == false) {
             return;
         }
+        //editProfileBackgroundOff();
         Swal.fire({
             title: 'Are you sure?',
             text: "Appointment are not completed,You won't be able to revert this!",
@@ -165,8 +171,10 @@ function appointment_save_changes(){
                         // dataType:"json",
                         // contentType:"application/json",
                         success: function (result){
+                            editProfileBackgroundOff();
                             if(result.trim() == "1"){
                                 // alert(result);
+
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Appointment Successfully',
@@ -174,6 +182,18 @@ function appointment_save_changes(){
                                     confirmButtonText:"Ok",
                                     confirmButtonColor: '#0E2C4B',
                                 })
+
+                                $('.payment_history_container_row').remove();
+
+                                $('#appointment_container_table').append(
+                                    '<tr class="payment_history_container_row">'+
+                                    '<td>'+x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2)+'</td>'+
+                                    '<td>'+("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2)+'</td>'+
+                                    '<td>'+("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2)+'</td>'+
+                                    // '<td>'+x.equipment+'</td>'+
+                                    '<td>'+'<a href="#" class="show_more_button">SHOW MORE</a>'+'</td>'+
+                                    '</tr>'
+                                );
 
                             }else {
                                 Swal.fire({
@@ -196,12 +216,14 @@ function appointment_save_changes(){
                             })
                         }
                     });
+                    editProfileBackgroundOff();
                     document.getElementById("edit_profile_container_detail_name").value = "";
                     document.getElementById("edit_profile_container_detail_last_name").value = "";
                     document.getElementById("edit_profile_container_detail_weight").value = "";
                     document.getElementById("edit_profile_container_detail_last_height").value = "";
 
                     $('#appointment_details_popup').fadeOut(500);
+
 
                     $('.payment_history_container_row').hide();
                     getAppointmentData();
@@ -210,5 +232,41 @@ function appointment_save_changes(){
                 Swal.fire('Changes are not saved', '', 'info')
             }
         })
+        editProfileBackgroundOff();
+        e.preventDefault();
     });
+}
+
+// appoitment history popup
+function viewAppoitmentData(appoit_date,startTime,finishTime){
+    $('#after_appointment_popup_details').show();
+    editProfileBackgroundOn();
+
+    $('#appoitment_history_detail_container').append(
+        `<div class="payment_detail_container_input appoitment_detail_container_input">
+                            <div>
+                                <span><b>Appointment Date</b></span><br>
+                                <span>${appoit_date}</span>
+                            </div>
+
+                            <div>
+                                <span><b>Start Time</b></span><br>
+                                <span>${startTime}</span>
+                            </div>
+                        </div>
+
+                        <div class="payment_detail_container_input appoitment_detail_container_input">
+                            <div>
+                                <span><b>Finish Time</b></span><br>
+                                <span>${finishTime}</span>
+                            </div>
+
+                        </div>`
+    );
+}
+
+function close_after_appointment_details(){
+    $('.appoitment_detail_container_input').remove();
+    $('#after_appointment_popup_details').hide();
+    editProfileBackgroundOff();
 }
