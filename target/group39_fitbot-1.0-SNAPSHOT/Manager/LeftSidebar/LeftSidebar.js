@@ -21,33 +21,6 @@ function menuBtnChange() {
   }
 }
 
-// function visibleSocialMedia(){
-//   var social_media = document.querySelector(".social_media_icons_side_bar");
-//   var social_media_active = document.querySelector(".social_media_icons_side_bar_active");
-//   var width_social_media = document.querySelector(".social_media_icons_width_menu");
-//   var width_social_media_active = document.querySelector(".social_media_icons_width_menu_active");
-//   if (sidebar.classList.contains("open")) {
-//     social_media_active.classList.replace("social_media_icons_side_bar_active","social_media_icons_side_bar");
-//     width_social_media_active.classList.replace("social_media_icons_width_menu_active","social_media_icons_width_menu");
-//   } else {
-//     social_media.className += "_active";
-//     width_social_media.classList.replace("social_media_icons_width_menu", "social_media_icons_width_menu_active");
-//
-//   }
-// }
-
-
-// $(document).ready(function(){
-//   $('#click_me').click(function () {
-//     $('#right_side_bar_view').load('http://localhost:8080/group39_fitbot_war_exploded/Manager/RightSidebar/RightSidebar.html #right_side_nav',function(responseTxt, statusTxt, xhr){
-//       if(statusTxt == "error")
-//         alert("Error: " + xhr.status + ": " + xhr.statusText);
-//       });
-//   });
-//
-//
-// });
-
 var sideBar_links_variable = "#manager_dashboard_page";
 
 function page_select(sideBar_links_variable){

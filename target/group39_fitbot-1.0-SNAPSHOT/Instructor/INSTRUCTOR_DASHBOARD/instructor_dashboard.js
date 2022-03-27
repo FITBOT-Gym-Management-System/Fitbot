@@ -20,12 +20,7 @@ $(document).ready(function(){
         // alert(maintainer.first_name);
 
     }).fail(function(a,b,err){
-        alert("Error name print");
         console.log(a,b,err)
     });
-
-    // $('#phy_mem_diet_plan').click(function(){
-
-    // });
 
 });

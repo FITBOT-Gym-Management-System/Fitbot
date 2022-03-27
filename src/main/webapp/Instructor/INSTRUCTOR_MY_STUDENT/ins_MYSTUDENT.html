@@ -21,11 +21,11 @@
         <div class="overview_boxes_fitstudent">
 
             <div class="box">
-                <i class='bx bxs-bell-ring'></i>
+                <i class='bx bx-laptop'></i>
 <!--                <div class="line"></div>-->
                 <div class ="inside_fitstudent">
-                    <div class="box-topic"> New Requests</div>
-                    <div class= "number" id="new_request_number"></div>
+                    <div class="box-topic"> Virtual Students</div>
+                    <div class= "number" id="new_request_number">78</div>
                 </div> 
             </div>
 
@@ -34,55 +34,102 @@
 <!--                <div class="line"></div>-->
                 <div class ="inside_fitstudent">
                     <div class="box-topic"> Physical Students</div>
-                    <div class= "number" id="physical_request_number"></div>
+                    <div class= "number" id="physical_request_number"> 55</div>
                 </div>   
             </div>
         
 
             <div class="box"> 
-                <i class='bx bx-laptop'></i>
+                <i class='bx bxs-user'></i>
 <!--                <div class="line"></div>-->
                 <div class ="inside_fitstudent">
-                    <div class="box-topic"> Virtual Students</div>
-                    <div class= "number" id="virtual_request_number"></div>
+                    <div class="box-topic"> Total Students</div>
+                    <div class= "number" id="virtual_request_number">67</div>
                 </div>
             </div>
         </div>
 
-                <div class="student_fitstudent">
-                    <div class="ins_student_view">
-                            <div class="title_student_fitstudent">
-                                <span class="all_members_fitstudent"> My Students</span>
-                                <div class= "search_box_student_fitstudent">
-                                  <input type ="text" placeholder="Search for a member">
-                                  <button type="submit">Search</button>
-                                </div>
-                            </div>
+         <div class="all_employees">
+             <div class="title_employees">
+                 <div class="all_gym_employees" >
+                     <h4 id="title_employees">My Students </h4>
+                 </div>
 
-                            <div class="member-details">
-                                <table class="member_details_table">
 
-                                        <tr class="details_header">
-                                        <th>Name</th>
-                                        <th>Age</th>
-                                        <th>Gender</th>
-                                        <th>Workout Plan Name</th>
-                                        <th>Diet Plan Name</th>
-                                        </tr>
-                                    <tbody class="instructor_student_tab_body" id="instructor_student_tab_body" >
-                                    <tr class ="details_row" id="details_row">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    </tbody>
+             </div>
 
-                                  </table>
-                            </div>
-                    </div>
-                </div>
+             <div class="employee-details">
+                 <table id="students_list_table">
+                     <tr class ="employee_header">
+                         <th>Name</th>
+                         <th>Branch</th>
+                         <th>Type</th>
+                         <th>Membership</th>
+                         <th>Email Address</th>
+                         <th></th>
+                     </tr>
+                     <tbody id ="mystudents_list_table_body"></tbody>
+
+                 </table>
+
+             </div>
+         </div>
+
+         <div class="employeeview_container" id="student_view">
+             <div class="employeeview_container_popup" id="employee">
+                 <div class="employeeview_container_header">
+                     <div id="student_name_head">Keshara Muthumala</div>
+                     <div onclick="close_studentview_Popup()" class="close_employeeview_btn">
+                         <i class='bx bx-x close_btn_forgot'></i>
+                     </div>
+                 </div>
+                 <div class ="student_details">
+<!--                 <div class="employee_personal">-->
+<!--                     <div class ="titles">-->
+<!--                         <ul>-->
+<!--                             &lt;!&ndash;                                <li>User ID</li>&ndash;&gt;-->
+<!--                             <li>Gender</li>-->
+<!--                             <li>Membership</li>-->
+<!--                             <li>Date of Birth</li>-->
+<!--                             <li>Height</li>-->
+<!--                             <li>Weight</li>-->
+<!--                         </ul>-->
+<!--                     </div>-->
+<!--                     <div class="title-values"  id="student_title_values">-->
+<!--                         <ul>-->
+<!--                             &lt;!&ndash;                                <li>IN001</li>&ndash;&gt;-->
+<!--                             <li>Keshara Muthumala</li>-->
+<!--                             <li>952733449V</li>-->
+<!--                             <li>Male</li>-->
+<!--                             <li>k.muthumatal@gmail.com</li>-->
+<!--                             <li>07782334171</li>-->
+<!--                         </ul>-->
+<!--                     </div>-->
+<!--                 </div>-->
+                     <div class ="student-chart">
+                         <h4>BMI</h4>
+                         <canvas id="BMI_student" class="StudentChart"></canvas>
+                     </div>
+                     <div class ="student-chart">
+                         <h4>Calories Burned</h4>
+                         <canvas id="Workout_student" class="StudentChart"></canvas>
+                     </div>
+                     </div>
+<!--                 <div class="remove_button">-->
+<!--                     <div class ="member-chart">-->
+<!--                         <h4>Employees</h4>-->
+<!--                         <canvas id="Workout_student" class="myChart"></canvas>-->
+<!--                     </div>-->
+<!--                     <div class ="member-chart">-->
+<!--                         <h4>Employees</h4>-->
+<!--                         <canvas id="WeightvsTime_student" class="myChart"></canvas>-->
+<!--                     </div>-->
+<!--                 </div>-->
+
+
+
+             </div>
+         </div>
      </div>
   </div>
 
