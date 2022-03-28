@@ -89,6 +89,7 @@ public class RegistrationController extends HttpServlet {
             if(Objects.equals(membership_type, "virtual_member")){
                 member_id = "Vir"+(memberCount+1);
                 renewal = 5000;
+//                renewal = 0;
             }else {
                 member_id = "Phy"+(memberCount+1);
                 renewal = checkMembershipFee(membership_category);

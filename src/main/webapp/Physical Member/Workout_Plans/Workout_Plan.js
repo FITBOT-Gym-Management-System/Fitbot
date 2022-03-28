@@ -216,7 +216,7 @@ function physical_workout_back(){
     $('#physical_member_workout_plans').load('http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Workout_Plans/Workout_Plan.html #workout_plan_physical',function(responseTxt, statusTxt, xhr){
 
         if(statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
         }
         checkWorkoutData();
         $('#workout_container_header_search_cant_find').hide();
@@ -247,7 +247,6 @@ function getVirtualWorkoutData(num_plan){
         });
         getDragandDropFeature();
     }).fail(function(a,b,err){
-        alert("Error");
         console.log(a,b,err);
     });
 }
@@ -348,14 +347,14 @@ function close_virtual_workoutplan_Popup(){
 }
 
 function physical_customize_workoutplan(){
-    alert("Customize workout plan");
+    //alert("Customize workout plan");
     // $('#physical_member_workout_plans').hide();
     // $('#physical_member_workout_plans').hide();
 
     $('#physical_member_workout_plans').load('http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Workout_Plans/Cutomize_workout_plan.html #customize_workout_plan_virtual',function(responseTxt, statusTxt, xhr){
 
         if(statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
         }
         $('#customize_virtual_workout_container').append(
             '<span>'+"Customize "+data_arr[0]+'</span>'
@@ -386,7 +385,7 @@ function getCustomizeVirtualWorkoutData(num_plan){
         });
         getDragandDropFeature();
     }).fail(function(a,b,err){
-        alert("Error");
+        //alert("Error");
         console.log(a,b,err);
     });
 }
