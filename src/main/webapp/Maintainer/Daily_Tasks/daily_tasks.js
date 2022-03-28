@@ -204,7 +204,7 @@ function CompleteMaintain(branch_name, category, equipment_id, description ,reqD
                 }
             },
             fail: function (error) {
-                alert(error);
+                // alert(error);
             }
 
         });

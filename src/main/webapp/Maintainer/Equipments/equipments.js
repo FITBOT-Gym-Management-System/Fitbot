@@ -63,7 +63,7 @@ function reloadEquipmentsData(Equipments_id,Branch_selecter){
     });
 
   }).fail(function (a,b,err) {
-    alert("Data loading error load equipments data");
+    // alert("Data loading error load equipments data");
     console.log(a,b,err);
   });
 }
@@ -86,7 +86,7 @@ function loadBranchName(){
     });
 
   }).fail(function (a,b,err) {
-    alert("Data loading error");
+    // alert("Data loading error");
     console.log(a,b,err);
   });
 }

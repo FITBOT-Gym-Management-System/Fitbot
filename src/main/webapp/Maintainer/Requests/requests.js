@@ -94,7 +94,7 @@ function PopupForm(popId){
     });
 
   }).fail(function (a,b,err) {
-    alert("Data loading error");
+    console.log("Data loading error");
     console.log(a,b,err);
 
   });
@@ -162,7 +162,7 @@ function PopupCompletForm(popId){
 
 
   }).fail(function (a,b,err) {
-    alert("Data loading error");
+    console.log("Data loading error");
     console.log(a,b,err);
 
   });
@@ -220,7 +220,7 @@ function submitFormMaintainer(popId) {
             }
           },
           fail: function (error) {
-            alert(error);
+            console.log(error);
           }
         });
 

@@ -79,7 +79,7 @@ $(document).ready(function(){
   $('#maintainer_dashboard_implementation').load('http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Dashboard/dashboard.html #dashboard_maintainer', function (responseTxt, statusTxt, xhr) {
 
     if (statusTxt == "error") {
-      alert("Error: " + xhr.status + ": " + xhr.statusText);
+      // alert("Error: " + xhr.status + ": " + xhr.statusText);
     }
     getTodayTasks(0);
     reloadRequestData();
@@ -119,7 +119,7 @@ $(document).ready(function (){
 
 
         if (statusTxt == "error")
-          alert("Error: " + xhr.status + ": " + xhr.statusText);
+          console.log("Error: " + xhr.status + ": " + xhr.statusText);
       });
       load[1] += 1;
     } else {
@@ -178,7 +178,7 @@ $(document).ready(function (){
         getTodayTasks(1);
 
         if (statusTxt == "error")
-          alert("Error: " + xhr.status + ": " + xhr.statusText);
+          console.log("Error: " + xhr.status + ": " + xhr.statusText);
       });
       load[3] += 1;
     } else {
@@ -205,7 +205,7 @@ $(document).ready(function (){
         // console.log(List_order);
         reloadEquipmentsData(Equipments_id,Branch_selecter,List_order);
         if (statusTxt == "error") {
-          alert("Error: " + xhr.status + ": " + xhr.statusText);
+          // alert("Error: " + xhr.status + ": " + xhr.statusText);
         }
       });
       load[4] += 1;
@@ -318,7 +318,7 @@ function reloadRequestData(){
 
 
   }).fail(function (a,b,err) {
-    alert("Data loading error");
+    // alert("Data loading error");
     console.log(a,b,err);
   });
 }
@@ -343,7 +343,7 @@ function ChangeStatus(fid){
     reloadRequestData();
 
   }).fail(function (a,b,err) {
-    alert("Data loading error change status");
+    // alert("Data loading error change status");
     console.log(a,b,err);
 
   });
