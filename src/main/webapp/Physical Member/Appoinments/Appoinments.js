@@ -181,19 +181,21 @@ function appointment_save_changes(){
                                     // text: 'Physical Member!',
                                     confirmButtonText:"Ok",
                                     confirmButtonColor: '#0E2C4B',
-                                })
+                                });
 
                                 $('.payment_history_container_row').remove();
 
-                                $('#appointment_container_table').append(
-                                    '<tr class="payment_history_container_row">'+
-                                    '<td>'+x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2)+'</td>'+
-                                    '<td>'+("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2)+'</td>'+
-                                    '<td>'+("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2)+'</td>'+
-                                    // '<td>'+x.equipment+'</td>'+
-                                    '<td>'+'<a href="#" class="show_more_button">SHOW MORE</a>'+'</td>'+
-                                    '</tr>'
-                                );
+                                $.map(result,function (x){
+                                    $('#appointment_container_table').append(
+                                        '<tr class="payment_history_container_row">'+
+                                        '<td>'+x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2)+'</td>'+
+                                        '<td>'+("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2)+'</td>'+
+                                        '<td>'+("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2)+'</td>'+
+                                        // '<td>'+x.equipment+'</td>'+
+                                        '<td>'+'<a href="#" class="show_more_button">SHOW MORE</a>'+'</td>'+
+                                        '</tr>'
+                                    );
+                                });
 
                             }else {
                                 Swal.fire({
