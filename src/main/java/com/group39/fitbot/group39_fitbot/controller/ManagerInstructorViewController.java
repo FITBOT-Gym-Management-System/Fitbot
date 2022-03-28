@@ -29,7 +29,7 @@ public class ManagerInstructorViewController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("instrucotr view request post method called");
 
-        LocalDate currentDate = LocalDate.parse(req.getParameter("currentDate"));
+//        LocalDate currentDate = LocalDate.parse(req.getParameter("currentDate"));
 
         HttpSession session = req.getSession();
         String branchID = (String) session.getAttribute("BranchID");

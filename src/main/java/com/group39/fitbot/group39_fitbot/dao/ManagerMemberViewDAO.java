@@ -13,11 +13,9 @@ public class ManagerMemberViewDAO {
         List<ManagerMemberView> members = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "SELECT DISTINCT register.member_id,register.first_name,register.last_name,\n" +
-                "register.membership_category,instructor.first_name\n" +
-                "FROM ((physical_member\n" +
-                "INNER JOIN instructor ON instructor.instructor_id = physical_member.instructor_id)\n" +
-                "INNER JOIN register ON physical_member.member_id = register.member_id)\n" +
-                "WHERE register.membership_sign = 'physical_member' AND register.branch_id = ?\n" +
+                "register.membership_category,register.joined_date\n" +
+                "FROM register\n" +
+                "WHERE register.branch_id = ?\n" +
                 "AND register.member_id NOT IN (Select member_id FROM member_attendance where date = ?) LIMIT 10";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,branchID);
@@ -33,7 +31,7 @@ public class ManagerMemberViewDAO {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getString(5)
+                        resultSet.getDate(5).toLocalDate()
                 ));
             }
         }

@@ -102,7 +102,7 @@ function submit_requestmaintain_form(){
     console.log(currentDate);
 
     let today = new Date();
-    let currentTime = ("0" + (today.getHours() + 1)).slice(-2)+":"+("0" + today.getMinutes()).slice(-2)+":"+("0" + today.getSeconds()).slice(-2);
+    let currentTime = ("0" + (today.getHours() )).slice(-2)+":"+("0" + today.getMinutes()).slice(-2)+":"+("0" + today.getSeconds()).slice(-2);
     console.log(currentTime);
 
     $.ajax({
@@ -112,6 +112,10 @@ function submit_requestmaintain_form(){
 
         success:function (result){
             alert("Done");
+
+            setTimeout(function(){
+                updaterequest_table()
+            }, 1000)
         },
 
         fail:function (error){
@@ -123,9 +127,7 @@ function submit_requestmaintain_form(){
     $('#maintainer_request_form input[type="text"],textarea,select').val('');
     $('#add_request_container').hide();
 
-    setTimeout(function(){
-        updaterequest_table()
-    }, 1000)
+
 }
 
 
