@@ -21,33 +21,6 @@ function menuBtnChange() {
   }
 }
 
-// function visibleSocialMedia(){
-//   var social_media = document.querySelector(".social_media_icons_side_bar");
-//   var social_media_active = document.querySelector(".social_media_icons_side_bar_active");
-//   var width_social_media = document.querySelector(".social_media_icons_width_menu");
-//   var width_social_media_active = document.querySelector(".social_media_icons_width_menu_active");
-//   if (sidebar.classList.contains("open")) {
-//     social_media_active.classList.replace("social_media_icons_side_bar_active","social_media_icons_side_bar");
-//     width_social_media_active.classList.replace("social_media_icons_width_menu_active","social_media_icons_width_menu");
-//   } else {
-//     social_media.className += "_active";
-//     width_social_media.classList.replace("social_media_icons_width_menu", "social_media_icons_width_menu_active");
-//
-//   }
-// }
-
-
-// $(document).ready(function(){
-//   $('#click_me').click(function () {
-//     $('#right_side_bar_view').load('http://localhost:8080/group39_fitbot_war_exploded/Manager/RightSidebar/RightSidebar.html #right_side_nav',function(responseTxt, statusTxt, xhr){
-//       if(statusTxt == "error")
-//         alert("Error: " + xhr.status + ": " + xhr.statusText);
-//       });
-//   });
-//
-//
-// });
-
 var sideBar_links_variable = "#manager_dashboard_page";
 
 function page_select(sideBar_links_variable){
@@ -119,7 +92,7 @@ $(document).ready(function(){
     dashboardattendence();
     managerdashboard();
     // dashboardappoinment();
-    manager_branch_revenue();
+    manager_branch_revenue_report();
   });
 });
 
@@ -417,9 +390,9 @@ $('#man_request').click(function(){
       if(statusTxt == "error")
           alert("Error: " + xhr.status + ": " + xhr.statusText);
 
-        manager_branch_revenue_report();
-        DuePaymentReport();
-        MaintainenceReport();
+        branch_revenue_report();
+        branch_member_register_report();
+        branch_member();
 
       });
       load[7] += 1;
@@ -965,98 +938,55 @@ function nextbuttons(array_get,chunk_get) {
 }
 
 
-function manager_branch_revenue(){
-  let xValues = ['January','February','March','April','May','june','July','August','September','October','November','December'];
-
-  new Chart("revenue_manager", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }]
-    },
-    options: {
-      legend: {display: false}
-    }
-  });
-}
 
 
 function manager_branch_revenue_report(){
-  let xValues = ['January','February','March','April','May','june','July','August','September','October','November','December'];
+  $.ajax({
+    method: "POST",
+    url: "managerbranchrevenue",
+    dataType: "json",
 
-  new Chart("revenue_manager_report", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }]
+    success: function (result) {
+      console.log(result);
+      let arrMonth= new Array();
+      let arrCount = new Array();
+      i =0;
+
+      $.map(result, function (x) {
+        arrMonth[i] = x['X'];
+        arrCount[i] = x['Y'];
+        i += 1;
+      });
+
+
+      new Chart("revenue_manager", {
+        type: "line",
+        data: {
+          labels: arrMonth,
+          datasets: [{
+            data: arrCount,
+            borderColor: "#00aba9",
+            fill: false
+          }]
+
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          legend: {display: false},
+          title: {
+            display: false
+          }
+        }
+      });
     },
-    options: {
-      legend: {display: false}
+    error: function (error) {
+      console.log(error );
     }
   });
 }
 
 
-
-
-function DuePaymentReport(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-  new Chart("man_chart2", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
-    },
-    options: {
-      legend: {display: false}
-    }
-  });
-}
-
-function MaintainenceReport(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-  new Chart("man_chart3", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
-    },
-    options: {
-      legend: {display: false}
-    }
-  });
-}

@@ -12,11 +12,11 @@ import java.util.List;
 
 public class MaintainerBranchSelecterDAO  {
     public static List<Branch> getBranchNameList() throws SQLException, ClassNotFoundException{
-        System.out.println("in DAO");
+//        System.out.println("in DAO");
         List<Branch> branch_list = new ArrayList<>();
 
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT * FROM branch";
+        String query = "SELECT branch_id,branch_name FROM branch";
         PreparedStatement pst = connection.prepareStatement(query);
 
         ResultSet resultSet = pst.executeQuery();
@@ -29,7 +29,7 @@ public class MaintainerBranchSelecterDAO  {
                 ));
             }
         }
-        System.out.println(branch_list);
+//        System.out.println(branch_list);
         return branch_list;
     }
 }

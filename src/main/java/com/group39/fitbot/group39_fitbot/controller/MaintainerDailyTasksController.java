@@ -26,18 +26,18 @@ public class MaintainerDailyTasksController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("call daily tasks");
+//        System.out.println("call daily tasks");
 
         LocalDate currentDate= LocalDate.parse(req.getParameter("currentDate"));
-        System.out.println(currentDate);
+//        System.out.println(currentDate);
 
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
-        System.out.println(memberID);
+//        System.out.println(memberID);
 
         try {
             List<Equipment> equipment = MaintainerEquipmentDAO.getDailyTaskList(currentDate);
-            System.out.println(equipment);
+//            System.out.println(equipment);
             Gson gson = new Gson();
             String maintainerJSON = gson.toJson(equipment);
             resp.setContentType("application/json");

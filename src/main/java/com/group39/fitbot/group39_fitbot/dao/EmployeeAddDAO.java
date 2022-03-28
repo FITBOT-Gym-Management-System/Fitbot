@@ -33,7 +33,7 @@ public class EmployeeAddDAO {
 
     public static boolean addInstructor (Employee employee) throws SQLException, ClassNotFoundException{
         Connection connection=DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO instructor VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO instructor(instructor_id,branch_id,first_name,last_name,gender,email,nic,dob,address,primary_contact,secondary_contact,joined_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1,employee.getEmployee_id());

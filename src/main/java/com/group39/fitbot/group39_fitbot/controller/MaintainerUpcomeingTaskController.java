@@ -15,14 +15,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MaintainerUpcomeingTaskController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("post method call in task");
+//        System.out.println("post method call in task");
 //        Equipment TaskEquipments = new Equipment();
 
 

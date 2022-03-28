@@ -2,6 +2,7 @@ package com.group39.fitbot.group39_fitbot.controller;
 
 import com.google.gson.Gson;
 import com.group39.fitbot.group39_fitbot.dao.WorkoutDAO;
+import com.group39.fitbot.group39_fitbot.model.Workout;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +28,7 @@ public class WorkoutCompleteRetrieve extends HttpServlet {
         String memberID = (String) session.getAttribute("MemberID");
         String memberType = (String) session.getAttribute("userType");
 
-        List<Integer> completeWorkouts = new ArrayList<>();
+        List<Workout> completeWorkouts = new ArrayList<>();
 
         try {
             completeWorkouts = WorkoutDAO.retrieveCompleteExerciseData(memberID);

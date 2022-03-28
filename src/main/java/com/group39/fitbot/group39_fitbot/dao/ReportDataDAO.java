@@ -181,4 +181,42 @@ public class ReportDataDAO {
         }
         return totalincome;
     }
+
+    public static List<XY> getBranchMemberRegisterCount(String branch_id) throws SQLException,ClassNotFoundException {
+        List<XY> memberregistercount = new ArrayList<>();
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "SELECT CONVERT(MONTHNAME(joined_date),char(3)) as Month, count(member_id) FROM register WHERE branch_id=? GROUP BY CONCAT(MONTH(joined_date),YEAR(joined_date)) ORDER BY joined_date  ";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1,branch_id);
+
+        ResultSet resultSet = pst.executeQuery();
+
+        while(resultSet.next()){
+            if(resultSet!=null)
+            {
+                memberregistercount.add(new XY(
+                        resultSet.getString(1),
+                        resultSet.getInt(2)
+                ));
+
+            }
+        }
+        return memberregistercount;
+    }
+
+    public static List<Integer> getBranchManagaerMemberCount(String branch_id) throws SQLException,ClassNotFoundException {
+        List<Integer> branchmembercount = new ArrayList<>();
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = " SELECT COUNT(CASE WHEN u.status = '1' then 1 ELSE NULL END) as \"UnBan\", COUNT(CASE WHEN u.status = '0' then 1 ELSE NULL END) as \"Ban\" FROM  branch br INNER JOIN register r ON r.branch_id=br.branch_id INNER JOIN users u ON u.member_id=r.member_id WHERE br.branch_id =? GROUP BY br.branch_id";
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1,branch_id);
+        ResultSet resultSet = pst.executeQuery();
+        if(resultSet.next()){
+                        branchmembercount.add(resultSet.getInt(1));
+                        branchmembercount.add(resultSet.getInt(2));
+            }
+
+        return branchmembercount;
+    }
 }

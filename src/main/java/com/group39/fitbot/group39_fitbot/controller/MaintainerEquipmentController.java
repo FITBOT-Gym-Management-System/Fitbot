@@ -30,14 +30,14 @@ public class MaintainerEquipmentController extends HttpServlet {
         String List_order= req.getParameter("List_order");
         String Branch_selecter= req.getParameter("Branch_selecter");
         String Equipments_id= req.getParameter("Equipments_id");
-        System.out.println(List_order);
-        System.out.println(Branch_selecter);
-        System.out.println(Equipments_id);
+//        System.out.println(List_order);
+//        System.out.println(Branch_selecter);
+//        System.out.println(Equipments_id);
 
         if(Equipments_id.equals("")){
-            System.out.println("Equipments Id is null");
+//            System.out.println("Equipments Id is null");
             Equipments_id ="0000";
-            System.out.println(Equipments_id);
+
         }
 //        if(Equipments_id.equals(null)){
 //            System.out.println("all print ");

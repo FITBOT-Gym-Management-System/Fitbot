@@ -9,7 +9,6 @@ function Instructor_appoinments() {
   }
 
   function loadAppointmentPage(){
-    alert("Now you are in appointment");
 
       $('#instructor_appointment_tab_body').html(' ');
       $.ajax({
@@ -40,7 +39,6 @@ function Instructor_appoinments() {
 
 
       }).fail(function (a,b,err) {
-          alert("Data loading error in student table");
           console.log(a,b,err);
 
       });

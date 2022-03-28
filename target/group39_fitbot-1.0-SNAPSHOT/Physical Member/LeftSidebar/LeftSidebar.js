@@ -330,7 +330,7 @@ $(document).ready(function(){
       viewReport();
       viewBMI("myChart1");
       viewCaloriesBurned();
-      viewWorkoutPlanReports();
+      //viewWorkoutPlanReports();
 
       });
       load[7] += 1;
@@ -533,9 +533,15 @@ $(document).ready(function(){
 
   }).done(function(data){
     // const data_object = JSON.parse(data);
-    $('#dashboard_mambership_first_text').append(
-        '<span class="dashboard_mambership_second_text"><b>'+data.membership_category+'</b></span>'
-    );
+    if(data.membership_category.length > 0){
+      $('#dashboard_mambership_first_text').append(
+          '<span class="dashboard_mambership_second_text"><b>'+data.membership_category+'</b></span>'
+      );
+    }else{
+      $('#dashboard_mambership_first_text').append(
+          '<span class="dashboard_mambership_second_text"><b>'+"Virtual Membership"+'</b></span>'
+      );
+    }
 
     $('#dashboard_mambership_first_text1').append(
         '<span class="dashboard_mambership_second_text"><b>'+data.membership_fee+'</b></span>'
@@ -1039,59 +1045,115 @@ function searchInstructors(){
 }
 //workout
 function checkWorkoutData(){
-  $.ajax({
-    method:'POST',
-    url:"workout",
-    dataType:'json',
-    // contentType:"application/json",
-  }).done(function(result){
-    let total_reps_phy = result.total_reps;
-    let count = 0;
-    console.log(result);
+  // $.ajax({
+  //   method:'POST',
+  //   url:"workout",
+  //   dataType:'json',
+  //   // contentType:"application/json",
+  // }).done(function(result){
+  //   let total_reps_phy = result.total_reps;
+  //   let count = 0;
+  //   console.log(result);
+  //
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "completeWorkoutRetrieve",
+  //     data: "",
+  //     success: function (result1) {
+  //         let arr = new Array();
+  //         let arr1 = new Array();
+  //
+  //       $.map(result,function(x){
+  //           arr1.push(x.workout_id);
+  //         $.map(result1,function(y){
+  //           if(y.workout_id == x.workout_id){
+  //               arr.push(x.workout_id);
+  //             count += 1;
+  //           }
+  //         });
+  //       });
+  //
+  //       function removeDuplicates(arr) {
+  //           return arr.filter((item, index) => arr.indexOf(item) === index);
+  //       }
+  //       removeDuplicates(arr);
+  //       removeDuplicates(arr1);
+  //
+  //         $.each(arr, function( index, value ) {
+  //             //alert( index + ": " + value );
+  //             $.each(arr1, function( index, value ) {
+  //                 alert( index + ": " + value );
+  //             });
+  //         });
+  //
+  //       $.map(result,function(x) {
+  //           //if(x.workout_id == )
+  //           $('#workout_container_table').append(
+  //               `<tr class="payment_history_container_row" onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">'+
+  //                   <td>${x.exercise}</td>
+  //                   <td>${x.workout_type}</td>
+  //                   <td>${x.total_reps}</td>
+  //                   <td>${x.duration}</td>
+  //                   <td><input type="checkbox" id="payment_history_container_row_checkbox+${x.workout_id}" onclick='checkBoxChecked("${x.workout_id}","payment_history_container_row_checkbox",0)'></td>
+  //                   </tr>`
+  //           );
+  //       });
+  //
+  //
+  //       if(count == 0){
+  //         $('#workout_container_details').hide();
+  //         $('#workout_container_header_search').hide();
+  //         $('#workout_container_header_search_cant_find').show();
+  //       }
+  //
+  //     },
+  //     error: function (error) {
+  //       console.log(error);
+  //     }
+  //   });
+  //
+  //
+  //
+  //   // alert(result);
+  // }).fail(function(a,b,err){
+  //   //alert("Error");
+  //   console.log(a,b,err);
+  // });
 
     $.ajax({
-      method: "POST",
-      url: "completeWorkoutRetrieve",
-      data: "",
-      success: function (result1) {
-
-        $.map(result,function(x){
-
-          $.map(result1,function(y){
-            if(y.workout_id != x.workout_id){
-              count += 1;
-              $('#workout_container_table').append(
-                  `<tr class="payment_history_container_row" onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">'+
+        method: "POST",
+        url: "completeWorkoutRetrieve",
+        data: "",
+        success: function (result) {
+            console.log(result);
+            let count = 0;
+            $.map(result,function(x) {
+                //if(x.workout_id == )
+                $('#workout_container_table').append(
+                    `<tr class="payment_history_container_row workout_history_container_row" onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">'+
                     <td>${x.exercise}</td>
                     <td>${x.workout_type}</td>
                     <td>${x.total_reps}</td>
                     <td>${x.duration}</td>
                     <td><input type="checkbox" id="payment_history_container_row_checkbox+${x.workout_id}" onclick='checkBoxChecked("${x.workout_id}","payment_history_container_row_checkbox",0)'></td>
                     </tr>`
-                        );
+                );
+                count += 1;
+            });
+
+
+            if(count == 0){
+                //alert(count);
+                $('#workout_container_details').hide();
+                $('#workout_container_header_search').hide();
+                $('#workout_container_header_search_cant_find').show();
             }
-          });
 
-        });
-        if(count == 0){
-          $('#workout_container_details').hide();
-          $('#workout_container_header_search').hide();
-          $('#workout_container_header_search_cant_find').show();
+        },
+        error: function (error) {
+            console.log(error);
         }
-
-      },
-      error: function (error) {
-        console.log(error);
-      }
     });
-
-
-
-    // alert(result);
-  }).fail(function(a,b,err){
-    //alert("Error");
-    console.log(a,b,err);
-  });
 }
 
 //payments
@@ -1139,7 +1201,7 @@ function displayPaymentsData(){
 
       $('#payment_history_container_table').append(
           `<tr class="payment_history_container_row">
-            <td>${x.previous_expire_date["year"]}-${x.previous_expire_date["month"]}-${x.previous_expire_date["day"]}</td>'+
+            <td>${x.payment_date["year"]}-${x.payment_date["month"]}-${x.payment_date["day"]}</td>'+
             <td>${x.currency}</td>
             <td>${x.payment_method}</td>
             <td>${x.payment_amount}</td>
@@ -1552,51 +1614,51 @@ function viewCaloriesBurned(){
   //   }
   // });
 }
-function viewWorkoutPlanReports(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-  new Chart("myChart3", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        label:"Workout",
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: "Calories Burned"
-      },
-      legend: {display: true},
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Weight'
-          }
-        }],
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Time'
-          }
-        }]
-      }
-    }
-  });
-}
+// function viewWorkoutPlanReports(){
+//   let xValues = [100,200,300,400,500,600,700,800,900,1000];
+//
+//   new Chart("myChart3", {
+//     type: "line",
+//     data: {
+//       labels: xValues,
+//       datasets: [{
+//         label:"Workout",
+//         data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+//         borderColor: "red",
+//         fill: false
+//       }, {
+//         data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+//         borderColor: "green",
+//         fill: false
+//       }, {
+//         data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+//         borderColor: "blue",
+//         fill: false
+//       }]
+//     },
+//     options: {
+//       title: {
+//         display: true,
+//         text: "Calories Burned"
+//       },
+//       legend: {display: true},
+//       scales: {
+//         yAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: 'Weight'
+//           }
+//         }],
+//         xAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: 'Time'
+//           }
+//         }]
+//       }
+//     }
+//   });
+// }
 
 function viewMonthlyGoalReports(){
   //memberGoalGetData

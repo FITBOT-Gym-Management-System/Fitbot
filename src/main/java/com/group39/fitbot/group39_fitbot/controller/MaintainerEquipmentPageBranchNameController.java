@@ -21,7 +21,7 @@ public class MaintainerEquipmentPageBranchNameController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("in branch name con");
+//        System.out.println("in branch name con");
 
         List<Branch> branch_list = new ArrayList<>();
         Branch branch= new Branch();
@@ -29,7 +29,7 @@ public class MaintainerEquipmentPageBranchNameController extends HttpServlet {
         try {
             branch_list = MaintainerBranchSelecterDAO.getBranchNameList();
             Gson gson = new Gson();
-            System.out.println(branch_list);
+//            System.out.println(branch_list);
             String branchListJSON = gson.toJson(branch_list);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
