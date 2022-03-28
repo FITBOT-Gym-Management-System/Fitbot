@@ -6,7 +6,7 @@
 
 .maintain_requests_view{
     margin: 30px 72px;
-
+    z-index: 1;
 }
 
 
