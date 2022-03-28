@@ -64,7 +64,7 @@ function clear_dashboard_functions(full_background,dashboard_icon,dashboard_text
   let full_background_ID = document.getElementById(full_background);
   let dashboard_icon_ID = document.getElementById(dashboard_icon);
   let dashboard_text_ID = document.getElementById(dashboard_text);
-  console.log("dashboard link closed");
+  // console.log("dashboard link closed");
   // payments_physical.className += "_active";
   full_background_ID.style.backgroundColor = "#0E2C4B";
   dashboard_icon_ID.style.color = "white";
@@ -81,7 +81,7 @@ $(document).ready(function(){
     if (statusTxt == "error") {
       alert("Error: " + xhr.status + ": " + xhr.statusText);
     }
-    getTodayTasks();
+    getTodayTasks(0);
     reloadRequestData();
     getActivityChart();
 
@@ -175,7 +175,7 @@ $(document).ready(function (){
 
     if (load[3] == 0) {
       $(sideBar_links_variable).load('http://localhost:8080/group39_fitbot_war_exploded/Maintainer/Daily_Tasks/daily_tasks.html #daily_tasks_maintainer', function (responseTxt, statusTxt, xhr) {
-        getTodayTasks();
+        getTodayTasks(1);
 
         if (statusTxt == "error")
           alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -200,9 +200,9 @@ $(document).ready(function (){
         let Equipments_id = $('#search_equipment_by_ID').val();
         let Branch_selecter = $('#select_Filter_List').val();
         let List_order = $('#select_Filter_List_order').val();
-        console.log(Equipments_id);
-        console.log(Branch_selecter);
-        console.log(List_order);
+        // console.log(Equipments_id);
+        // console.log(Branch_selecter);
+        // console.log(List_order);
         reloadEquipmentsData(Equipments_id,Branch_selecter,List_order);
         if (statusTxt == "error") {
           alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -318,7 +318,7 @@ function reloadRequestData(){
 
 
   }).fail(function (a,b,err) {
-    alert("Data loading error  Shalani");
+    alert("Data loading error");
     console.log(a,b,err);
   });
 }
@@ -369,7 +369,7 @@ function log_out_function_maintainer(){
             window.location.href = "http://localhost:8080/group39_fitbot_war_exploded/login";
           }else if (result.isDenied){
             // Swal.fire('Changes are not saved', '', 'info')
-            console.log("Log out cancel");
+            // console.log("Log out cancel");
           }
         })
 

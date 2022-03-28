@@ -1060,6 +1060,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>maintainerDailyTasksCheck</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.maintainerDailyTasksCheckController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintainerDailyTasksCheck</servlet-name>
+        <url-pattern>/maintainerDailyTasksCheck</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>maintainerDailyTaskForm</servlet-name>
         <servlet-class>com.group39.fitbot.group39_fitbot.controller.MaintainerDailyTaskFormController</servlet-class>
     </servlet>

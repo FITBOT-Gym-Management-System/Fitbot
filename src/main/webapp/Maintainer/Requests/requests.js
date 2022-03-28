@@ -83,7 +83,7 @@ function PopupForm(popId){
  */
 
     $('#btn_add_maintain').click(function(){
-      alert("in submit alert");
+      // alert("in submit alert");
       submitFormMaintainer(result.form_id);
       requestMaintainerBackgroundOff();
     });
@@ -94,7 +94,7 @@ function PopupForm(popId){
     });
 
   }).fail(function (a,b,err) {
-    alert("Data loading error  Shalani");
+    alert("Data loading error");
     console.log(a,b,err);
 
   });
@@ -162,7 +162,7 @@ function PopupCompletForm(popId){
 
 
   }).fail(function (a,b,err) {
-    alert("Data loading error  Shalani");
+    alert("Data loading error");
     console.log(a,b,err);
 
   });
@@ -176,45 +176,55 @@ function close_form_Popup(){
 
 function submitFormMaintainer(popId) {
 
+
+  // Validate Username
+  $('#image_file_check').hide();
+  $('#note_check_maintain').hide();
+
+
+
     $('#maintain_form').submit(function (e) {
       e.preventDefault();
 
       let complet_dis = $('#maintain_add_note').val();
       let complet_img = $('#maintain_pic').val();
-      let date = new Date();
-      let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
+
+        let date = new Date();
+        let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
 
 
-      var today = new Date();
-      var currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var today = new Date();
+        var currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-      $.ajax({
-        method: 'POST',
-        url: "maintainerForm",
-        // contentType: 'application/json; charset=utf-8',
-        data: {popId:popId, complet_dis: complet_dis, complet_img: complet_img,currentDate:currentDate,currentTime:currentTime},
+        $.ajax({
+          method: 'POST',
+          url: "maintainerForm",
+          // contentType: 'application/json; charset=utf-8',
+          data: {popId:popId, complet_dis: complet_dis, complet_img: complet_img,currentDate:currentDate,currentTime:currentTime},
 
-        success: function (result) {
+          success: function (result) {
 
-          if (result.trim() == "1") {
+            if (result.trim() == "1") {
 
-            reloadRequestData();
-            $('#maintainer_form input[type="text"],input[type="file"],input[type="date"]  input[type="time"], textarea').val('');
-            $('#maintainer_form').hide();
-            Swal.fire({
-              icon: 'success',
-              title: 'Successfully Submit',
-              text: 'Done!',
-              confirmButtonText:"Ok",
-              confirmButtonColor: '#0E2C4B',
-            })
-            close_form_Popup();
+              reloadRequestData();
+              $('#maintainer_form input[type="text"],input[type="file"],input[type="date"]  input[type="time"], textarea').val('');
+              $('#maintainer_form').hide();
+              Swal.fire({
+                icon: 'success',
+                title: 'Successfully Submit',
+                text: 'Done!',
+                confirmButtonText:"Ok",
+                confirmButtonColor: '#0E2C4B',
+              })
+              close_form_Popup();
+            }
+          },
+          fail: function (error) {
+            alert(error);
           }
-        },
-        fail: function (error) {
-          alert(error);
-        }
-      });
+        });
+
+
     });
   }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MaintainerEquipmentDAO {
 
-    public static List<Equipment> getEquipmentList(String List_order,String Branch_selecter,String Equipments_id) throws SQLException, ClassNotFoundException {
+    public static List<Equipment> getEquipmentList(String Branch_selecter,String Equipments_id) throws SQLException, ClassNotFoundException {
 //        System.out.println("in equipmentsDAO");
         List<Equipment> equipments = new ArrayList<>();
 //        Equipment equipment = new Equipment();
@@ -151,7 +151,7 @@ public class MaintainerEquipmentDAO {
         List<Equipment> equipments = new ArrayList<>();
 //        System.out.println("date"+date);
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT branch.branch_name,equipment.equipment_id,equipment.description,equipment.category,equipment.purchase_date,equipment.last_modified_date,equipment.next_maintenance_date,equipment.Duration,equipment.equipment_has_modified FROM branch, equipment WHERE branch.branch_id=equipment.branch_id AND next_maintenance_date >= ? ORDER BY next_maintenance_date";
+        String query = "SELECT branch.branch_name,equipment.equipment_id,equipment.description,equipment.category,equipment.purchase_date,equipment.last_modified_date,equipment.next_maintenance_date,equipment.Duration FROM branch, equipment WHERE branch.branch_id=equipment.branch_id AND next_maintenance_date >= ? AND equipment.equipment_has_modified ='0' ORDER BY next_maintenance_date";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setDate(1, Date.valueOf(date));
 //        System.out.println(date);
@@ -168,8 +168,8 @@ public class MaintainerEquipmentDAO {
                         resultSet.getDate(5).toLocalDate(),
                         resultSet.getDate(6).toLocalDate(),
                         resultSet.getDate(7).toLocalDate(),
-                        resultSet.getInt(8),
-                        resultSet.getInt(9)
+                        resultSet.getInt(8)
+//                        resultSet.getInt(9)
                 ));
             }
         }
@@ -190,4 +190,37 @@ public class MaintainerEquipmentDAO {
 
         return pst.executeUpdate()>0;
     }
+
+
+
+   /* public static List<Equipment> getDailyTaskListCheck(String memberId,LocalDate date) throws SQLException, ClassNotFoundException {
+        List<Equipment> equipments = new ArrayList<>();
+//        System.out.println("date"+date);
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "SELECT branch.branch_name,equipment.equipment_id,equipment.description,equipment.category,equipment.purchase_date,equipment.last_modified_date,equipment.next_maintenance_date,equipment.Duration FROM branch, equipment WHERE branch.branch_id=equipment.branch_id AND next_maintenance_date >= ? AND equipment.equipment_has_modified ='0' ORDER BY next_maintenance_date";
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setDate(1, Date.valueOf(date));
+//        System.out.println(date);
+//        System.out.println(Date.valueOf(date));
+        ResultSet resultSet = pst.executeQuery();
+
+        while (resultSet.next()) {
+            if (resultSet != null) {
+                equipments.add(new Equipment(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getDate(5).toLocalDate(),
+                        resultSet.getDate(6).toLocalDate(),
+                        resultSet.getDate(7).toLocalDate(),
+                        resultSet.getInt(8)
+//                        resultSet.getInt(9)
+                ));
+            }
+        }
+//        System.out.println("88888888888888");
+//        System.out.println(equipments);
+        return equipments;
+    } */
 }

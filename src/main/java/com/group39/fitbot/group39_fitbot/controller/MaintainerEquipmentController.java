@@ -27,7 +27,7 @@ public class MaintainerEquipmentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        System.out.println("post method call in maintainer equipments");
-        String List_order= req.getParameter("List_order");
+//        String List_order= req.getParameter("List_order");
         String Branch_selecter= req.getParameter("Branch_selecter");
         String Equipments_id= req.getParameter("Equipments_id");
 //        System.out.println(List_order);
@@ -44,10 +44,10 @@ public class MaintainerEquipmentController extends HttpServlet {
 //        }
         List<Equipment>all_Equipments = new ArrayList<>();
 
-        if(List_order.equals("")) {
+
 
             try {
-                all_Equipments = MaintainerEquipmentDAO.getEquipmentList(List_order, Branch_selecter, Equipments_id);
+                all_Equipments = MaintainerEquipmentDAO.getEquipmentList( Branch_selecter, Equipments_id);
                 Gson gson = new Gson();
                 String equipmentsJSON = gson.toJson(all_Equipments);
                 resp.setContentType("application/json");
@@ -60,7 +60,8 @@ public class MaintainerEquipmentController extends HttpServlet {
                 e.printStackTrace();
             }
 
-        }else{
+        }
+       /* else{
             try {
                 all_Equipments = MaintainerEquipmentDAO.getEquipmentList(List_order, Branch_selecter, Equipments_id);
                 Gson gson = new Gson();
@@ -77,5 +78,5 @@ public class MaintainerEquipmentController extends HttpServlet {
         }
 
 
-    }
+    }*/
 }
