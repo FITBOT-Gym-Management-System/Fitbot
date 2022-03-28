@@ -3,6 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <display-name>FITBOT</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/error/500.html</location>-->
+<!--    </error-page>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.html</location>
+    </error-page>
+
+    <session-config>
+        <session-timeout>45</session-timeout>
+    </session-config>
+
     <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>com.group39.fitbot.group39_fitbot.controller.RegistrationController</servlet-class>
@@ -453,7 +473,23 @@
         <url-pattern>/completeWorkoutRetrieve</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CheckPassword</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.CheckPasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckPassword</servlet-name>
+        <url-pattern>/checkPassword</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GetWorkoutPlan</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.GetWorkoutPlanDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetWorkoutPlan</servlet-name>
+        <url-pattern>/getWorkoutPlan</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>manager</servlet-name>
@@ -517,6 +553,15 @@
     <servlet-mapping>
         <servlet-name>addequipment</servlet-name>
         <url-pattern>/addequipment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>disableEquipment</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.ManagerEquipmentDisableController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>disableEquipment</servlet-name>
+        <url-pattern>/disableEquipment</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -635,6 +680,15 @@
     <servlet-mapping>
         <servlet-name>managerinstructorview</servlet-name>
         <url-pattern>/managerinstructorview</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>managerMarkinstructorAttendence</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.ManagerMarkInstructorAttendenceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerMarkinstructorAttendence</servlet-name>
+        <url-pattern>/managerMarkinstructorAttendence</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -873,7 +927,33 @@
         <servlet-name>employeeid</servlet-name>
         <url-pattern>/employeeid</url-pattern>
     </servlet-mapping>
+  
+    <servlet>
+        <servlet-name>managerbranchrevenue</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.ManagerBranchRevenueController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerbranchrevenue</servlet-name>
+        <url-pattern>/managerbranchrevenue</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>managerbranchmemberregister</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchMemberRegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerbranchmemberregister</servlet-name>
+        <url-pattern>/managerbranchmemberregister</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>managerbranchmembercount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.BranchMemberStatisticsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerbranchmembercount</servlet-name>
+        <url-pattern>/managerbranchmembercount</url-pattern>
+    </servlet-mapping>
 
     <!--instructors-->
     <servlet>
@@ -1075,6 +1155,51 @@
     <servlet-mapping>
         <servlet-name>maintainerDailyTaskForm</servlet-name>
         <url-pattern>/maintainerDailyTaskForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructoreachstudent</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructoreachstudent</servlet-name>
+        <url-pattern>/instructoreachstudent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>studentupdateweightdata</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.StudentUpdateWeightDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentupdateweightdata</servlet-name>
+        <url-pattern>/studentupdateweightdata</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorstudentcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorstudentcount</servlet-name>
+        <url-pattern>/instructorstudentcount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorstudentcalories</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.StudentCaloriesBurnedController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorstudentcalories</servlet-name>
+        <url-pattern>/instructorstudentcalories</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorappointmentcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorAppointmentCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorappointmentcount</servlet-name>
+        <url-pattern>/instructorappointmentcount</url-pattern>
     </servlet-mapping>
 
 </web-app>

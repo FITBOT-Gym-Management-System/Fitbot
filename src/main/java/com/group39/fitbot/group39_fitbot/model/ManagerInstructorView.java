@@ -1,16 +1,21 @@
 package com.group39.fitbot.group39_fitbot.model;
 
+import java.time.LocalDate;
+
 public class ManagerInstructorView {
     private String first_name;
     private String last_name;
-    private int mem_count;
-    private int appoinment_count;
+    private LocalDate joined_date;
+    private String instructor_id;
 
-    public ManagerInstructorView(String first_name, String last_name, int mem_count, int appoinment_count) {
+    public ManagerInstructorView() {
+    }
+
+    public ManagerInstructorView(String first_name, String last_name, LocalDate joined_date, String instructor_id) {
         this.first_name = first_name;
         this.last_name = last_name;
-        this.mem_count = mem_count;
-        this.appoinment_count = appoinment_count;
+        this.joined_date = joined_date;
+        this.instructor_id = instructor_id;
     }
 
     public String getFirst_name() {
@@ -29,20 +34,20 @@ public class ManagerInstructorView {
         this.last_name = last_name;
     }
 
-    public int getMem_count() {
-        return mem_count;
+    public LocalDate getJoined_date() {
+        return joined_date;
     }
 
-    public void setMem_count(int mem_count) {
-        this.mem_count = mem_count;
+    public void setJoined_date(LocalDate joined_date) {
+        this.joined_date = joined_date;
     }
 
-    public int getAppoinment_count() {
-        return appoinment_count;
+    public String getInstructor_id() {
+        return instructor_id;
     }
 
-    public void setAppoinment_count(int appoinment_count) {
-        this.appoinment_count = appoinment_count;
+    public void setInstructor_id(String instructor_id) {
+        this.instructor_id = instructor_id;
     }
 
     @Override
@@ -50,8 +55,8 @@ public class ManagerInstructorView {
         return "ManagerInstructorView{" +
                 "first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", mem_count=" + mem_count +
-                ", appoinment_count=" + appoinment_count +
+                ", joined_date=" + joined_date +
+                ", instructor_id='" + instructor_id + '\'' +
                 '}';
     }
 }

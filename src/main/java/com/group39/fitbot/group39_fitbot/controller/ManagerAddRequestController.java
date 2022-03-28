@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ManagerAddRequestController extends HttpServlet {
@@ -37,11 +38,16 @@ public class ManagerAddRequestController extends HttpServlet {
         System.out.println(branchID);
         System.out.println(manager_id);
 
+        LocalDate currentDate = LocalDate.parse(req.getParameter("currentDate"));
+        System.out.println(currentDate);
+        LocalTime currentTime = LocalTime.parse(req.getParameter("currentTime"));
+        System.out.println(currentTime);
+
         manrequest.setEquipment_id(req.getParameter("equipment_id"));
         manrequest.setCategory(req.getParameter("category"));
         manrequest.setDescription(req.getParameter("description"));
-        manrequest.setRe_date(Date.valueOf(req.getParameter("re_date")));
-        manrequest.setRe_time(LocalTime.parse(req.getParameter("re_time")));
+//        manrequest.setRe_date(Date.valueOf(req.getParameter("re_date")));
+//        manrequest.setRe_time(LocalTime.parse(req.getParameter("re_time")));
 
         manrequest.setBranchmanager_id(manager_id);
         manrequest.setBranch_id(branchID);
@@ -52,7 +58,7 @@ public class ManagerAddRequestController extends HttpServlet {
         boolean added = false;
 
         try{
-            added = ManagerAddRequestDAO.addNewRequest(manrequest);
+            added = ManagerAddRequestDAO.addNewRequest(manrequest,currentDate,currentTime);
 
         }catch(SQLException e) {
             e.printStackTrace();

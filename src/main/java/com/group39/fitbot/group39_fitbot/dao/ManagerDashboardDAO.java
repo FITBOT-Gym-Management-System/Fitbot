@@ -17,14 +17,15 @@ public class ManagerDashboardDAO {
         String query = "SELECT branch_manager.first_name,branch_manager.last_name,\n" +
                 "COUNT(DISTINCT equipment.equipment_id) AS equipmentcount,\n" +
                 "COUNT(DISTINCT instructor.instructor_id) AS instrucotrcount,\n" +
-                "COUNT(DISTINCT paid_member.member_id) AS branchmembercount\n" +
+                "COUNT(DISTINCT physical_member.member_id) AS branchmembercount\n" +
                 "\n" +
                 "FROM (((branch_manager\n" +
                 "INNER JOIN equipment ON branch_manager.branch_id = equipment.branch_id)\n" +
                 "INNER JOIN instructor ON branch_manager.branch_id=instructor.branch_id)\n" +
-                "INNER JOIN paid_member ON branch_manager.branch_id=paid_member.branch_id )\n" +
+                "INNER JOIN physical_member ON branch_manager.branch_id=physical_member.branch_id )\n" +
                 "\n" +
-                "WHERE branch_manager.branchmanager_id= ?";
+                "WHERE branch_manager.branchmanager_id= ?" +
+                "";
 
         PreparedStatement pst = connection.prepareStatement(query);
 //        pst.setString(1, branchID);

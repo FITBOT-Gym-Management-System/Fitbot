@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +32,12 @@ public class ManagerMemberViewController extends HttpServlet {
         String branchID = (String) session.getAttribute("BranchID");
         System.out.println(branchID);
 
+        LocalDate currentDate = LocalDate.parse(req.getParameter("currentDate"));
+
         List<ManagerMemberView> all_member = new ArrayList<>();
 
         try{
-            all_member = ManagerMemberViewDAO.getManagerMemberView(branchID);
+            all_member = ManagerMemberViewDAO.getManagerMemberView(branchID, currentDate);
             System.out.println(all_member);
             Gson gson = new Gson();
             String memberviewJSON = gson.toJson(all_member);

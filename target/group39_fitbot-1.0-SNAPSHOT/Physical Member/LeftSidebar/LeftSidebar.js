@@ -330,7 +330,7 @@ $(document).ready(function(){
       viewReport();
       viewBMI("myChart1");
       viewCaloriesBurned();
-      viewWorkoutPlanReports();
+      //viewWorkoutPlanReports();
 
       });
       load[7] += 1;
@@ -500,6 +500,7 @@ function getRightSidebarDetail(){
                  <span class="weight_value">${result["weight"]}Kg</span>`
             );
           viewMonthlyGoalReports();
+          upcomingTaskWithGoal();
         },
         error: function(error){
             console.log(error+"edit profile");
@@ -532,9 +533,15 @@ $(document).ready(function(){
 
   }).done(function(data){
     // const data_object = JSON.parse(data);
-    $('#dashboard_mambership_first_text').append(
-        '<span class="dashboard_mambership_second_text"><b>'+data.membership_category+'</b></span>'
-    );
+    if(data.membership_category.length > 0){
+      $('#dashboard_mambership_first_text').append(
+          '<span class="dashboard_mambership_second_text"><b>'+data.membership_category+'</b></span>'
+      );
+    }else{
+      $('#dashboard_mambership_first_text').append(
+          '<span class="dashboard_mambership_second_text"><b>'+"Virtual Membership"+'</b></span>'
+      );
+    }
 
     $('#dashboard_mambership_first_text1').append(
         '<span class="dashboard_mambership_second_text"><b>'+data.membership_fee+'</b></span>'
@@ -694,12 +701,17 @@ function setProfileImage(){
       // let myBlob = new Blob();
 
 
-      let myFile = blobToFile(result, "my-image.png");
+      //let myFile = blobToFile(result, "my-image.png");
+
+      // const buffer = result // e.g., <Buffer 89 50 4e ... >
+      // const b64 = new Buffer(buffer).toString('base64')
+      // const mimeType = some_type // e.g., image/png
 
       console.log("Image get success");
-      $('#profile_physical_container_details_image').append(
-          `<img src="${myFile}" alt="profile_image" id="imgshow">`
-      );
+      // $('#profile_physical_container_details_image').append(
+      //     `<img src={data:${mimeType};base64,${b64}} />`
+      //     // `<img src="${myFile}" alt="profile_image" id="imgshow">`
+      // );
     },
     error: function (error) {
       console.log(error);
@@ -1004,7 +1016,8 @@ function searchInstructors(){
         $.map(result,function(x){
           let instructor_id = x["instructor_id"];
           console.log(instructor_id);
-          let str_ins_id = instructor_id.slice(4).toString();
+          //let str_ins_id = instructor_id.replace("Ins", "");
+          let str_ins_id = instructor_id.slice(3).toString();
           let number = parseInt(str_ins_id);
           console.log(number);
           console.log(str_ins_id);
@@ -1033,59 +1046,115 @@ function searchInstructors(){
 }
 //workout
 function checkWorkoutData(){
-  $.ajax({
-    method:'POST',
-    url:"workout",
-    dataType:'json',
-    // contentType:"application/json",
-  }).done(function(result){
-    let total_reps_phy = result.total_reps;
-    let count = 0;
-    console.log(result);
+  // $.ajax({
+  //   method:'POST',
+  //   url:"workout",
+  //   dataType:'json',
+  //   // contentType:"application/json",
+  // }).done(function(result){
+  //   let total_reps_phy = result.total_reps;
+  //   let count = 0;
+  //   console.log(result);
+  //
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "completeWorkoutRetrieve",
+  //     data: "",
+  //     success: function (result1) {
+  //         let arr = new Array();
+  //         let arr1 = new Array();
+  //
+  //       $.map(result,function(x){
+  //           arr1.push(x.workout_id);
+  //         $.map(result1,function(y){
+  //           if(y.workout_id == x.workout_id){
+  //               arr.push(x.workout_id);
+  //             count += 1;
+  //           }
+  //         });
+  //       });
+  //
+  //       function removeDuplicates(arr) {
+  //           return arr.filter((item, index) => arr.indexOf(item) === index);
+  //       }
+  //       removeDuplicates(arr);
+  //       removeDuplicates(arr1);
+  //
+  //         $.each(arr, function( index, value ) {
+  //             //alert( index + ": " + value );
+  //             $.each(arr1, function( index, value ) {
+  //                 alert( index + ": " + value );
+  //             });
+  //         });
+  //
+  //       $.map(result,function(x) {
+  //           //if(x.workout_id == )
+  //           $('#workout_container_table').append(
+  //               `<tr class="payment_history_container_row" onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">'+
+  //                   <td>${x.exercise}</td>
+  //                   <td>${x.workout_type}</td>
+  //                   <td>${x.total_reps}</td>
+  //                   <td>${x.duration}</td>
+  //                   <td><input type="checkbox" id="payment_history_container_row_checkbox+${x.workout_id}" onclick='checkBoxChecked("${x.workout_id}","payment_history_container_row_checkbox",0)'></td>
+  //                   </tr>`
+  //           );
+  //       });
+  //
+  //
+  //       if(count == 0){
+  //         $('#workout_container_details').hide();
+  //         $('#workout_container_header_search').hide();
+  //         $('#workout_container_header_search_cant_find').show();
+  //       }
+  //
+  //     },
+  //     error: function (error) {
+  //       console.log(error);
+  //     }
+  //   });
+  //
+  //
+  //
+  //   // alert(result);
+  // }).fail(function(a,b,err){
+  //   //alert("Error");
+  //   console.log(a,b,err);
+  // });
 
     $.ajax({
-      method: "POST",
-      url: "completeWorkoutRetrieve",
-      data: "",
-      success: function (result1) {
-
-        $.map(result,function(x){
-
-          $.map(result1,function(y){
-            if(y.workout_id != x.workout_id){
-              count += 1;
-              $('#workout_container_table').append(
-                  `<tr class="payment_history_container_row" onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">'+
-                    <td>${x.exercise}</td>
+        method: "POST",
+        url: "completeWorkoutRetrieve",
+        data: "",
+        success: function (result) {
+            console.log(result);
+            let count = 0;
+            $.map(result,function(x) {
+                //if(x.workout_id == )
+                $('#workout_container_table').append(
+                    `<tr class="payment_history_container_row workout_history_container_row">
+                    <td onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">${x.exercise}</td>
                     <td>${x.workout_type}</td>
                     <td>${x.total_reps}</td>
                     <td>${x.duration}</td>
                     <td><input type="checkbox" id="payment_history_container_row_checkbox+${x.workout_id}" onclick='checkBoxChecked("${x.workout_id}","payment_history_container_row_checkbox",0)'></td>
                     </tr>`
-                        );
+                );
+                count += 1;
+            });
+
+
+            if(count == 0){
+                //alert(count);
+                $('#workout_container_details').hide();
+                $('#workout_container_header_search').hide();
+                $('#workout_container_header_search_cant_find').show();
             }
-          });
 
-        });
-        if(count == 0){
-          $('#workout_container_details').hide();
-          $('#workout_container_header_search').hide();
-          $('#workout_container_header_search_cant_find').show();
+        },
+        error: function (error) {
+            console.log(error);
         }
-
-      },
-      error: function (error) {
-        console.log(error);
-      }
     });
-
-
-
-    // alert(result);
-  }).fail(function(a,b,err){
-    //alert("Error");
-    console.log(a,b,err);
-  });
 }
 
 //payments
@@ -1133,7 +1202,7 @@ function displayPaymentsData(){
 
       $('#payment_history_container_table').append(
           `<tr class="payment_history_container_row">
-            <td>${x.previous_expire_date["year"]}-${x.previous_expire_date["month"]}-${x.previous_expire_date["day"]}</td>'+
+            <td>${x.payment_date["year"]}-${x.payment_date["month"]}-${x.payment_date["day"]}</td>'+
             <td>${x.currency}</td>
             <td>${x.payment_method}</td>
             <td>${x.payment_amount}</td>
@@ -1200,21 +1269,24 @@ function getAppointmentData(){
           $('#no_appointment').html('Has Appointment');
           $('#appointment_date').html(appoin_date);
           $('#appointment_time').html(appoin_time);
-          $('.edit_profile_container_detail_input4_btn1').attr("disabled", true);
+          // $('.edit_profile_container_detail_input4_btn1').attr("disabled", true);
           $('#appointment_button_div').css("border", "2px solid grey");
           $('.edit_profile_container_detail_input4_btn1').css("border", "2px solid grey");
           $('#appointment_button_div').css("background-color", "grey");
           $('.edit_profile_container_detail_input4_btn1').css("background-color", "grey");
+          $("#appointment_button_div").prop("disabled", true);
         }
       }
+      let appoit_date = x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2);
+      let startTime = ("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2);
+      let finishTime = ("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2);
       $('#appointment_container_table').append(
-          '<tr class="payment_history_container_row">'+
-          '<td>'+x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2)+'</td>'+
-          '<td>'+("0" + x.start_time["hour"]).slice(-2)+":"+("0" + x.start_time["minute"]).slice(-2)+":"+("0" + x.start_time["second"]).slice(-2)+'</td>'+
-          '<td>'+("0" + x.finish_time["hour"]).slice(-2)+":"+("0" + x.finish_time["minute"]).slice(-2)+":"+("0" + x.finish_time["second"]).slice(-2)+'</td>'+
-          // '<td>'+x.equipment+'</td>'+
-          '<td>'+'<a href="#" class="show_more_button">SHOW MORE</a>'+'</td>'+
-          '</tr>'
+          `<tr class="payment_history_container_row">
+          <td>${appoit_date}</td>
+          <td>${startTime}</td>
+          <td>${finishTime}</td>
+          <td><a href="#" class="show_more_button" onclick='viewAppoitmentData("${appoit_date}","${startTime}","${finishTime}")'>SHOW MORE</a></td>
+          </tr>`
       );
       countVal += 1;
     });
@@ -1244,7 +1316,6 @@ function getBranchMessages(){
               '<div class="branch_messages_physical_container_message_description">'+x["description"]+'</div>'+
               '<div class="branch_messages_physical_container_message_div_div">'+
                 '<div class="branch_messages_physical_container_message_date">'+x.dates["year"]+"-"+("0"+x.dates["month"]).slice(-2)+"-"+("0"+x.dates["day"]).slice(-2)+'</div>'+
-                '<div class="branch_messages_physical_container_message_branch">'+x["branch_name"]+'</div>'+
               '</div>'+
             '</div>'+
           '</div>'
@@ -1428,95 +1499,166 @@ function viewBMI(chartName){
 }
 
 function viewCaloriesBurned(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
+  let completed_date_arr;
 
-  new Chart("myChart2", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        label: "Calories",
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
+  $.ajax({
+    method:"POST",
+    url:"getWorkoutPlan",
+    dataType:"json",
+    // contentType:"application/json",
+    success: function (result){
+      console.log(result);
+
+      let arrDate = new Array();
+      let arrCalories = new Array();
+      let i = 0;
+
+      $.map(result,function(x){
+        completed_date_arr = x.completed_date["year"]+"-"+x.completed_date["month"]+"-"+x.completed_date["day"];
+        // arrDate[i] = x["update_date"];
+        arrDate[i] = completed_date_arr;
+        arrCalories[i] = x["total_calories"];
+        i += 1;
+      });
+      console.log(arrDate);
+      console.log(arrCalories);
+
+      //arrDate.sort();
+
+      new Chart("myChart2", {
+        type: "line",
+        data: {
+          labels: arrDate,
+          datasets: [{
+            label: 'BMI ',
+            // data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+            data: arrCalories,
+            borderColor: "blue",
+            fill: false
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Calories vs Date"
+          },
+          legend: {display: true},
+          scales: {
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'BMI'
+              }
+            }],
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Weight'
+              }
+            }]
+          }
+        }
+      });
     },
-    options: {
-      title: {
-        display: true,
-        text: "Calories Burned"
-      },
-      legend: {display: true},
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Weight'
-          }
-        }],
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Time'
-          }
-        }]
-      }
+    error: function(error){
+      console.log(error+"edit profile");
     }
   });
-}
-function viewWorkoutPlanReports(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
 
-  new Chart("myChart3", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        label:"Workout",
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: "Calories Burned"
-      },
-      legend: {display: true},
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Weight'
-          }
-        }],
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Time'
-          }
-        }]
-      }
-    }
-  });
+
+
+
+
+
+  // let xValues = [100,200,300,400,500,600,700,800,900,1000];
+  //
+  // new Chart("myChart2", {
+  //   type: "line",
+  //   data: {
+  //     labels: xValues,
+  //     datasets: [{
+  //       label: "Calories",
+  //       data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+  //       borderColor: "red",
+  //       fill: false
+  //     }, {
+  //       data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+  //       borderColor: "green",
+  //       fill: false
+  //     }, {
+  //       data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+  //       borderColor: "blue",
+  //       fill: false
+  //     }]
+  //   },
+  //   options: {
+  //     title: {
+  //       display: true,
+  //       text: "Calories Burned"
+  //     },
+  //     legend: {display: true},
+  //     scales: {
+  //       yAxes: [{
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: 'Weight'
+  //         }
+  //       }],
+  //       xAxes: [{
+  //         scaleLabel: {
+  //           display: true,
+  //           labelString: 'Time'
+  //         }
+  //       }]
+  //     }
+  //   }
+  // });
 }
+// function viewWorkoutPlanReports(){
+//   let xValues = [100,200,300,400,500,600,700,800,900,1000];
+//
+//   new Chart("myChart3", {
+//     type: "line",
+//     data: {
+//       labels: xValues,
+//       datasets: [{
+//         label:"Workout",
+//         data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+//         borderColor: "red",
+//         fill: false
+//       }, {
+//         data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+//         borderColor: "green",
+//         fill: false
+//       }, {
+//         data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+//         borderColor: "blue",
+//         fill: false
+//       }]
+//     },
+//     options: {
+//       title: {
+//         display: true,
+//         text: "Calories Burned"
+//       },
+//       legend: {display: true},
+//       scales: {
+//         yAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: 'Weight'
+//           }
+//         }],
+//         xAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: 'Time'
+//           }
+//         }]
+//       }
+//     }
+//   });
+// }
 
 function viewMonthlyGoalReports(){
   //memberGoalGetData

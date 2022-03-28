@@ -1,71 +1,126 @@
 package com.group39.fitbot.group39_fitbot.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class InsStudent {
+    private String MemberId;
+    private String Name;
+    private String Branch;
+    private String Type;
+    private String Email;
+    private LocalDate Dob;
+    private Integer Weight;
+    private Integer Height;
+    private String Membership;
+    private String ContactNo;
 
-    private String name;
-    private Date dob;
-    private String gender;
-    private String workout_plan_name;
-    private String diet_plan_name;
+    public InsStudent() {
+    }
 
-    public InsStudent(String name, Date dob, String gender, String workout_plan_name, String diet_plan_name) {
-        this.name = name;
-        this.dob = dob;
-        this.gender = gender;
-        this.workout_plan_name = workout_plan_name;
-        this.diet_plan_name = diet_plan_name;
+    public InsStudent(String name, String branch, LocalDate dob, Integer weight, Integer height, String membership) {
+        Name = name;
+        Branch = branch;
+        Dob = dob;
+        Weight = weight;
+        Height = height;
+        Membership = membership;
+    }
+
+    public InsStudent(String memberId, String name, String branch, String type, String email, String membership) {
+        MemberId = memberId;
+        Name = name;
+        Branch = branch;
+        Type = type;
+        Email = email;
+        Membership = membership;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
-    public Date getDob() {
-        return dob;
+    public String getBranch() {
+        return Branch;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setBranch(String branch) {
+        Branch = branch;
     }
 
-    public String getGender() {
-        return gender;
+    public String getType() {
+        return Type;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setType(String type) {
+        Type = type;
     }
 
-    public String getWorkout_plan_name() {
-        return workout_plan_name;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setWorkout_plan_name(String workout_plan_name) {
-        this.workout_plan_name = workout_plan_name;
+    public void setEmail(String email) {
+        Email = email;
     }
 
-    public String getDiet_plan_name() {
-        return diet_plan_name;
+    public LocalDate getDob() {
+        return Dob;
     }
 
-    public void setDiet_plan_name(String diet_plan_name) {
-        this.diet_plan_name = diet_plan_name;
+    public void setDob(LocalDate dob) {
+        Dob = dob;
+    }
+
+    public Integer getWeight() {
+        return Weight;
+    }
+
+    public void setWeight(Integer weight) {
+        Weight = weight;
+    }
+
+    public Integer getHeight() {
+        return Height;
+    }
+
+    public void setHeight(Integer height) {
+        Height = height;
+    }
+
+    public String getMembership() {
+        return Membership;
+    }
+
+    public void setMembership(String membership) {
+        Membership = membership;
+    }
+
+    public String getContactNo() {
+        return ContactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        ContactNo = contactNo;
     }
 
     @Override
     public String toString() {
         return "InsStudent{" +
-                "name='" + name + '\'' +
-                ", dob=" + dob +
-                ", gender='" + gender + '\'' +
-                ", workout_plan_name='" + workout_plan_name + '\'' +
-                ", diet_plan_name='" + diet_plan_name + '\'' +
+                "MemberId='" + MemberId + '\'' +
+                ", Name='" + Name + '\'' +
+                ", Branch='" + Branch + '\'' +
+                ", Type='" + Type + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Dob=" + Dob +
+                ", Weight=" + Weight +
+                ", Height=" + Height +
+                ", Membership='" + Membership + '\'' +
+                ", ContactNo='" + ContactNo + '\'' +
                 '}';
     }
 }

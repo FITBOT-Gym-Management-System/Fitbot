@@ -17,8 +17,8 @@ public class ManagerDashboardAttendenceDAO {
                 "(SELECT SUM(online_payment.payment_amount)\n" +
                 "FROM ((online_payment\n" +
                 "INNER JOIN  payment_paidmember_membership ON payment_paidmember_membership.payment_id = online_payment.payment_id)\n" +
-                "INNER JOIN member ON member.member_id = payment_paidmember_membership.member_id)\n" +
-                "WHERE member.branch_id = ? AND \n" +
+                "INNER JOIN register ON register.member_id = payment_paidmember_membership.member_id)\n" +
+                "WHERE register.branch_id = ? AND \n" +
                 "online_payment.payment_date >= ? AND online_payment.payment_date <= ?),\n" +
                 "\n" +
                 "(SELECT COUNT(instructor_attendance.instructor_id)\n" +
@@ -26,15 +26,15 @@ public class ManagerDashboardAttendenceDAO {
                 "INNER JOIN instructor ON instructor.instructor_id = instructor_attendance.instructor_id)\n" +
                 "WHERE instructor.branch_id = ? AND instructor_attendance.date= ?),\n" +
                 "\n" +
-                "(SELECT COUNT(register.member_id) \n" +
+                "(SELECT COUNT(register.member_id)\n" +
                 "FROM (member_attendance\n" +
                 "INNER JOIN register ON register.member_id = member_attendance.member_id)\n" +
                 "WHERE register.branch_id = ? AND member_attendance.date= ? ),\n" +
                 "\n" +
                 "(SELECT COUNT(appointment.appointment_id)\n" +
                 "FROM ((appointment\n" +
-                "INNER JOIN member ON appointment.member_id = member.member_id)\n" +
-                "INNER JOIN branch ON branch.branch_id = member.branch_id)\n" +
+                "INNER JOIN register ON appointment.member_id = register.member_id)\n" +
+                "INNER JOIN branch ON branch.branch_id = register.branch_id)\n" +
                 "WHERE branch.branch_id = ? ),\n" +
                 "\n" +
                 "(SELECT COUNT(register.member_id)\n" +

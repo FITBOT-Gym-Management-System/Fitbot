@@ -10,27 +10,26 @@ function manager_maintainer_request_page() {
 
 function add_request_popup(){
     $('#add_request_container').show();
+
+    $("#validation_equipmentrequest_id").hide();
+    $("#validation_equipmentrequest_description").hide();
+    $("#validation_equipmentrequest_type").hide();
 }
 
 function close_add_request_Popup(){
     $('#add_request_container').hide();
-    $('#maintainer_request_form input[type="text"],input[type="date"], input[type="time"],textarea,select').val('');
+    $('#maintainer_request_form input[type="text"],textarea').val('');
 }
 
 function submit_requestmaintain_form(){
-    // e.preventDefault();
-    // alert("shalani");
+
     let equipment_id = $('#equipment_id').val();
     let category = $('#category').val();
     let description = $('#description').val();
-    let re_date = $('#re_date').val();
-    let re_time = $('#re_time').val();
 
     let equipment_id_error =false;
     let category_error =false;
     let description_error =false;
-    let re_date_error =false;
-    let re_time_error =false;
 
     //EQUIPMENT ID validation
     if(equipment_id.length == ""){
@@ -50,13 +49,13 @@ function submit_requestmaintain_form(){
     }
 
     //category validation
-    // if (category.length == ""){
-    //     $("#validation_equipmentrequest_type").show();
-    //     category_error = true;
-    // }
-    // else {
-    //     $("#validation_equipmentrequest_type").hide();
-    // }
+    if (category.length == ""){
+        $("#validation_equipmentrequest_type").show();
+        category_error = true;
+    }
+    else {
+        $("#validation_equipmentrequest_type").hide();
+    }
 
     //description validation
     if (description.length == ""){
@@ -68,25 +67,25 @@ function submit_requestmaintain_form(){
     }
 
     //date validation
-    if (re_date.length == ""){
-        $("#validation_equipmentrequest_date").show();
-        re_date_error = true;
-    }
-    else {
-        $("#validation_equipmentrequest_date").hide();
-    }
-
-    //time validation
-    if (re_time.length == ""){
-        $("#validation_equipmentrequest_time").show();
-        re_time_error = true;
-    }
-    else {
-        $("#validation_equipmentrequest_time").hide();
-    }
+    // if (re_date.length == ""){
+    //     $("#validation_equipmentrequest_date").show();
+    //     re_date_error = true;
+    // }
+    // else {
+    //     $("#validation_equipmentrequest_date").hide();
+    // }
+    //
+    // //time validation
+    // if (re_time.length == ""){
+    //     $("#validation_equipmentrequest_time").show();
+    //     re_time_error = true;
+    // }
+    // else {
+    //     $("#validation_equipmentrequest_time").hide();
+    // }
 
     //Full validation
-    if(equipment_id_error==true || category_error==true || description_error==true || re_date_error==true || re_time_error==true )
+    if(equipment_id_error==true || category_error==true || description_error==true )
     {
         return false;
     }
@@ -94,17 +93,29 @@ function submit_requestmaintain_form(){
     console.log(equipment_id);
     console.log(category);
     console.log(description);
-    console.log(re_date);
-    console.log(re_time);
+    // console.log(re_date);
+    // console.log(re_time);
+
+
+    const date = new Date();
+    let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
+    console.log(currentDate);
+
+    let today = new Date();
+    let currentTime = ("0" + (today.getHours() )).slice(-2)+":"+("0" + today.getMinutes()).slice(-2)+":"+("0" + today.getSeconds()).slice(-2);
+    console.log(currentTime);
 
     $.ajax({
         method: 'POST',
         url: "manageraddrequest",
-        data: {equipment_id:equipment_id, category:category, description:description, re_date:re_date, re_time:re_time},
+        data: {equipment_id:equipment_id, category:category, description:description, currentDate:currentDate, currentTime:currentTime},
 
         success:function (result){
-            // event.preventDefault();
             alert("Done");
+
+            setTimeout(function(){
+                updaterequest_table()
+            }, 1000)
         },
 
         fail:function (error){
@@ -113,12 +124,10 @@ function submit_requestmaintain_form(){
 
     })
 
-    $('#maintainer_request_form input[type="text"],input[type="date"], input[type="time"],textarea,select').val('');
+    $('#maintainer_request_form input[type="text"],textarea,select').val('');
     $('#add_request_container').hide();
 
-    setTimeout(function(){
-        updaterequest_table()
-    }, 1000)
+
 }
 
 
@@ -129,17 +138,30 @@ function updaterequest_table() {
         url: "managerrequest",
         dataType: 'json',
     }).done(function (result) {
+
         console.log(result);
         let chunk = 5;
         nextbuttons(result,chunk);
         initiateRequestNextButtons(result,chunk);
         $("#manager_request_table_tbody").html(' ')
         $.map(result.slice(0,chunk), function (x) {
+
+            let status_name;
+            if(x.status == 1){
+                status_name = "New";
+            }
+            else if(x.status == 2){
+                status_name = "Progress";
+            }
+            else if(x.status == 3){
+                status_name = "Completed";
+            }
+
             $('#manager_request_table_tbody').append(
                 '<tr class="manager_request_row">' +
                 '<td>' + x.equipment_id + '</td>' +
                 '<td>' + x.category + '</td>' +
-                '<td>' + x.status + '</td>' +
+                '<td>' + status_name + '</td>' +
                 '<td>' + x.next_maintenance_date + '</td>' +
                 '</tr>'
             );
@@ -157,6 +179,7 @@ function updaterequest_table() {
 
 function initiateRequestNextButtons(result,chunk) {
     //initiate the buttons
+
     $(`[id^=next-button]*`).each(function () {
         console.log(this)
         $(this).on("click", function () {
@@ -164,11 +187,23 @@ function initiateRequestNextButtons(result,chunk) {
             let pageno = parseInt($(this).html());
             $("#manager_request_table_tbody").html(' ')
             $.map(result.slice(pageno * chunk - chunk, pageno * chunk), function (x) {
+
+                let status_name;
+                if(x.status == 1){
+                    status_name = "New";
+                }
+                else if(x.status == 2){
+                    status_name = "Progress";
+                }
+                else if(x.status == 3){
+                    status_name = "Completed";
+                }
+
                 $('#manager_request_table_tbody').append(
                     '<tr class="manager_request_row">' +
                     '<td>' + x.equipment_id + '</td>' +
                     '<td>' + x.category + '</td>' +
-                    '<td>' + x.status + '</td>' +
+                    '<td>' + status_name + '</td>' +
                     '<td>' + x.next_maintenance_date + '</td>' +
                     '</tr>'
                 );

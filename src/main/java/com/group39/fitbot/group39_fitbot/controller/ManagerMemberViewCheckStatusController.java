@@ -26,13 +26,8 @@ public class ManagerMemberViewCheckStatusController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("ManagerMemberViewCheckStatusController post method calleed");
 
-//        String memberArray;
-//        memberArray = req.getParameter("memberArray");
         String memberId =req.getParameter("memberId");
         System.out.println("ammmmmmaaaaa");
-//        System.out.println(memberArray);
-//        LocalDate currentDate = LocalDate.parse(req.getParameter("currentDate"));
-//        System.out.println(currentDate);
 
         List<ManagerMemberView> checkAttendenceStatus = new ArrayList<>();
 

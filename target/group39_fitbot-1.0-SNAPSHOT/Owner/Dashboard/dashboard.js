@@ -143,7 +143,7 @@ function dashboardcount(){
         // alert(result);
         // alert("Data is comming babe");
     }).fail(function(a,b,err){
-        alert("Error");
+        // alert("Error");
         console.log(a,b,err);
     });
 }

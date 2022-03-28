@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $('#term_and_condition_popup').hide();
+    // editPaymentBackgroundOff();
 
     $("#reg_submit_btn").attr("disabled", true);
     $('input[type="checkbox"]').click(function(){
@@ -154,3 +156,20 @@ $(document).ready(function(){
         // $('#first_question_14').val().trim();
     });
 });
+
+function editPaymentBackgroundOn(){
+    $('.payment_physical_big_container_background').css('display','block');
+}
+function editPaymentBackgroundOff(){
+    $('.payment_physical_big_container_background').css('display','none');
+}
+
+function close_after_terms_details(){
+    $('#term_and_condition_popup').hide();
+    editPaymentBackgroundOff();
+}
+ function terms_and_conditions_popup(){
+    //alert("yohan");
+     $('#term_and_condition_popup').show();
+     editPaymentBackgroundOn();
+ }

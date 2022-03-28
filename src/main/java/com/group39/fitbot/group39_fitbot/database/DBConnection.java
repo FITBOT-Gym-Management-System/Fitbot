@@ -8,9 +8,8 @@ public class DBConnection {
     private final String host = "localhost";
     private final String port = "3306";
 //    private final String database = "employee_java";
-//    private final String database = "group_39_fitbot_new";
-
-        private final String database = "group_39_fitbot_update";
+//    private final String database = "group_39_fitbot_update";
+    private final String database = "group_39_fitbot_new";
     private final String username = "root";
     private final String password = "";
 

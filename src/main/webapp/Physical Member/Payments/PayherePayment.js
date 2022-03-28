@@ -140,11 +140,6 @@ function pay_bill_view(payment_id,cus_first_name,cus_last_name,cus_address,payme
                                 <span><b>Address</b></span><br>
                                 <span>${cus_address}</span>
                             </div>
-
-                            // <div>
-                            //     <span><b>City</b></span><br>
-                            //     <span>${cus_city}</span>
-                            // </div>
                         </div>`
     );
 
@@ -391,12 +386,10 @@ function payment_online(){
             e.preventDefault();
             return;
         }
-
         if(city == ''){
             $('#payment_error5').html("**Can't be empty");
             return;
         }
-
         if(!email_regex_Validate(email)){
             $('#payment_error3').html("**Enter valid email");
             $('#payment_error3').css("color", "red");
@@ -425,7 +418,6 @@ function payment_online(){
 
         //e.preventDefault();
         afterOnlinePayment(payment,checkStatus,"Online Payment");
-
     });
 }
 
@@ -487,8 +479,8 @@ function instructor_payment_online(){
         }
         hideErrors1();
 
-        e.preventDefault();
-        alert("yohan");
+        //e.preventDefault();
+        //alert("yohan");
         saveVirtualPhysicalTableData(instructor_id);
         afterOnlinePayment(payment,checkStatus,"Instructor Payment");
     });
@@ -553,8 +545,6 @@ function afterOnlinePayment(data,status,payment_method){
                         confirmButtonColor: '#0E2C4B',
                     })
                 }
-
-
             }else if(result.trim() == "0"){
                 Swal.fire({
                     icon: 'error',
@@ -589,7 +579,7 @@ function afterOnlinePayment(data,status,payment_method){
 }
 
 function saveVirtualPhysicalTableData(instructor_id){
-    alert("Save data");
+    //alert("Save data");
     $.ajax({
         method:"POST",
         url:"saveInstructorVirtualPhysicalData",

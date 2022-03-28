@@ -30,7 +30,7 @@ public class ManagerRequestDAO {
                 manrequest.add(new ManagerRequest(
                         resultSet.getString(1),
                         resultSet.getString(2),
-                        resultSet.getString(3),
+                        resultSet.getInt(3),
                         resultSet.getDate(4)
                 ));
             }

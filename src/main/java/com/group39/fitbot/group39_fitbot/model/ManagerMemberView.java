@@ -25,12 +25,21 @@ public class ManagerMemberView {
 //        this.status = status;
 //    }
 
-    public ManagerMemberView(String member_id, String firstname, String lastname, String membertype, String intructorname) {
+//    public ManagerMemberView(String member_id, String firstname, String lastname, String membertype, String intructorname) {
+//        this.member_id = member_id;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.membertype = membertype;
+//        this.intructorname = intructorname;
+//    }
+
+
+    public ManagerMemberView(String member_id, String firstname, String lastname, String membertype, LocalDate date) {
         this.member_id = member_id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.membertype = membertype;
-        this.intructorname = intructorname;
+        this.date = date;
     }
 
     public ManagerMemberView(LocalDate date, int status) {

@@ -12,15 +12,10 @@ public class ManagerInstructorViewDAO {
     public static List<ManagerInstructorView> getManagerInstructorView(String branchID) throws SQLException,ClassNotFoundException{
         List<ManagerInstructorView> all_instrucotr = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT instructor.first_name,instructor.last_name,\n" +
-                "COUNT(DISTINCT member.member_id) AS member_count,\n" +
-                "COUNT(DISTINCT appointment.appointment_id) AS appoinment_count\n" +
-                "\n" +
-                "FROM ((member\n" +
-                "INNER JOIN instructor ON member.instructor_id = instructor.instructor_id)\n" +
-                "INNER JOIN appointment ON appointment.member_id = member.member_id)\n" +
-                "WHERE instructor.branch_id= ? \n" +
-                "GROUP BY instructor.instructor_id";
+        String query = "SELECT instructor.first_name,instructor.last_name,instructor.joined_date,instructor.instructor_id \n" +
+                "FROM instructor \n" +
+                "INNER JOIN instructor_attendance ON instructor_attendance.instructor_id=instructor.instructor_id\n" +
+                "WHERE instructor.branch_id = ? AND instructor_attendance.`status` = 0";
 
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,branchID);
@@ -35,8 +30,8 @@ public class ManagerInstructorViewDAO {
                 all_instrucotr.add(new ManagerInstructorView(
                         resultSet.getString(1),
                         resultSet.getString(2),
-                        resultSet.getInt(3),
-                        resultSet.getInt(4)
+                        resultSet.getDate(3).toLocalDate(),
+                        resultSet.getString(4)
                 ));
             }
         }

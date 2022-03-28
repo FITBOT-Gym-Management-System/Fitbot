@@ -2,7 +2,6 @@ package com.group39.fitbot.group39_fitbot.controller;
 
 import com.google.gson.Gson;
 import com.group39.fitbot.group39_fitbot.dao.ReportDataDAO;
-import com.group39.fitbot.group39_fitbot.model.MemberRegisterCount;
 import com.group39.fitbot.group39_fitbot.model.XY;
 
 import javax.servlet.ServletException;

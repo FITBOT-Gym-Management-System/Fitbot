@@ -15,40 +15,145 @@ function edit_profile_popup(){
     editProfileBackgroundOn();
 }
 
-// function edit_profile_submit(){
-//     let first_name = $('#edit_profile_container_detail_name').val().trim();
-//     let last_name = $('#edit_profile_container_detail_last_name').val().trim();
-//     let weight = $('#edit_profile_container_detail_weight').val().trim();
-//     let height = $('#edit_profile_container_detail_last_height').val().trim();
-//     let date_of_birth = $('#edit_profile_container_detail_dob').val().trim();
-//     let contact_number = $('#edit_profile_container_detail_last_conatct').val().trim();
-// }
-
 function close_edit_profile_Popup(){
     $('#edit_profile_container').hide();
     editProfileBackgroundOff();
 }
 
+function validateEmptyFeildsInPasswordErrorHide(){
+    $('#edit_profile_container_change_new_password1_error').hide();
+    $('#edit_profile_container_change_new_password_error').hide();
+    $('#edit_profile_container_change_confirm_password_error').hide();
+}
+
+function validateEmptyFeildsInPasswordErrorShow(error){
+    $('#'+error.trim().toString()).show();
+    $('#'+error.trim().toString()).css("color","red");
+}
+
 function edit_profile_change_password(){
     $('#edit_profile_container').hide();
     $('#edit_profile_change_password_container').show();
+    validateEmptyFeildsInPasswordErrorHide();
     editProfileBackgroundOn();
+}
+
+function commonThingsForBack(){
+    validateEmptyFeildsInPasswordErrorHide();
+    document.getElementById("edit_profile_container_change_new_password1").value = "";
+    document.getElementById("edit_profile_container_change_new_password").value = "";
+    document.getElementById("edit_profile_container_change_confirm_password").value = "";
 }
 
 function close_edit_profile_change_password_Popup(){
     $('#edit_profile_change_password_container').hide();
     editProfileBackgroundOff();
+    commonThingsForBack();
 }
 
 function edit_profile_change_password_back(){
     $('#edit_profile_change_password_container').hide();
     $('#edit_profile_container').show();
+    commonThingsForBack();
 }
+
+// $('#date_of_birth').keyup(function () {
+//     validateDOB();
+// });
+
+function validateFeilds(old_password,new_password,confirm_password){
+    if(old_password == ''){
+        document.getElementById("edit_profile_container_change_new_password1").value = "";
+        validateEmptyFeildsInPasswordErrorShow("edit_profile_container_change_new_password1_error");
+        return false;
+    }
+    if(new_password == ''){
+        document.getElementById("edit_profile_container_change_new_password").value = "";
+        validateEmptyFeildsInPasswordErrorShow("edit_profile_container_change_new_password_error");
+        return false;
+    }
+    if(confirm_password == ''){
+        document.getElementById("edit_profile_container_change_confirm_password").value = "";
+        validateEmptyFeildsInPasswordErrorShow("edit_profile_container_change_confirm_password_error");
+        return false;
+    }
+    return true;
+}
+
 function edit_profile_change_password_submit(){
     //swal - Are You sure?
     // $('#edit_profile_change_password_container').hide();
+    let old_password = $('#edit_profile_container_change_new_password1').val().trim();
     let new_password = $('#edit_profile_container_change_new_password').val().trim();
     let confirm_password = $('#edit_profile_container_change_confirm_password').val().trim();
+
+    let resultValue = validateFeilds(old_password,new_password,confirm_password);
+
+    if(resultValue == false){
+        //$('#phone_number_check').html("**Phone number length can contain only numbers between 10 to 12");
+        //$('#phone_number_check').css("color","red");
+        return;
+    }else {
+        if ((new_password.length < 6) || (new_password.length > 16)){
+            $('#edit_profile_container_change_new_password_error').show();
+            $('#edit_profile_container_change_new_password_error').html("**length of your password must be between 6 and 16 and spaces must be unacceptable");
+            $('#edit_profile_container_change_new_password_error').css("color", "red");
+            return;
+        }
+        if ((confirm_password.length < 6) || (confirm_password.length > 16)){
+            $('#edit_profile_container_change_confirm_password_error').show();
+            $('#edit_profile_container_change_confirm_password_error').html("**length of your confirm password must be between 6 and 16 and spaces must be unacceptable");
+            $('#edit_profile_container_change_confirm_password_error').css("color", "red");
+            return;
+        }
+        if (confirm_password.trim().toString() != new_password.trim().toString()){
+            $('#edit_profile_container_change_confirm_password_error').show();
+            $('#edit_profile_container_change_confirm_password_error').html("**length of your password must be between 6 and 16 and spaces must be unacceptable");
+            $('#edit_profile_container_change_confirm_password_error').css("color", "red");
+            return;
+        }
+        if(old_password){
+            $.ajax({
+                url: 'checkPassword',
+                type: 'post',
+                data: {old_password:old_password,new_password:new_password},
+                success: function (response) {
+                    if (response.trim() == "1") {
+                        $('#edit_profile_change_password_container').hide();
+                        commonThingsForBack();
+                        editProfileBackgroundOff();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Password reset successfully!',
+                            // text: 'Logout unsuccessfully!',
+                            confirmButtonText:"Ok",
+                            confirmButtonColor: '#0E2C4B',
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Password reset unsuccessfully!',
+                            // text: 'Logout unsuccessfully!',
+                            confirmButtonText:"Ok",
+                            confirmButtonColor: '#932828',
+                        })
+                    }
+                }, error: function (error) {
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password reset unsuccessfully!',
+                        // text: 'Logout unsuccessfully!',
+                        confirmButtonText:"Ok",
+                        confirmButtonColor: '#932828',
+                    })
+                }
+            });
+        }
+
+    }
+
+
 }
 
 // $(document).ready(function(){
@@ -58,10 +163,10 @@ function edit_profile_change_password_submit(){
 // });
 
 function editProfileBackgroundOn(){
-    $('#profile_physical_big_container_background').css('display','block');
+    $('.profile_physical_big_container_background').css('display','block');
 }
 function editProfileBackgroundOff(){
-    $('#profile_physical_big_container_background').css('display','none');
+    $('.profile_physical_big_container_background').css('display','none');
 }
 
 function saveImage(imageData){
@@ -98,20 +203,21 @@ function saveImage(imageData){
 }
 
 function edit_profile_submit(){
-    let edit_profile_container_detail_name = $('#edit_profile_container_detail_name').val().trim();
-    let edit_profile_container_detail_last_name = $('#edit_profile_container_detail_last_name').val().trim();
-    let edit_profile_container_detail_last_conatct = $('#edit_profile_container_detail_last_conatct').val().trim();
+    //alert("Yohan");
+    let edit_profile_container_detail_name = $('#edit_profile_container_detail_name').val();
+    let edit_profile_container_detail_last_name = $('#edit_profile_container_detail_last_name').val();
+    let edit_profile_container_detail_last_conatct = $('#edit_profile_container_detail_last_conatct').val();
     //let edit_profile_container_detail_last_profile_image = null;
 
     //console.log("Image type: "+edit_profile_container_detail_last_profile_image);
 
-    var completed_flag = 1;
-    var result_object;
+    let completed_flag = 0;
+    let result_object;
     // files.length <= 0
     let fd = new FormData();
     let files = $('#edit_profile_container_detail_last_profile_image')[0].files;
 
-    if(edit_profile_container_detail_name == '' && edit_profile_container_detail_last_name == '' && edit_profile_container_detail_last_profile_image == '' && edit_profile_container_detail_last_conatct == ''){
+    if((edit_profile_container_detail_name == '' && edit_profile_container_detail_last_name == '') && edit_profile_container_detail_last_conatct == ''){
         Swal.fire({
             icon: 'error',
             title: 'Update Unsuccessfully!',
@@ -120,6 +226,7 @@ function edit_profile_submit(){
             confirmButtonColor: '#932828',
         })
         completed_flag = 0;
+        return;
     }else if(files.length > 0){
         //alert("Yohan");
         fd.append('edit_profile_container_detail_last_profile_image',files[0]);
@@ -152,6 +259,9 @@ function edit_profile_submit(){
                 console.log(error);
             }
         });
+    }else {
+        //alert("Yohan");
+        completed_flag = 1;
     }
 
 

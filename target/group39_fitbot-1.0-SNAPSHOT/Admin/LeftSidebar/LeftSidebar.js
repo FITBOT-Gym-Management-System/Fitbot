@@ -220,6 +220,7 @@ $(document).ready(function() {
       $(sideBar_links_variable).load('http://localhost:8080/group39_fitbot_war_exploded/Admin/Branches/branches.html #home-content-branch', function (responseTxt, statusTxt, xhr) {
         printbranches();
         accord();
+        branchdetails("B0001");
         if (statusTxt == "error")
           alert(`Error: ${xhr.status}: ${xhr.statusText}`);
       });

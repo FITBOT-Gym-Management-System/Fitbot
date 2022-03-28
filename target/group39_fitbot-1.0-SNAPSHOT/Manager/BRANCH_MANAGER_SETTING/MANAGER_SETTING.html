@@ -1,32 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Boxicons icons -->
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <title>Fitbot</title>
-    <link rel="shortcut icon" href="image/fitbot.png">
-    <link rel="stylesheet" href="MANAGER_SETTING.css">
-    <link rel="stylesheet" href="leftbar.css">
 
-</head>
-<body>
-
-<section class="home_section_manager_setting">
     <!-- -----------------------home ----------------------------------------------- -->
 
     <div class="manager_setting" id="manager_setting">
 
-        <div class="setting_home_title">Settingsgggggggggggg</div>
+<!--        <div class="setting_home_title">Settings</div>-->
+
+        <div class="setting_manager_container">
+
+            <div class="profile_physical_container_edit_profile" id="profile_physical_container_edit_profile_change_role">
+                <div class="edit_profile_container1" id="edit_profile_container_change_role">
+                    <div class="edit_profile_container_header">
+                        <h1>Change Role</h1>
+<!--                        <div onclick="close_edit_profile_Popup()" class="close_edit_profile_btn">-->
+<!--                            <i class='bx bx-x close_btn_forgot'></i>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="edit_profile_container_detail" id="edit_profile_container_detail">
+                        <form action="physicalMember" method="post" id="change_role_form">
+                            <div class="edit_profile_container_detail_input1">
+                                <div>
+                                    <label for="edit_profile_container_detail_name11">User Email</label><br>
+                                    <input type="email" name="edit_profile_container_detail_name" class="edit_profile_container_detail_name" id="edit_profile_container_detail_name11">
+                                </div>
+
+                                <div>
+                                    <label for="edit_profile_container_detail_last_name11">Password</label><br>
+                                    <input type="password" name="edit_profile_container_detail_last_name" class="edit_profile_container_detail_last_name" id="edit_profile_container_detail_last_name11">
+                                </div>
+                            </div>
+
+                            <div class="edit_profile_container_detail_input4">
+<!--                                <a class="edit_profile_container_detail_input4_btn1" onclick="edit_profile_change_password()">Change Password</a>-->
+                                <a class="edit_profile_container_detail_input4_btn2" onclick="edit_profile_change_role_submit()">Save Changes</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
 
     </div>
-
-</section>
-
-<script src="leftbar.js"></script>
-
-
-</body>
-</html>

@@ -9,17 +9,24 @@ function Workout_plan_dashboard(){
 // alert("workout");
 
 function virtual_workoutplan_open(){
+    editProfileBackgroundOn();
     $('#virtual_workout_packages').show();
 }
 
 function close_virtual_workoutplan_Popup(){
+    editProfileBackgroundOff();
     $('#virtual_workout_packages').hide();
 }
 function close_virtual_workoutplan_Popup1(){
+    editProfileBackgroundOff();
     $('.virtual_workout_packages_popup_image_detial').remove();
     $('#virtual_workout_packages1').hide();
 }
 function physical_workoutplan_open(){
+    physical_workoutplan_open_demo("workout_plan");
+}
+
+function physical_workoutplan_open_demo(plan_type){
     // $('#physical_workout_packages1').show();
     //alert("Yohan");
     //check member has an instructor
@@ -76,11 +83,12 @@ function physical_workoutplan_open(){
                     console.log("Instructor ID "+user_id);
                     let has_assign = 0;
                     let request_date = notification_date;
+                    //let plan_type = "workout_plan";
 
                     $.ajax({
                         method:"POST",
                         url:"requestWorkoutPlan",
-                        data: {user_id:user_id,has_assign:has_assign,request_date:request_date},
+                        data: {user_id:user_id,has_assign:has_assign,request_date:request_date,plan_type:plan_type},
                         // dataType:"json",
                         // contentType:"application/json",
                         success: function (result){
@@ -162,18 +170,6 @@ function physical_workoutplan_open(){
 
 }
 
-// function sendWorkoutRequest(user_id,notification_date,notification_title,notification_time,notification_type,notification_status){
-//
-//
-// }
-
-// function saveNotificationWorkoutRequest(user_id,notification_date,notification_title,notification_time,notification_type,notification_status){
-//
-// }
-
-// function close_physical_workoutplan_Popup(){
-//     $('#physical_workout_packages1').hide();
-// }
 
 let data_arr = [];
 function open_virtual_workout_plan(value_attri,num_plan){
@@ -183,7 +179,7 @@ function open_virtual_workout_plan(value_attri,num_plan){
     $('#physical_member_workout_plans').load('http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Workout_Plans/Virtual_Workout_Plans.html #workout_plan_virtual',function(responseTxt, statusTxt, xhr){
 
         if(statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
         }
         $('#virtual_workout_container').append(
             '<span>'+value_attri+'</span>'
@@ -208,7 +204,7 @@ function physical_workout_back(){
     $('#physical_member_workout_plans').load('http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Workout_Plans/Workout_Plan.html #workout_plan_physical',function(responseTxt, statusTxt, xhr){
 
         if(statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
         }
         checkWorkoutData();
         $('#workout_container_header_search_cant_find').hide();
@@ -239,7 +235,6 @@ function getVirtualWorkoutData(num_plan){
         });
         getDragandDropFeature();
     }).fail(function(a,b,err){
-        alert("Error");
         console.log(a,b,err);
     });
 }
@@ -249,7 +244,6 @@ $(document).ready(function (){
 });
 
 function checkBoxChecked(workout_id,id,num_plan){
-    //alert("venava");
     console.log(workout_id);
     console.log(id);
     // if($('#'+id+workout_id).prop("checked") == true){
@@ -287,6 +281,7 @@ function checkBoxChecked(workout_id,id,num_plan){
                     }
                 });
             }else if (result.isDenied){
+                document.getElementById(id+workout_id).checked = false;
                 console.log("workout not completed");
             }
             // if($('.payment_history_container_row_checkbox').prop("checked") == true) {
@@ -324,6 +319,7 @@ function checkBoxChecked(workout_id,id,num_plan){
 function load_virtual_detail_popup(workout_description,workout_img_url,exercise_name){
     // alert("Yohan");
     // alert(workout_description);
+    editProfileBackgroundOn();
     console.log(workout_img_url);
     console.log(workout_description);
     $('#virtual_workout_packages_popup_image').append(
@@ -339,14 +335,14 @@ function close_virtual_workoutplan_Popup(){
 }
 
 function physical_customize_workoutplan(){
-    alert("Customize workout plan");
+    //alert("Customize workout plan");
     // $('#physical_member_workout_plans').hide();
     // $('#physical_member_workout_plans').hide();
 
     $('#physical_member_workout_plans').load('http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Workout_Plans/Cutomize_workout_plan.html #customize_workout_plan_virtual',function(responseTxt, statusTxt, xhr){
 
         if(statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
         }
         $('#customize_virtual_workout_container').append(
             '<span>'+"Customize "+data_arr[0]+'</span>'
@@ -377,7 +373,7 @@ function getCustomizeVirtualWorkoutData(num_plan){
         });
         getDragandDropFeature();
     }).fail(function(a,b,err){
-        alert("Error");
+        //alert("Error");
         console.log(a,b,err);
     });
 }
@@ -411,7 +407,7 @@ function searchWorkout(){
 function searchDefaultWorkout(){
     $('#workout_physical_container_left_search_text_input1').keyup(function(){
         let value = $(this).val().toLowerCase();
-        $('.workout_physical_container_exercise_name').filter(function() {
+        $('.workout_history_container_row').filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
