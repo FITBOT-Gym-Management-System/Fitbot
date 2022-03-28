@@ -26,7 +26,7 @@ public class ManagerDashboardAttendenceDAO {
                 "INNER JOIN instructor ON instructor.instructor_id = instructor_attendance.instructor_id)\n" +
                 "WHERE instructor.branch_id = ? AND instructor_attendance.date= ?),\n" +
                 "\n" +
-                "(SELECT COUNT(register.member_id) \n" +
+                "(SELECT COUNT(register.member_id)\n" +
                 "FROM (member_attendance\n" +
                 "INNER JOIN register ON register.member_id = member_attendance.member_id)\n" +
                 "WHERE register.branch_id = ? AND member_attendance.date= ? ),\n" +

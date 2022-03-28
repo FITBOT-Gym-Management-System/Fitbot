@@ -12,7 +12,7 @@ public class LoginDAO {
     public static Login getLoginData(Login login) throws SQLException, ClassNotFoundException {
         Login new_login = new Login();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT user_name,password,user_type,member_id,status FROM users WHERE user_name=? AND password=?;";
+        String query = "SELECT user_name,password,user_type,member_id,status FROM users WHERE user_name=? AND password=?";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,login.getUser_name());
         pst.setString(2,login.getPassword());

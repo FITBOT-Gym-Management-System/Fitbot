@@ -15,7 +15,9 @@ public class ManagerEquipmentDAO {
         List<ManagerEquipment> equipments = new ArrayList<>();
 //        Equipment equipments = new Equipment();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT * FROM equipment WHERE branch_id=? ORDER BY equipment_id DESC LIMIT 10";
+        String query = "SELECT * FROM equipment WHERE branch_id= ?\n" +
+                "AND equipment.equipment_id NOT IN (Select equipment_id from equipment where `status` = 0 ) \n" +
+                "ORDER BY equipment_id DESC LIMIT 10";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,branchID);
         System.out.println("****************");
@@ -38,5 +40,16 @@ public class ManagerEquipmentDAO {
         System.out.println(equipments);
         return equipments;
 
+    }
+
+
+    public static boolean setEquipmentDisable(String equipment_id) throws SQLException,ClassNotFoundException{
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE equipment SET status =? WHERE equipment_id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1,"0");
+        pst.setString(2,equipment_id);
+
+        return pst.executeUpdate() > 0;
     }
 }
