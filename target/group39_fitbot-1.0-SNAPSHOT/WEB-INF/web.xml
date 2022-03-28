@@ -1184,4 +1184,13 @@
         <url-pattern>/instructorstudentcalories</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>instructorappointmentcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorAppointmentCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorappointmentcount</servlet-name>
+        <url-pattern>/instructorappointmentcount</url-pattern>
+    </servlet-mapping>
+
 </web-app>

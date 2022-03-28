@@ -76,7 +76,23 @@ function getInstrcutorCalender(){
     });
     calendar.batchRendering(function() {
         calendar.changeView('dayGridMonth');
-        calendar.addEvent({ title: 'new event', start: '2021-12-08' });
+        $.ajax({
+            method:'POST',
+            url:"instructorappointmentcount",
+            dataType: 'json',
+            contentType: "application/json",
+        }).done(function (result){
+            $.map(result,function(x){
+                let appoin_date = x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2);
+                let appoin_count = x.appointment_count;
+                calendar.addEvent({ title: appoin_count, start: appoin_date });
+            });
+
+        }).fail(function (a,b,err) {
+            console.log(a,b,err);
+
+        });
+
     });
     calendar.render();
     // });

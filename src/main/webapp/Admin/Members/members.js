@@ -76,7 +76,7 @@ function memberview_popup(memberid,status,type){
     }
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -113,7 +113,7 @@ function printmember(){
     searchmember();
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -164,7 +164,7 @@ function membercount(){
     // alert(result);
     // alert("Data is comming babe");
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 }
@@ -202,7 +202,7 @@ function printbannedmembers()
     searchmember();
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 }
@@ -309,7 +309,7 @@ function unban_member(member_id){
   }).then((result) => {
     if (result.isConfirmed) {
 
-  alert(member_id);
+  // alert(member_id);
   $.ajax({
     method: 'POST',
     url: "adminunbanmember",
@@ -389,7 +389,7 @@ function printphysicalmember(){
     searchmember();
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -419,7 +419,7 @@ function printvirtualmember(){
     searchmember();
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
