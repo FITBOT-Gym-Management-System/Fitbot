@@ -16,8 +16,10 @@ public class InstructorBranchIDDAO {
         pst.setString(1, instructor_id);
 
         ResultSet resultSet = pst.executeQuery();
-        String branch_id = resultSet.getString(1);
-
+        String branch_id = null;
+        if(resultSet.next()){
+            branch_id = resultSet.getString(1);
+        }
 
         return branch_id;
     }

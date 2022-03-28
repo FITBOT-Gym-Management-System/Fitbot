@@ -62,6 +62,41 @@ public class PhysicalMemberMessageDAO {
         return physicalMemberMessage;
     }
 
+    public static String getMemberDetails(String instructor_id,String userType) throws SQLException, ClassNotFoundException {
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        String member_id = null;
+
+        if(userType.equals("physical_member")){
+            String query = "SELECT member_id FROM physical_member WHERE instructor_id=? ";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, instructor_id);
+
+            ResultSet resultSet = pst.executeQuery();
+            if(resultSet.next()){
+                member_id = resultSet.getString(1);
+            }else{
+                return null;
+            }
+        }else if(userType.equals("virtual_member")){
+            String query = "SELECT member_id FROM virtual_member WHERE instructor_id=? ";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, instructor_id);
+
+            ResultSet resultSet = pst.executeQuery();
+            if(resultSet.next()){
+                member_id = resultSet.getString(1);
+            }else{
+                return null;
+            }
+        }else {
+            return null;
+        }
+
+        return member_id;
+    }
+
+
     public static boolean insertMessageDetails(String member_id,String globalInstructorID, PhysicalMemberMessage physicalMemberMessage) throws SQLException, ClassNotFoundException {
 
         int chatID = getChatData(globalInstructorID, member_id);

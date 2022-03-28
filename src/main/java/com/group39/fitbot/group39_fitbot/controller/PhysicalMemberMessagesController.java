@@ -30,20 +30,35 @@ public class PhysicalMemberMessagesController extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         String instructor_id = req.getParameter("instructor_id");
+        System.out.println(instructor_id);
 
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
+        String memberType = (String) session.getAttribute("userType");
+        System.out.println(memberID);
+        System.out.println(memberType);
 
         List<PhysicalMemberMessage> physicalMemberMessage1 = new ArrayList<>();
         List<PhysicalMemberMessage> physicalMemberMessage2 = new ArrayList<>();
         List<List<PhysicalMemberMessage>> physicalMemberMessage = new ArrayList<>();
 
         try {
-            physicalMemberMessage1 = PhysicalMemberMessageDAO.retriveMessageDetailsSenderMember(instructor_id,memberID);
-            physicalMemberMessage2 = PhysicalMemberMessageDAO.retriveMessageDetailsSenderMember(memberID,instructor_id);
+            if(memberType.equals("physical_member") || memberType.equals("virtual_member")){
+                physicalMemberMessage1 = PhysicalMemberMessageDAO.retriveMessageDetailsSenderMember(instructor_id,memberID);
+                physicalMemberMessage2 = PhysicalMemberMessageDAO.retriveMessageDetailsSenderMember(memberID,instructor_id);
 
-            physicalMemberMessage.add(physicalMemberMessage1);
-            physicalMemberMessage.add(physicalMemberMessage2);
+                physicalMemberMessage.add(physicalMemberMessage1);
+                physicalMemberMessage.add(physicalMemberMessage2);
+            }else {
+                String memberID1 = PhysicalMemberMessageDAO.getMemberDetails(instructor_id,"physical_member");
+
+                physicalMemberMessage1 = PhysicalMemberMessageDAO.retriveMessageDetailsSenderMember(memberID1,instructor_id);
+                physicalMemberMessage2 = PhysicalMemberMessageDAO.retriveMessageDetailsSenderMember(instructor_id,memberID1);
+
+                physicalMemberMessage.add(physicalMemberMessage1);
+                physicalMemberMessage.add(physicalMemberMessage2);
+            }
+
 
             Gson gson = new Gson();
             String messageJSON = gson.toJson(physicalMemberMessage);

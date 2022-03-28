@@ -157,6 +157,14 @@ $(document).ready(function(){
       if(statusTxt == "error")
           console.log("Error: " + xhr.status + ": " + xhr.statusText);
       });
+      //checkInstructorBelongs();
+      let instructorID = "Ins104";
+      instructorFullDetailView(instructorID);
+      instructorLanguageDetail(instructorID);
+      instructorSkillsDetail(instructorID);
+      instructorGetOtherViewDetail(instructorID);
+      $('#instructor_popup_details').hide();
+      $('#after_payment_popup_instructor_details').hide();
       load[1] += 1;
     }else{
       $('#Instructor_profile_page').show();
@@ -317,6 +325,102 @@ $('#ins_leave').click(function(){
   // });
     
 });
+
+function instructorFullDetailView(instructor_id){
+  // alert("Man call venava");
+  $.ajax({
+    method:'POST',
+    url:"memberInstructorDescription",
+    data:{instructor_id:instructor_id},
+    // dataType:'json',
+    // contentType:"application/json",
+  }).done(function(result){
+    console.log(result);
+    instructorRating(instructor_id);
+    $('#instructors_physical_container_header_h1').html("Your Personal Instructor");
+
+    $('#instructors_physical_container_detail_view_section_box_detail_country').html(result["country"]);
+
+    $('#instructors_physical_container_detail_view_section_box_detail_payment').html(result["price"]);
+    $('#instructors_physical_container_detail_view_section_box_detail_duration').html(result["duration"]);
+    $('#instructors_physical_container_detail_bio_section_detail').html(result["description"]);
+
+  }).fail(function(a,b,err){
+    console.log(a,b,err);
+  });
+}
+function instructorLanguageDetail(instructor_id){
+  $.ajax({
+    method:'POST',
+    url:"memberInstructorLanguage",
+    data:{instructor_id:instructor_id},
+    // dataType:'json',
+    // contentType:"application/json",
+  }).done(function(result){
+    console.log(result);
+
+    let language_detail = "";
+    let lan_count = 1;
+    $.map(result,function(x){
+      if(lan_count == 1){
+        language_detail = language_detail+result[0]["language"];
+      }else{
+        language_detail = language_detail+","+result[0]["language"];
+      }
+      lan_count += 1;
+    });
+    $('#instructors_physical_container_detail_view_section_box_language').html(language_detail);
+  }).fail(function(a,b,err){
+    console.log(a,b,err);
+  });
+}
+
+function instructorSkillsDetail(instructor_id){
+  $.ajax({
+    method:'POST',
+    url:"memberInstructorSkills",
+    data:{instructor_id:instructor_id},
+    // dataType:'json',
+    // contentType:"application/json",
+  }).done(function(result){
+    console.log(result);
+
+    $.map(result,function(x){
+      $('#instructors_physical_container_detail_offers_section_skils').append(
+          `<div class="instructors_physical_container_detail_offers_section_skils_new">${result[0]["language"]}</div>`
+      );
+    });
+
+  }).fail(function(a,b,err){
+    console.log(a,b,err);
+  });
+}
+
+function instructorGetOtherViewDetail(instructor_id){
+  $.ajax({
+    method:'POST',
+    url:"physicalInstructor",
+    dataType:'json',
+    // contentType:"application/json",
+  }).done(function(result){
+    console.log(result);
+    // alert("This is physical instructor");
+    $.map(result,function(x){
+      if(x["instructor_id"].toString() == instructor_id){
+        $('#instructors_physical_container_detail_view_section_header').html(x["first_name"]+" "+x["last_name"]);
+        $('#instructors_physical_container_detail_offers_section_header').html("What "+x["first_name"]+" "+x["last_name"] +" offers");
+
+        $('#instructors_physical_container_detail_image').append(
+            `<img class="instructor_image_new" src="${x["profile_image_url"]}" alt="instructor image">`
+        );
+
+      }
+    });
+  }).fail(function(a,b,err){
+    console.log(a,b,err);
+  });
+}
+
 
 //close button - its called in rigtsidebar.html
 function closeNav() {

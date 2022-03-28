@@ -11,76 +11,155 @@
     <link rel="stylesheet" href="instructor_diet_plan.css">
     <link rel="stylesheet" href="leftbar.css">
     <link rel="stylesheet" href="rightbar.css">
-    
+
 </head>
 <body>
 
-    <section class="home_section_instructor_appoinments">
+<!--    <section class="home_section_instructor_appoinments">-->
 
     <!-- -----------------------home ----------------------------------------------- -->
 
-    <div class="home_content_diet_fit" id="home_content_diet_fit">
+    <div class="home_content_diet_fit1" id="home_content_diet_fit">
 
-        <div class="workout_plan_add_create">
-            <h2>CREATE DIET PLAN</h2>
-
-            <div class="workout_search_section">
-
-                <div class="search_bar">
-                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">
-                </div>
-                <div class="search_bar">
-                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">
-                </div>
-                <div class="search_bar">
-                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">
-                </div>
-                <div class="search_bar">
-                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">
-                </div>
-                <div class="search_bar">
-                    <button >Add</button>
-                </div>
-
+        <div class="Diet_Plans_physical" id="Diet_Plans_physical">
+            <!-- <h1>Diet Plans</h1> -->
+            <div class="workout_plan_physical_btn_group">
+                <div class="workout_plan_physical_btn_group_vir"><input type="button" value="Diet Plans"></div>
+                <div class="workout_plan_physical_btn_group_req"><input type="button" value="Request a Diet Plan" onclick="requestDietPlanData()"></div>
             </div>
 
-            <div class="member-details">
-                <table class="member_details_table">
+            <div class="payment_history">
+                <div class="payment_history_container">
+                    <div class="payment_history_container_header">
+                        <span>Current Diet Plan</span>
+                    </div>
 
-                    <tr class="details_header">
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Diet Plan Name</th>
-                        <th>Diet Plan Name</th>
-                    </tr>
-                    <tbody class="instructor_student_tab_body" id="instructor_student_tab_body" >
-<!--                    <tr class ="details_row" id="details_row">-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-                    <tr class="details_row">
-                        <td>Nimesh Sandaru</td>
-                        <td>23</td>
-                        <td>Male</td>
-                        <td>Push Up</td>
-                        <td>Low-Fat Diet</td>
-                    </tr>
-                    </tbody>
+                    <div class="payment_history_container_details">
+                        <table class="payment_history_container_table">
+                            <tr class="payment_history_container_table_header">
+                                <th>Diet Plan Name</th>
+                                <th>Item Name</th>
+                                <th>Quantity(per day)</th>
+                                <th>Meal Time</th>
+                                <th>Complete</th>
+                            </tr>
 
-                    <tr class="details_row">
-                        <td>Kumud Perera</td>
-                        <td>23</td>
-                        <td>Male</td>
-                        <td>Push Up</td>
-                        <td>Low-Fat Diet</td>
-                    </tr>
-                </table>
+                            <tr class="payment_history_container_row">
+                                <td>Plant-based diet</td>
+                                <td>fruit</td>
+                                <td>two servings of fruit</td>
+                                <td>Breakfast</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                            <tr class="payment_history_container_row">
+                                <td>Plant-based diet</td>
+                                <td>vegetables</td>
+                                <td>230g</td>
+                                <td>Every meal</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                            <tr class="payment_history_container_row">
+                                <td>Plant-based diet</td>
+                                <td>grains</td>
+                                <td>5-6 servings of grains</td>
+                                <td>Every meal</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                            <tr class="payment_history_container_row">
+                                <td>Plant-based diet</td>
+                                <td>pulses</td>
+                                <td>80g</td>
+                                <td>Every meal</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                            <tr class="payment_history_container_row">
+                                <td>Plant-based diet</td>
+                                <td>legumes</td>
+                                <td>2 or 3 grams</td>
+                                <td>Every meal</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                            <tr class="payment_history_container_row">
+                                <td>Plant-based diet</td>
+                                <td>soy products</td>
+                                <td>15-25 grams</td>
+                                <td>Every meal</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </div>
             </div>
+
         </div>
+
+<!--        <div class="workout_plan_add_create">-->
+<!--            <h2>CREATE DIET PLAN</h2>-->
+
+<!--            <div class="workout_search_section">-->
+
+<!--                <div class="search_bar">-->
+<!--                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">-->
+<!--                </div>-->
+<!--                <div class="search_bar">-->
+<!--                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">-->
+<!--                </div>-->
+<!--                <div class="search_bar">-->
+<!--                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">-->
+<!--                </div>-->
+<!--                <div class="search_bar">-->
+<!--                    <input type="text" placeholder="Search for an equipment" name="search_equipment_by_ID" id="search_equipment_by_ID" onclick="searchEquipmentsAny()">-->
+<!--                </div>-->
+<!--                <div class="search_bar">-->
+<!--                    <button >Add</button>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+<!--            <div class="member-details">-->
+<!--                <table class="member_details_table">-->
+
+<!--                    <tr class="details_header">-->
+<!--                        <th>Name</th>-->
+<!--                        <th>Age</th>-->
+<!--                        <th>Gender</th>-->
+<!--                        <th>Diet Plan Name</th>-->
+<!--                        <th>Diet Plan Name</th>-->
+<!--                    </tr>-->
+<!--                    <tbody class="instructor_student_tab_body" id="instructor_student_tab_body" >-->
+<!--&lt;!&ndash;                    <tr class ="details_row" id="details_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--                    <tr class="details_row">-->
+<!--                        <td>Nimesh Sandaru</td>-->
+<!--                        <td>23</td>-->
+<!--                        <td>Male</td>-->
+<!--                        <td>Push Up</td>-->
+<!--                        <td>Low-Fat Diet</td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+
+<!--                    <tr class="details_row">-->
+<!--                        <td>Kumud Perera</td>-->
+<!--                        <td>23</td>-->
+<!--                        <td>Male</td>-->
+<!--                        <td>Push Up</td>-->
+<!--                        <td>Low-Fat Diet</td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
 
 <!--           <div class="diet1_fit">-->
 <!--                    -->
@@ -387,16 +466,16 @@
 
 <!--          </div>-->
 
-<!--    </div>-->
-              
-      
     </div>
 
-  
+
+<!--    </div>-->
 
 
 
-    </section>
+
+
+<!--    </section>-->
 
 
 
@@ -405,6 +484,6 @@
     <script src="accordian.js"></script>
     <script src="delete.js"></script>
 
-   
+
 </body>
 </html>
