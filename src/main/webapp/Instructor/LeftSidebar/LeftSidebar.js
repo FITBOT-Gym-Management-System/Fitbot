@@ -155,7 +155,7 @@ $(document).ready(function(){
       $(sideBar_links_variable).load('http://localhost:8080/group39_fitbot_war_exploded/Instructor/INSTRUCTOR_PROFILE/ins.html #home_content_profile',function(responseTxt, statusTxt, xhr){
       
       if(statusTxt == "error")
-          alert("Error: " + xhr.status + ": " + xhr.statusText);
+          console.log("Error: " + xhr.status + ": " + xhr.statusText);
       });
       load[1] += 1;
     }else{
@@ -177,7 +177,7 @@ $(document).ready(function(){
 
         // loadStudentBoxData();
       if(statusTxt == "error")
-          alert("Error: " + xhr.status + ": " + xhr.statusText);
+        console.log("Error: " + xhr.status + ": " + xhr.statusText);
       });
       load[2] += 1;
     }else{
@@ -193,10 +193,16 @@ $(document).ready(function(){
     
     if(load[3] == 0){
       $(sideBar_links_variable).load('http://localhost:8080/group39_fitbot_war_exploded/Instructor/INSTRUCTOR_CHAT/instructor_chat.html #chat_home',function(responseTxt, statusTxt, xhr){
-        console.log("sachinkaaaaaaaaaaaa");
-      if(statusTxt == "error")
-          alert("Error: " + xhr.status + ": " + xhr.statusText);
+      if(statusTxt == "error") {
+        console.log("Error: " + xhr.status + ": " + xhr.statusText);
+      }
+        $('#messages_physical_container_right_header').hide();
+        $('#messages_of_physical_member').hide();
+        $('#messages_physical_container_right_typing_area').hide();
+        selectMemberInstructorMessages();
+        searchMembers();
       });
+
       load[3] += 1;
     }else{
       $('#Instructor_chat_page').show();
@@ -420,4 +426,62 @@ function getCalender(){
   });
   calendar.render();
   // });
+}
+
+function selectMemberInstructorMessages(){
+  $.ajax({
+    method:"POST",
+    url:"memberDetails",
+    dataType:"json",
+    // contentType:"application/json",
+    success: function (result){
+      // alert(result);
+      $('#messages_physical_container_left_fullname').append(
+          '<h1>'+result["first_name"]+' '+result["last_name"]+'</h1>'
+      );
+      console.log(result);
+    },
+    error: function(error){
+      console.log(error+"edit profile");
+    }
+  });
+}
+function searchMembers(){
+  $.ajax({
+    method:'POST',
+    url:"physicalInstructor",
+    dataType:'json',
+    // contentType:"application/json",
+  }).done(function(result){
+    console.log(result);
+    // alert("This is physical instructor");
+    $.map(result,function(x){
+      let instructor_id = x["instructor_id"];
+      console.log(instructor_id);
+      let str_ins_id = instructor_id.slice(3).toString();
+      let number = parseInt(str_ins_id);
+      console.log(number);
+      console.log(str_ins_id);
+
+      $('#messages_physical_container_left').append(
+          '<div class="messages_physical_container_left_my_chats message_number'+number+'" onClick="selected_instructor_physical('+number+')">'+
+          '<div class="messages_physical_container_left_my_chats_image">'+
+          '<img src='+'"'+ x["profile_image_url"]+'"'+' alt="instructor image">'+
+          '</div>'+
+          '<div>'+
+          '<div class="instructor_search_data_physical">'+ x["first_name"]+' '+x["last_name"] +'</div>'+
+          // '<div>'+'dumy messages ...'+'</div>'+
+          '</div>'+
+          '<div>'+
+          // '<div>13:15</div>'+
+          '</div>'+
+          '</div>'
+      );
+    });
+
+    // alert(result);
+  }).fail(function(a,b,err){
+    //alert("Physical Instructor Error");
+    console.log(a,b,err);
+  });
 }

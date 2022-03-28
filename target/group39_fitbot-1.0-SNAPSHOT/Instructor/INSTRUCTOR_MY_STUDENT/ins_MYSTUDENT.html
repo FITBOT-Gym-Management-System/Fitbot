@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Boxicons icons -->
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <title>Fitbot</title>
-    <link rel="shortcut icon" href="image/fitbot.png">
-    <link rel="stylesheet" href="ins_MYSTUDENT.css">
-    <link rel="stylesheet" href="leftbar.css">
-    <!-- <link rel="stylesheet" href="rightbar.css"> -->
-    
-</head>
-<body>
-        
-    <!-- -----------------------home ----------------------------------------------- -->
+<!-- -----------------------home ----------------------------------------------- -->
   <div class="home_section_instructor_students" id="home_section_instructor_students">
      <div class="home-content">
         <div class="overview_boxes_fitstudent">
@@ -75,15 +58,97 @@
              </div>
          </div>
 
-         <div class="employeeview_container" id="student_view">
-             <div class="employeeview_container_popup" id="employee">
-                 <div class="employeeview_container_header">
-                     <div id="student_name_head">Keshara Muthumala</div>
-                     <div onclick="close_studentview_Popup()" class="close_employeeview_btn">
-                         <i class='bx bx-x close_btn_forgot'></i>
+<!--         yohan popup-->
+         <div id="payment_physical_big_container_background1" class="payment_physical_big_container_background"></div>
+
+
+         <div class="payment_popup_details" id="student_view">
+             <div class="payment_detail_header">
+<!--                 <div id="student_name_head">Keshara Muthumala</div>-->
+                 <span id="student_name_head">Payment Details</span>
+                 <div onclick="close_studentview_Popup()" class="close_payment_detail_btn">
+                     <i class='bx bx-x close_btn_forgot'></i>
+                 </div>
+             </div>
+             <div class="payment_detail_container">
+                 <div class="reports_physical_container1">
+                     <div class="reports_physical_container_header1">
+                         <div class="reports_physical_container_header reports_physical_container_header1">
+                             <span>BMI</span>
+                         </div>
+                         <div class="reports_physical_container_chart1">
+                             <canvas class="reports_physical_container_canvas" id="BMI_student1"></canvas>
+                         </div>
+                     </div>
+
+                     <div class="reports_physical_container_header2">
+                         <div class="reports_physical_container_header reports_physical_container_header1">
+                             <span>Calories</span>
+                         </div>
+                         <div class="reports_physical_container_chart1">
+                             <canvas class="reports_physical_container_canvas" id="Workout_student1"></canvas>
+                         </div>
                      </div>
                  </div>
-                 <div class ="student_details">
+<!--                 <div class ="student-chart">-->
+<!--                     <h4>BMI</h4>-->
+<!--                     <canvas id="BMI_student" class="StudentChart"></canvas>-->
+<!--                 </div>-->
+<!--                 <div class ="student-chart">-->
+<!--                     <h4>Calories Burned</h4>-->
+<!--                     <canvas id="Workout_student" class="StudentChart"></canvas>-->
+<!--                 </div>-->
+<!--                 <form method="post" action="" class="payment_detail_container_form">-->
+
+                     <!--                    <div class="payment_detail_container_form_headers"><span>Membership Details</span><br></div>-->
+
+                     <!--                    <div class="payment_detail_container_mem_details">-->
+                     <!--                        <div class="payment_detail_container_input" id="payment_detail_container_input">-->
+                     <!--                            <div>-->
+                     <!--                                <span>Branch Name</span><br>-->
+                     <!--                                <span>Malabe Branch</span>-->
+                     <!--                            </div>-->
+
+                     <!--                            <div>-->
+                     <!--                                <span>Membership Category</span><br>-->
+                     <!--                                <span>Family Membership</span>-->
+                     <!--                                &lt;!&ndash; <input type="text" name="items" value="Door bell wireless"><br> &ndash;&gt;-->
+                     <!--                            </div>-->
+                     <!--                        </div>-->
+
+                     <!--                        <div class="payment_detail_container_input">-->
+                     <!--                            <div>-->
+                     <!--                                <span>Currency</span><br>-->
+                     <!--                                <span>LKR</span>-->
+                     <!--                            </div>-->
+
+                     <!--                            <div>-->
+                     <!--                                <span>Membership Fee</span><br>-->
+                     <!--                                <span>5000/=</span>-->
+                     <!--                            </div>-->
+                     <!--                        </div>-->
+                     <!--                    </div>-->
+
+<!--                     <div class="payment_detail_container_form_headers"><span>Customer Details</span></div>-->
+
+<!--                     <div class="payment_detail_container_cus_details" id="payment_detail_container_cus_details">-->
+
+<!--                     </div>-->
+<!--                 </form>-->
+<!--             </div>-->
+
+         </div>
+
+<!--         Faalil Popup-->
+<!--         <div class="employeeview_container" id="student_view">-->
+<!--             <div class="employeeview_container_popup" id="employee">-->
+<!--                 <div class="employeeview_container_header">-->
+<!--                     <div id="student_name_head">Keshara Muthumala</div>-->
+<!--                     <div onclick="close_studentview_Popup()" class="close_employeeview_btn">-->
+<!--                         <i class='bx bx-x close_btn_forgot'></i>-->
+<!--                     </div>-->
+<!--                 </div>-->
+<!--                 <div class ="student_details">-->
 <!--                 <div class="employee_personal">-->
 <!--                     <div class ="titles">-->
 <!--                         <ul>-->
@@ -106,36 +171,16 @@
 <!--                         </ul>-->
 <!--                     </div>-->
 <!--                 </div>-->
-                     <div class ="student-chart">
-                         <h4>BMI</h4>
-                         <canvas id="BMI_student" class="StudentChart"></canvas>
-                     </div>
-                     <div class ="student-chart">
-                         <h4>Calories Burned</h4>
-                         <canvas id="Workout_student" class="StudentChart"></canvas>
-                     </div>
-                     </div>
-<!--                 <div class="remove_button">-->
-<!--                     <div class ="member-chart">-->
-<!--                         <h4>Employees</h4>-->
-<!--                         <canvas id="Workout_student" class="myChart"></canvas>-->
+<!--                     <div class ="student-chart">-->
+<!--                         <h4>BMI</h4>-->
+<!--                         <canvas id="BMI_student" class="StudentChart"></canvas>-->
 <!--                     </div>-->
-<!--                     <div class ="member-chart">-->
-<!--                         <h4>Employees</h4>-->
-<!--                         <canvas id="WeightvsTime_student" class="myChart"></canvas>-->
+<!--                     <div class ="student-chart">-->
+<!--                         <h4>Calories Burned</h4>-->
+<!--                         <canvas id="Workout_student" class="StudentChart"></canvas>-->
 <!--                     </div>-->
-<!--                 </div>-->
-
-
-
-             </div>
+<!--                     </div>-->
+<!--             </div>-->
          </div>
      </div>
   </div>
-
-
-    <script src="leftbar.js"></script>
-
-   
-</body>
-</html>

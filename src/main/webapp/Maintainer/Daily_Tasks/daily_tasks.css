@@ -7,8 +7,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    z-index: 1;
 }
 
+.maintain_form_view_daily_taska{
+    margin-top: -270px;
+}
 
 .tasks_home_page_maintainer{
     height: fit-content;

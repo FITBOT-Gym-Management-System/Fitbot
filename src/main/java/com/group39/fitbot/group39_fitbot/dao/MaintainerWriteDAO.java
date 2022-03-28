@@ -15,7 +15,7 @@ public class MaintainerWriteDAO {
     public static FormMaintain getFormDetails(String form_id) throws SQLException, ClassNotFoundException{
         FormMaintain formMaintain=new FormMaintain();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query="SELECT * FROM form WHERE form_id =?";
+        String query="SELECT form.form_id,form.equipment_id,form.maintainer_id,form.equipment_type,form.no_of_maintainers,form.description,form.status,form.branchmanager_id,branch.branch_name,form.re_time,form.re_date,form.complet_dis,form.complet_img,IFNULL(form.comp_date,UTC_DATE()),IFNULL(form.comp_time,UTC_DATE()) FROM form, branch WHERE form.branch_id=branch.branch_id AND form_id =?";
 
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1, form_id);

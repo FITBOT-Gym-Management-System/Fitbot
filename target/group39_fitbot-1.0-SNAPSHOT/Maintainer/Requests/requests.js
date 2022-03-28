@@ -10,13 +10,23 @@ function maintain_requests() {
 
 
 // ----------------------------popup page view---------------------------
-
+function requestMaintainerBackgroundOn(){
+  // alert("on");
+  $('#background_maintainer_form').css('display','block');
+  $('#background_maintainer_form1').css('display','block');
+}
+function requestMaintainerBackgroundOff(){
+  // alert("off");
+  $('#background_maintainer_form').css('display','none');
+  $('#background_maintainer_form1').css('display','none');
+}
 
 function PopupForm(popId){
-  alert("call popupForm"+popId);
+  // alert("call popupForm"+popId);
   $('#maintain_form_view').show();
-
-  console.log("in pop"+popId);
+  requestMaintainerBackgroundOn();
+  // document.getElementById("maintain_form_view").classList.toggle("active");
+  // console.log("in pop"+popId);
   // window.location.href = 'http://localhost:8080/group39_fitbot_war_exploded/maintainerForm';
 
   $('#branch_name').html(' ');
@@ -31,13 +41,13 @@ function PopupForm(popId){
     url:"maintainerWrite",
     data: {popId:popId}
   }).done(function (result){
-    console.log("in popup/////////");
+
     console.log(result);
-    console.log(result.branch);
-    console.log(result.equipment_type);
-    console.log(result.description);
-    console.log(result.re_date);
-    console.log(result.re_time);
+    let requestDate=result.re_date["year"]+"-"+("0" + (result.re_date["month"])).slice(-2)+"-"+("0" + result.re_date["day"]).slice(-2);
+    console.log(requestDate);
+
+    let requestTime=result.re_time["hour"]+":"+("0" + (result.re_time["minute"])).slice(-2)+":"+("0" + result.re_time["second"]).slice(-2);
+    console.log(requestTime);
 
     document.getElementById("branch_name").value = result.branch;
     // $('#branch_name').css("color","grey");
@@ -48,10 +58,10 @@ function PopupForm(popId){
     document.getElementById("maintain_description").value = result.description;
     // $('#maintain_description').css("color","grey");
 
-    document.getElementById("maintain_request_date").value = result.re_date;
+    document.getElementById("maintain_request_date").value = requestDate;
     // $('#maintain_request_date').css("color","grey");
 
-    document.getElementById("maintain_request_time").value = result.re_time;
+    document.getElementById("maintain_request_time").value = requestTime;
     // $('#maintain_request_time').css("color","grey");
 
 /*
@@ -73,15 +83,14 @@ function PopupForm(popId){
  */
 
     $('#btn_add_maintain').click(function(){
-      // alert("in submit alert");
+      alert("in submit alert");
       submitFormMaintainer(result.form_id);
-
+      requestMaintainerBackgroundOff();
     });
 
     $('#btn_cancel_maintain').click(function(){
-      // alert("in submit alert");
       close_form_Popup();
-
+      requestMaintainerBackgroundOff();
     });
 
   }).fail(function (a,b,err) {
@@ -93,26 +102,20 @@ function PopupForm(popId){
 }
 
 function PopupCompletForm(popId){
-  // alert("call PopupCompletForm");
   $('#maintain_form_view').show();
-  alert("in pop"+popId);
-  console.log("in pop"+popId);
+  requestMaintainerBackgroundOn();
 
-  console.log("in pop"+popId);
-  // window.location.href = 'http://localhost:8080/group39_fitbot_war_exploded/maintainerForm';
+  var x = document.getElementById("btn_add_maintain");
+  x.disabled = true;
 
-
-  // $('#maintainer_form').show();
-  // let form_id_m = "1";
   $('#branch_id_inForm').html(' ');
   $('#equipment_type_inForm').html(' ');
   $('#problem_dis').html(' ');
   $('#req_date').html(' ');
   $('#req_time').html(' ');
-  $('#completed_form_data1').html(' ');
-  $('#completed_form_data2').html(' ');
-  $('#completed_form_data3').html(' ');
-  $('#completed_form_data4').html(' ');
+  $('#maintain_pic').html(' ');
+  $('#maintain_add_note').html(' ');
+
 
   $.ajax({
     method:'POST',
@@ -121,49 +124,11 @@ function PopupCompletForm(popId){
     // dataType: 'json',
     // contentType: "application/json",
   }).done(function (result){
-    // alert("Done Shalani");
-    let Bname;
-    switch (result.branch_id) {
-      case "B-0001":
-        Bname = "Gampaha";
-        break;
-      default:
-        Bname = "NULL";
-        break
-    }
 
-    // console.log(result);
-    // $.map(result,function(details){
-//     $('#branch_id_inForm').append(
-//         '<p>'+Bname+'</p>'
-//     );
-//     $('#equipment_type_inForm').append(
-//         '<p>'+result.equipment_type+'</p>'
-//     );
-//     $('#problem_dis').append(
-//         '<p>'+result.description+'</p>'
-//     );
-//     $('#req_date').append(
-//         '<p>'+result.re_date+'</p>'
-//     );
-//     $('#req_time').append(
-//         '<p>'+result.re_time+'</p>'
-//     );
-//
-// //completed data
-//
-//     $('#completed_form_data1').append(
-//         '<p>'+result.complet_dis+'</p>'
-//     );
-//     $('#completed_form_data2').append(
-//         '<p>'+result.complet_img+'</p>'
-//     );
-//     $('#completed_form_data3').append(
-//         '<p>'+result.comp_date+'</p>'
-//     );
-//     $('#completed_form_data4').append(
-//         '<p>'+result.comp_time+'</p>'
-//     );
+    console.log(result);
+
+    let requestDate=result.re_date["year"]+"-"+("0" + (result.re_date["month"])).slice(-2)+"-"+("0" + result.re_date["day"]).slice(-2);
+    let requestTime=result.re_time["hour"]+":"+("0" + (result.re_time["minute"])).slice(-2)+":"+("0" + result.re_time["second"]).slice(-2);
 
     document.getElementById("branch_name").value = result.branch;
     // $('#branch_name').css("color","grey");
@@ -174,44 +139,28 @@ function PopupCompletForm(popId){
     document.getElementById("maintain_description").value = result.description;
     // $('#maintain_description').css("color","grey");
 
-    document.getElementById("maintain_request_date").value = result.re_date;
+    document.getElementById("maintain_request_date").value = requestDate;
     // $('#maintain_request_date').css("color","grey");
 
-    document.getElementById("maintain_request_time").value = result.re_time;
+    document.getElementById("maintain_request_time").value = requestTime;
 
 
 
 
-    document.getElementById("completed_form_data1").value = result.complet_dis;
+    // document.getElementById("maintain_pic").value = result.complet_img;
     // $('#branch_name').css("color","grey");
 
-    document.getElementById("completed_form_data2").value = result.complet_img;
+    document.getElementById("maintain_add_note").value =result.complet_dis;
     // $('#equipment_type').css("color","grey");
 
-    // document.getElementById("completed_form_data3").value = result.comp_date;
-    // $('#maintain_description').css("color","grey");
-
-    // document.getElementById("completed_form_data4").value = result.comp_time;
-    // $('#maintain_request_date').css("color","grey");
 
 
-    // let submitBtn = document.querySelector("#formSend_maintainer");
-    // $('#formSend_maintainer').addEventListener("click", ()=>{
-    //   submitFormMaintainer(popId)
-    // });
-    $('#submitPopFormId').click(function(){
-      // alert("in submit alert");
-      submitFormMaintainer(result.form_id);
-
-      // if(operate){
-      //   // do smth
-      // }
+    $('#btn_cancel_maintain').click(function(){
+      close_form_Popup();
+      requestMaintainerBackgroundOff();
     });
 
-    // if(document.getElementById('button').clicked==true){
-    //   alert("in submit");
-    // }
-    // alert("Data is loading now");
+
   }).fail(function (a,b,err) {
     alert("Data loading error  Shalani");
     console.log(a,b,err);
@@ -222,31 +171,22 @@ function PopupCompletForm(popId){
 
 function close_form_Popup(){
   $('#maintain_form_view').hide();
-   $('#maintain_form input[type="text"], input[type="date"] , input[type="time"], textarea').val("");
+   $('#maintain_form input[type="text"],input[type="file"], input[type="date"] , input[type="time"], textarea').val("");
 }
 
 function submitFormMaintainer(popId) {
-    // console.log("In submitForm");
-    // console.log(popId);
-    // alert("uuu");
 
     $('#maintain_form').submit(function (e) {
       e.preventDefault();
-      // let form_id_m = "1";
+
       let complet_dis = $('#maintain_add_note').val();
       let complet_img = $('#maintain_pic').val();
       let date = new Date();
       let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
-      // console.log(currentDate);
+
 
       var today = new Date();
       var currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-      // console.log(currentTime);
-      //
-      // console.log(popId);
-      // console.log("in function");
-      // console.log(complet_dis);
-      // console.log(complet_img);
 
       $.ajax({
         method: 'POST',
@@ -256,11 +196,10 @@ function submitFormMaintainer(popId) {
 
         success: function (result) {
 
-          // alert("done success");
           if (result.trim() == "1") {
-            // alert("done successsssssssssssssss");
+
             reloadRequestData();
-            $('#maintainer_form input[type="text"],input[type="date"]  input[type="time"], textarea').val('');
+            $('#maintainer_form input[type="text"],input[type="file"],input[type="date"]  input[type="time"], textarea').val('');
             $('#maintainer_form').hide();
             Swal.fire({
               icon: 'success',

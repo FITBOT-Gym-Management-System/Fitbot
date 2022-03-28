@@ -18,15 +18,15 @@ public class MaintainFormDAO {
 //        FormMaintain formMaintain=new FormMaintain();
         Connection connection = DBConnection.getInstance().getConnection();
 //        String query="SELECT * FROM form WHERE maintainer_id = ?";
-        String query = "SELECT form.form_id, form.equipment_type, form.status ,branch.branch_location , form.re_date , IFNULL(form.comp_date,UTC_DATE())   FROM form INNER JOIN branch ON form.branch_id= branch.branch_id WHERE form.maintainer_id =? ORDER BY form.status";
+        String query = "SELECT form.form_id, form.equipment_type, form.status ,branch.branch_name , form.re_date , IFNULL(form.comp_date,UTC_DATE())   FROM form INNER JOIN branch ON form.branch_id= branch.branch_id WHERE form.maintainer_id =? ORDER BY form.status";
 //        String query = "SELECT branch_id , category , Duration ,description , purchase_date,last_modified_date FROM equipment";
 
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1, memberID);
-        System.out.println(memberID);
+//        System.out.println(memberID);
 
         ResultSet resultSet = pst.executeQuery();
-        System.out.println("DAO method called in new");
+//        System.out.println("DAO method called in new");
 
         while(resultSet.next()){
             if(resultSet !=null){
@@ -40,7 +40,7 @@ public class MaintainFormDAO {
                 ));
             }
         }
-        System.out.println(forms);
+//        System.out.println(forms);
         return forms;
     }
 
@@ -49,7 +49,7 @@ public class MaintainFormDAO {
 //        MaintainerChart activitycount = new MaintainerChart();
         List<MaintainerChart> activitycount = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT comp_date , count(*) FROM form WHERE maintainer_id=? AND DATEDIFF(UTC_DATE(),comp_date) between 1 and 8 GROUP BY comp_date;";
+        String query = "SELECT comp_date , count(*) FROM form WHERE maintainer_id=? AND DATEDIFF(UTC_DATE(),comp_date) between 1 and 8 GROUP BY comp_date";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1, memberID);
         ResultSet resultSet = pst.executeQuery();

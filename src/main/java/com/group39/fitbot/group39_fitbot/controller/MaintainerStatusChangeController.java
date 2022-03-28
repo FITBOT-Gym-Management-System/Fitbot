@@ -23,7 +23,7 @@ public class MaintainerStatusChangeController extends HttpServlet {
         String form_id = req.getParameter("fid");
 
 
-        System.out.println("form id in controller "+form_id);
+//        System.out.println("form id in controller "+form_id);
         resp.setContentType("text/plain");
 
         boolean statusChange=false;

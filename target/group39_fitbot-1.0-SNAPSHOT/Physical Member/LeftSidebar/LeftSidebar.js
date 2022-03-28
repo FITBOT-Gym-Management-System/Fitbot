@@ -330,7 +330,7 @@ $(document).ready(function(){
       viewReport();
       viewBMI("myChart1");
       viewCaloriesBurned();
-      viewWorkoutPlanReports();
+      //viewWorkoutPlanReports();
 
       });
       load[7] += 1;
@@ -533,9 +533,15 @@ $(document).ready(function(){
 
   }).done(function(data){
     // const data_object = JSON.parse(data);
-    $('#dashboard_mambership_first_text').append(
-        '<span class="dashboard_mambership_second_text"><b>'+data.membership_category+'</b></span>'
-    );
+    if(data.membership_category.length > 0){
+      $('#dashboard_mambership_first_text').append(
+          '<span class="dashboard_mambership_second_text"><b>'+data.membership_category+'</b></span>'
+      );
+    }else{
+      $('#dashboard_mambership_first_text').append(
+          '<span class="dashboard_mambership_second_text"><b>'+"Virtual Membership"+'</b></span>'
+      );
+    }
 
     $('#dashboard_mambership_first_text1').append(
         '<span class="dashboard_mambership_second_text"><b>'+data.membership_fee+'</b></span>'
@@ -1137,7 +1143,7 @@ function checkWorkoutData(){
 
 
             if(count == 0){
-                alert(count);
+                //alert(count);
                 $('#workout_container_details').hide();
                 $('#workout_container_header_search').hide();
                 $('#workout_container_header_search_cant_find').show();
@@ -1608,51 +1614,51 @@ function viewCaloriesBurned(){
   //   }
   // });
 }
-function viewWorkoutPlanReports(){
-  let xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-  new Chart("myChart3", {
-    type: "line",
-    data: {
-      labels: xValues,
-      datasets: [{
-        label:"Workout",
-        data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-        borderColor: "red",
-        fill: false
-      }, {
-        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-        borderColor: "green",
-        fill: false
-      }, {
-        data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-        borderColor: "blue",
-        fill: false
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: "Calories Burned"
-      },
-      legend: {display: true},
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Weight'
-          }
-        }],
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Time'
-          }
-        }]
-      }
-    }
-  });
-}
+// function viewWorkoutPlanReports(){
+//   let xValues = [100,200,300,400,500,600,700,800,900,1000];
+//
+//   new Chart("myChart3", {
+//     type: "line",
+//     data: {
+//       labels: xValues,
+//       datasets: [{
+//         label:"Workout",
+//         data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+//         borderColor: "red",
+//         fill: false
+//       }, {
+//         data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+//         borderColor: "green",
+//         fill: false
+//       }, {
+//         data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+//         borderColor: "blue",
+//         fill: false
+//       }]
+//     },
+//     options: {
+//       title: {
+//         display: true,
+//         text: "Calories Burned"
+//       },
+//       legend: {display: true},
+//       scales: {
+//         yAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: 'Weight'
+//           }
+//         }],
+//         xAxes: [{
+//           scaleLabel: {
+//             display: true,
+//             labelString: 'Time'
+//           }
+//         }]
+//       }
+//     }
+//   });
+// }
 
 function viewMonthlyGoalReports(){
   //memberGoalGetData

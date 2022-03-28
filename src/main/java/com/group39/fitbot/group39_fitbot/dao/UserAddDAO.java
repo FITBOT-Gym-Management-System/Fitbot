@@ -10,14 +10,15 @@ import java.sql.SQLException;
 public class UserAddDAO {
         public static boolean addUser (Login user) throws SQLException, ClassNotFoundException{
             Connection connection= DBConnection.getInstance().getConnection();
-            String query = "INSERT INTO users VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO users VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = connection.prepareStatement(query);
 
             pst.setString(1, user.getUser_name());
             pst.setString(2, user.getPassword());
             pst.setString(3, user.getUserType());
             pst.setString(4, user.getMember_id());
-            pst.setInt(5,user.getStatus());
+            pst.setString(5,"-");
+            pst.setInt(6,user.getStatus());
             return pst.executeUpdate()>0;
 
 

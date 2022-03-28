@@ -18,7 +18,7 @@ public class Equipment {
       public Equipment() {
       }
 
-      public Equipment(String branch_name, String equipment_id, String description, String category, LocalDate purchase_date, LocalDate last_modified_date, LocalDate next_maintenance_date, int duration, int maintain_count) {
+      public Equipment(String branch_name, String equipment_id, String description, String category, LocalDate purchase_date, LocalDate last_modified_date, LocalDate next_maintenance_date, int duration, int equipment_has_modified) {
             this.branch_name = branch_name;
             this.equipment_id = equipment_id;
             this.description = description;
@@ -27,7 +27,7 @@ public class Equipment {
             this.last_modified_date = last_modified_date;
             this.next_maintenance_date = next_maintenance_date;
             this.duration = duration;
-            this.maintain_count = maintain_count;
+            this.equipment_has_modified = equipment_has_modified;
       }
 
       public Equipment(String branch_name, String equipment_id, String description, String category, LocalDate purchase_date, LocalDate last_modified_date, LocalDate next_maintenance_date, int duration) {
@@ -54,6 +54,7 @@ public class Equipment {
             this.maintain_count = maintain_count;
             this.equipment_has_modified = equipment_has_modified;
       }
+
 
       public String getBranch_name() {
             return branch_name;
@@ -127,6 +128,14 @@ public class Equipment {
             this.maintain_count = maintain_count;
       }
 
+      public int getEquipment_has_modified() {
+            return equipment_has_modified;
+      }
+
+      public void setEquipment_has_modified(int equipment_has_modified) {
+            this.equipment_has_modified = equipment_has_modified;
+      }
+
       @Override
       public String toString() {
             return "Equipment{" +
@@ -139,8 +148,10 @@ public class Equipment {
                     ", next_maintenance_date=" + next_maintenance_date +
                     ", duration=" + duration +
                     ", maintain_count=" + maintain_count +
+                    ", equipment_has_modified=" + equipment_has_modified +
                     '}';
       }
 }
+
 
 

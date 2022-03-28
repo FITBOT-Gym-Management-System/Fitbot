@@ -10,6 +10,7 @@ function maintain_equipments() {
 }
 
 function dataLoadEquipments(str){
+  // alert("click search");
   // alert("change"+str);
   // console.log(str);
   // alert("click search");
@@ -31,7 +32,7 @@ function dataOrderEquipments(order){
 }
 
 function reloadEquipmentsData(Equipments_id,Branch_selecter,List_order){
-  // alert("load equipments");
+  alert(Branch_selecter);
   // console.log("+++++++++++");
   // console.log(List_order);
   // console.log(Branch_selecter);

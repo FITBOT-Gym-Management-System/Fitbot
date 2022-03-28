@@ -33,7 +33,7 @@ public class MaintainerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("post method call in maintainer");
+//        System.out.println("post method call in maintainer");
 
         PrintWriter out = resp.getWriter();
 
@@ -56,9 +56,6 @@ public class MaintainerController extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-
 
         }
     }

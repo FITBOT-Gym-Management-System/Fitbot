@@ -81,4 +81,40 @@ public class PhysicalInstructorDAO {
         System.out.println(physicalInstructorList);
         return physicalInstructorList;
     }
+
+    public static List<PhysicalInstructor> physicalInstructorGetDataForMember(String instructorID) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        List<PhysicalInstructor> physicalInstructorList = new ArrayList<>();
+        String query = "SELECT member_id,first_name,last_name,gender,email,dob,address FROM register WHERE member_id IN (SELECT DISTINCT(sender_id) FROM chat WHERE receiver_id = ?)";
+
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1,instructorID);
+
+        ResultSet resultSet = pst.executeQuery();
+
+//        PhysicalInstructor physicalInstructor = new PhysicalInstructor();
+
+        while(resultSet.next()){
+            if(resultSet != null) {
+                physicalInstructorList.add(new PhysicalInstructor(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        null,
+                        resultSet.getDate(6),
+                        resultSet.getString(7),
+                        0,
+                        0,
+                        null,
+                        "Physical Member/Images/profile_image.png"
+                ));
+            }
+        }
+        System.out.println(physicalInstructorList);
+        return physicalInstructorList;
+    }
+
+
 }

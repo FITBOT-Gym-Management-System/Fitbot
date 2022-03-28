@@ -2,7 +2,7 @@ function Instructor_mystudents() {
     let anchor_student = document.getElementById("ins_student");
     let anchor_student_i = document.getElementById("ins_student_i");
     let student_text = document.getElementById("Instructor_mystudents_text");
-    console.log("mokada meee payments");
+    //console.log("mokada meee payments");
     anchor_student.style.backgroundColor = "white";
     anchor_student_i.style.color = "black";
     student_text.style.color = "black";
@@ -12,38 +12,38 @@ function close_studentview_Popup() {
     $('#student_view').hide();
 }
 
-  function loadStudent(){
-      alert("load student");
-      var age;
-      $('#instructor_student_tab_body').html(' ');
-      $.ajax({
-          method:'POST',
-          url:"instructorsStudent",
-          dataType: 'json',
-          contentType: "application/json",
-      }).done(function (result){
-          console.log(result);
-          $.map(result,function(x){
-
-              $('#instructor_student_tab_body').append(
-                  '<tr class="details_row">'+
-                  '<td>'+x.name+'</td>'+
-                  '<td>'+x.dob +'</td>'+
-                  '<td>'+x.gender+'</td>'+
-                  '<td>'+x.workout_plan_name +'</td>'+
-                  '<td>'+x.diet_plan_name +'</td>'+
-                  '</tr>'
-
-              );
-          });
-
-      }).fail(function (a,b,err) {
-          alert("Data loading error in student table");
-          console.log(a,b,err);
-
-      });
-
-  }
+  // function loadStudent(){
+  //     //alert("load student");
+  //     var age;
+  //     $('#instructor_student_tab_body').html(' ');
+  //     $.ajax({
+  //         method:'POST',
+  //         url:"instructorsStudent",
+  //         dataType: 'json',
+  //         contentType: "application/json",
+  //     }).done(function (result){
+  //         console.log(result);
+  //         $.map(result,function(x){
+  //
+  //             $('#instructor_student_tab_body').append(
+  //                 '<tr class="details_row">'+
+  //                 '<td>'+x.name+'</td>'+
+  //                 '<td>'+x.dob +'</td>'+
+  //                 '<td>'+x.gender+'</td>'+
+  //                 '<td>'+x.workout_plan_name +'</td>'+
+  //                 '<td>'+x.diet_plan_name +'</td>'+
+  //                 '</tr>'
+  //
+  //             );
+  //         });
+  //
+  //     }).fail(function (a,b,err) {
+  //         alert("Data loading error in student table");
+  //         console.log(a,b,err);
+  //
+  //     });
+  //
+  // }
 
   // function loadStudentBoxData(){
   //   var newReq=0;
@@ -100,7 +100,7 @@ function printmystudents(){
         console.log(result);
         $.map(result,function(x){
             $('#mystudents_list_table_body').append(
-                `<tr class="employee_info"><td>${x.Name}</td><td>${x.Branch}</td><td>${x.Type}</td><td>${x.Email}</td><td>${x.Membership}</td><td><a onclick="studentsview_popup('${x.MemberId}','${x.Name}'"><i class='bx bxs-show bx-tada bx-flip-horizontal view_popup' ></i></a>&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>`
+                `<tr class="employee_info"><td>${x.Name}</td><td>${x.Branch}</td><td>${x.Type}</td><td>${x.Email}</td><td>${x.Membership}</td><td><a onclick='studentsview_popup("${x.MemberId}","${x.Name}")'><i class='bx bxs-show bx-tada bx-flip-horizontal view_popup' ></i></a>&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>`
             );
         });
         // searchemployee();
@@ -210,12 +210,16 @@ function studentsview_popup(memberID,name){
     //     console.log(a,b,err);
     // });
 
+
     student_weight_vs_time();
-    manager_branch_revenue()
+    manager_branch_revenue();
     //BMIStudent(name);
     // student_workout();
     // student_weight_vs_time();
     $('#student_view').show();
+    // viewBMIInstructor("insMyChart1");
+    StudentCaloriesBurned(memberID);
+    BMIStudent(memberID);
 }
 
 function BMIStudent(name){
@@ -257,7 +261,7 @@ function BMIStudent(name){
                         arrBMI[index] = BMI.toFixed(4);
                     }
 
-                    new Chart("BMI_student", {
+                    new Chart("BMI_student1", {
                         type: "line",
                         data: {
                             labels: arrDate.reverse(),
@@ -366,7 +370,7 @@ function StudentCaloriesBurned(memberID) {
 
             //arrDate.sort();
 
-            new Chart("Workout_student", {
+            new Chart("Workout_student1", {
                 type: "line",
                 data: {
                     labels: arrDate,

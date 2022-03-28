@@ -29,7 +29,7 @@ public class MaintainerUpdateDAO {
 
     public static boolean addMaintainDetails(FormMaintain formMaintain) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query ="INSERT INTO form(equipment_id,maintainer_id,equipment_type,no_of_maintainers,description,status,branch_id,complet_dis,complet_img,comp_date,comp_time) VALUES(?,?,?,?,?,?,(SELECT branch_id FROM branch WHERE branch_location=?),?,?,?,?)";
+        String query ="INSERT INTO form(equipment_id,maintainer_id,equipment_type,no_of_maintainers,description,status,branch_id,complet_dis,complet_img,comp_date,comp_time,re_date,re_time) VALUES(?,?,?,?,?,?,(SELECT branch_id FROM branch WHERE branch_name=?),?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, formMaintain.getEquipment_id());
@@ -43,6 +43,8 @@ public class MaintainerUpdateDAO {
         pst.setString(9, formMaintain.getComplet_img());
         pst.setDate(10, Date.valueOf(formMaintain.getComp_date()));
         pst.setTime(11, Time.valueOf(formMaintain.getComp_time()));
+        pst.setDate(12, Date.valueOf(formMaintain.getRe_date()));
+        pst.setTime(13, Time.valueOf((formMaintain.getRe_time())));
 
         return pst.executeUpdate()>0;
 
