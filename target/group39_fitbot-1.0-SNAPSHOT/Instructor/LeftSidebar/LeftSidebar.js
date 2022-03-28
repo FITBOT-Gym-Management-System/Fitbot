@@ -119,6 +119,8 @@ function clear_dashboard_functions(full_background,dashboard_icon,dashboard_text
 $(document).ready(function(){
   $('#ins_dashboard_implementation').load('http://localhost:8080/group39_fitbot_war_exploded/Instructor/INSTRUCTOR_DASHBOARD/instructor_dashboard.html #home_dashboard',function(responseTxt, statusTxt, xhr){
     getBranchIdForIns();
+    mystudentcount();
+    getInstrcutorCalender();
 
     if(statusTxt == "error")
       alert("Error: " + xhr.status + ": " + xhr.statusText);

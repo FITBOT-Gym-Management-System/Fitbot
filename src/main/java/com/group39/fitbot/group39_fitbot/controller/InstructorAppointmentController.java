@@ -5,6 +5,7 @@ import com.group39.fitbot.group39_fitbot.dao.InstructorAppointmentDAO;
 import com.group39.fitbot.group39_fitbot.dao.InstructorStudentDAO;
 import com.group39.fitbot.group39_fitbot.model.InsAppointment;
 import com.group39.fitbot.group39_fitbot.model.InsStudent;
+import com.group39.fitbot.group39_fitbot.model.PhysicalAppointment;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,7 @@ public class InstructorAppointmentController extends HttpServlet {
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
 
-        List<InsAppointment> all_appointment = new ArrayList<>();
+        List<PhysicalAppointment> all_appointment = new ArrayList<>();
 //        InsStudent student = new InsStudent();
         try {
             all_appointment = InstructorAppointmentDAO.getAppointment(memberID);
