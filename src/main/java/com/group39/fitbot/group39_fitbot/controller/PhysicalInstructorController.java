@@ -41,8 +41,10 @@ public class PhysicalInstructorController extends HttpServlet {
             if(memberType.equals("physical_member")){
                 String branchID = (String) session.getAttribute("branchID");
                 physicalInstructorList = PhysicalInstructorDAO.physicalInstructorGetDataFilterBranch(branchID);
-            }else {
+            }else if(memberType.equals("virtual_member")){
                 physicalInstructorList = PhysicalInstructorDAO.physicalInstructorGetData();
+            }else {
+                physicalInstructorList = PhysicalInstructorDAO.physicalInstructorGetDataForMember(memberID);
             }
 
         } catch (SQLException e) {
