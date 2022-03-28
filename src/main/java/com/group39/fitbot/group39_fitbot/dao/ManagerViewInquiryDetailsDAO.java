@@ -15,15 +15,15 @@ public class ManagerViewInquiryDetailsDAO {
         List<ManagerViewInquiry> inquiries = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "SELECT\n" +
-                "member.first_name,\n" +
+                "register.first_name,\n" +
                 "make_inquiry.inquiry_id,\n" +
                 "make_inquiry.inquiry_date,\n" +
                 "make_inquiry.inquiry_time,\n" +
                 "make_inquiry.status,\n" +
                 "make_inquiry.inquiry_title, \n" +
                 "make_inquiry.description \n" +
-                "FROM ((member\n" +
-                "INNER JOIN make_inquiry ON member.member_id=make_inquiry.member_id)\n" +
+                "FROM ((register\n" +
+                "INNER JOIN make_inquiry ON register.member_id=make_inquiry.member_id)\n" +
                 "INNER JOIN branch_manager ON branch_manager.branchmanager_id = make_inquiry.branchmanager_id)\n" +
                 "WHERE branch_manager.branch_id=? AND make_inquiry.inquiry_id=?";
 

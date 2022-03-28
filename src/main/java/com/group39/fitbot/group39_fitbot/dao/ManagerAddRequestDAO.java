@@ -16,10 +16,10 @@ public class ManagerAddRequestDAO {
         System.out.println("im sachinka");
         System.out.println(manrequest);
 
-        String status = "1";
+        int status = Integer.parseInt("1");
         pst.setString(1,manrequest.getEquipment_id());
         pst.setString(2,manrequest.getCategory());
-        pst.setString(3,status);
+        pst.setInt(3,status);
         pst.setString(4,manrequest.getDescription());
         pst.setDate(5, Date.valueOf(currentDate));
         pst.setTime(6, Time.valueOf(currentTime));

@@ -12,13 +12,13 @@ public class ManagerMemberViewDAO {
     public static List<ManagerMemberView> getManagerMemberView(String branchID, LocalDate currentDate) throws SQLException, ClassNotFoundException {
         List<ManagerMemberView> members = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT DISTINCT member.member_id,member.first_name,member.last_name,\n" +
+        String query = "SELECT DISTINCT register.member_id,register.first_name,register.last_name,\n" +
                 "register.membership_category,instructor.first_name\n" +
-                "FROM ((register\n" +
-                "INNER JOIN member ON register.member_id = member.member_id)\n" +
-                "INNER JOIN instructor ON instructor.instructor_id = member.instructor_id )\n" +
-                "WHERE register.membership_sign = 'physical_member' AND member.branch_id = ? \n" +
-                "AND member.member_id NOT IN (Select member_id from member_attendance where date = ?) LIMIT 10";
+                "FROM ((physical_member\n" +
+                "INNER JOIN instructor ON instructor.instructor_id = physical_member.instructor_id)\n" +
+                "INNER JOIN register ON physical_member.member_id = register.member_id)\n" +
+                "WHERE register.membership_sign = 'physical_member' AND register.branch_id = ?\n" +
+                "AND register.member_id NOT IN (Select member_id FROM member_attendance where date = ?) LIMIT 10";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,branchID);
         pst.setDate(2, Date.valueOf(currentDate));

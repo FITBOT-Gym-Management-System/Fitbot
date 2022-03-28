@@ -19,7 +19,7 @@ public class ManagerPaymentDAO {
                 "INNER JOIN online_payment ON online_payment.payment_id = payment_paidmember_membership.payment_id)\n" +
                 "INNER JOIN membership ON membership.membership_id = payment_paidmember_membership.membership_id)\n" +
                 "WHERE register.branch_id= ? AND online_payment.payment_method = \"Cash Payment\"\n" +
-                "AND online_payment.after_table_payment_id NOT IN (SELECT after_table_payment_id from online_payment where payment_status = 1 OR payment_status = 2 ) \n" +
+                "AND online_payment.alter_table_payment_id NOT IN (SELECT alter_table_payment_id from online_payment where payment_status = '1' OR payment_status = '2' ) \n" +
                 "ORDER BY payment_paidmember_membership.payment_id DESC";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,branchID);

@@ -68,10 +68,14 @@ function submitaddequip(){
     let date30 = date.getFullYear()+"-"+("0"+((date.getMonth()+2)%12)).slice(-2)+"-"+("0"+date.getDay()+30).slice(-2);
     console.log(date30);
 
+    const date_today = new Date();
+    let currentDate = date_today.getFullYear()+"-"+("0" + (date_today.getMonth() + 1)).slice(-2)+"-"+("0" + date_today.getDate()).slice(-2);
+    console.log(currentDate);
+
     $.ajax({
         method: 'POST',
         url: "addequipment",
-        data: {equipment_id:equipment_id,description:description, category:category, purchase_date:purchase_date, serial_no:serial_no,date30:date30},
+        data: {equipment_id:equipment_id,description:description, category:category, purchase_date:purchase_date, serial_no:serial_no,date30:date30,currentDate:currentDate},
 
         success:function (result){
             // event.preventDefault();
@@ -99,6 +103,7 @@ function submitaddequip(){
 
 
 function updateequipmenttable() {
+
     $.ajax({
         method: 'POST',
         url: "equipment",
@@ -111,18 +116,12 @@ function updateequipmenttable() {
         initiateEquipmentNextButtons(result,chunk)
         $.map(result.slice(0,chunk), function (x) {
 
-            let last_date ;
-            if(x.last_modified_date == null){
-                last_date = "-";
-                console.log(last_date);
-            }
-
             $('#manager_equipment_table_tbody').append(
                 `<tr class="manager_equipment_row">
                 <td> ${x.equipment_id} </td>
                 <td> ${x.category} </td>
                 <td> ${x.purchase_date} </td>
-                <td> last_date </td>
+                <td> ${x.last_modified_date} </td>
                 <td> ${x.next_maintenance_date} </td>
                 <td> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onclick="managerDisableEquipment('${x.equipment_id}')"></div></td>
                 </tr>`
@@ -194,18 +193,12 @@ function initiateEquipmentNextButtons(result,chunk) {
             $("#manager_equipment_table_tbody").html(' ')
             $.map(result.slice(pageno * chunk - chunk, pageno * chunk), function (x) {
 
-                let last_date ;
-                if(x.last_modified_date == null){
-                    last_date = "-";
-                    console.log(last_date);
-                }
-
                 $('#manager_equipment_table_tbody').append(
                     `<tr class="manager_equipment_row">
                 <td> ${x.equipment_id} </td>
                 <td> ${x.category} </td>
                 <td> ${x.purchase_date} </td>
-                <td> last_date</td>
+                <td> ${x.last_modified_date} </td>
                 <td> ${x.next_maintenance_date} </td>
                 <td> <div class="reject_btn_class"><input type="button" class="btn_reject" value="Disable" onclick="managerDisableEquipment('${x.equipment_id}')"></div></td>
                 </tr>`

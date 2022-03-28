@@ -31,6 +31,7 @@ public class ManagerEquipmentFormController extends HttpServlet {
         System.out.println(branchID);
 
         Date date30 = Date.valueOf(req.getParameter("date30"));
+        Date currentDate = Date.valueOf(req.getParameter("currentDate"));
 
         equipment.setBranch_id(branchID);
         equipment.setCategory(req.getParameter("category"));
@@ -55,7 +56,7 @@ public class ManagerEquipmentFormController extends HttpServlet {
 
         boolean added = false;
         try {
-            added = ManagerEquipmentFormDAO.addNewEquipment(equipment,date30);
+            added = ManagerEquipmentFormDAO.addNewEquipment(equipment,date30,currentDate);
         } catch(SQLException e) {
             e.printStackTrace();
         } catch(ClassNotFoundException e) {

@@ -683,6 +683,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>managerMarkinstructorAttendence</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.ManagerMarkInstructorAttendenceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerMarkinstructorAttendence</servlet-name>
+        <url-pattern>/managerMarkinstructorAttendence</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>managerinstructorview_count</servlet-name>
         <servlet-class>com.group39.fitbot.group39_fitbot.controller.ManagerInstructorViewCountController</servlet-class>
     </servlet>
