@@ -49,7 +49,7 @@ function printbranches (){
     });
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -79,7 +79,7 @@ function branchdetails(branchid) {
 
 
   }).fail(function (a, b, err) {
-    alert("Error");
+    // alert("Error");
     console.log(a, b, err);
   });
 
@@ -107,7 +107,7 @@ function branchmanager_branch (branch_id)
     });
 
   }).fail(function (a, b, err) {
-    alert("Error");
+    // alert("Error");
     console.log(a, b, err);
   });
 }
@@ -132,7 +132,7 @@ function instructor_branch (branch_id)
     });
 
   }).fail(function (a, b, err) {
-    alert("Error");
+    // alert("Error");
     console.log(a, b, err);
   });
 }

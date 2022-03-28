@@ -28,7 +28,7 @@ function log_out_function(){
     url:"logout",
     data:"",
     success: function(result){
-      alert(result);
+      // alert(result);
       if(result == "1"){
         Swal.fire({
           title: 'Do you want to log out?',

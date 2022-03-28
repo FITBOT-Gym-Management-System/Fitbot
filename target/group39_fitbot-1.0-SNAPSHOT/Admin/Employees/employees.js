@@ -49,7 +49,7 @@ function employeecount(){
     // alert(result);
     // alert("Data is comming babe");
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 }
@@ -75,7 +75,7 @@ function printemployee(){
     searchemployee();
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -115,7 +115,7 @@ function employeeview_popup(name){
     });
 
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -171,7 +171,7 @@ function removeemployee(employeeid,employee_type){
 
       }).fail(function (a, b, err) {
 
-        alert("Faalil");
+        // alert("Faalil");
         Swal.fire({
           icon: 'error',
           title: "Can't remove...",
@@ -210,7 +210,7 @@ function printinstructor(){
     });
       searchemployee();
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -236,7 +236,7 @@ function printmaintainer(){
     });
       searchemployee();
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
@@ -262,7 +262,7 @@ function printbranchmanager(){
     });
       searchemployee();
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 
