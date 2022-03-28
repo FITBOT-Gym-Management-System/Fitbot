@@ -94,6 +94,32 @@ public class EditProfileDAO {
         }
     }
 
+    public static Registartion retriveInstructorRegistration(String instructorID) throws SQLException, ClassNotFoundException {
+        Registartion register = new Registartion();
+
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        //String query = "SELECT first_name,last_name,dob,phone_number,height,weight FROM register WHERE member_id= ?";
+        String query = "SELECT first_name,last_name,dob,primary_contact,address,email FROM instructor WHERE instructor_id= ?";
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1, instructorID);
+//        pst.setString(3,login.getUserType());
+
+        ResultSet resultSet = pst.executeQuery();
+
+        if (resultSet.next()) {
+            register.setFirst_name(resultSet.getString(1));
+            register.setLast_name(resultSet.getString(2));
+            register.setDate_of_birth((resultSet.getDate(3)).toLocalDate());
+            register.setContact_number(resultSet.getInt(4));
+            register.setAddress(resultSet.getString(5));
+            register.setEmail(resultSet.getString(6));
+            return register;
+        } else {
+            return null;
+        }
+    }
+
     public static boolean updateWeightDetails(UpdateWeight updateWeight) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "INSERT INTO weight_update(member_id,update_date,daily_count,previous_weight,new_weight) VALUES(?,?,?,?,?)";

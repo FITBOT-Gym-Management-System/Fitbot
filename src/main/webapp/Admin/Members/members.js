@@ -25,7 +25,6 @@ function  closepopu(){
 }
 //Popup of eachmemberview
 function memberview_popup(memberid,status,type){
-  alert(memberid);
   $.ajax({
     method:'POST',
     url:"adminmemberview",
@@ -231,7 +230,6 @@ function ban_member(member_id){
   }).then((result) => {
     if (result.isConfirmed) {
 
-      alert(member_id);
       $.ajax({
         method: 'POST',
         url: "adminbanmember",

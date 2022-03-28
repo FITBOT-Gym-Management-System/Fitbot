@@ -28,11 +28,21 @@ public class MemberDetailsController extends HttpServlet {
 
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
+        String memberType = (String) session.getAttribute("userType");
+        System.out.println(memberID);
+        System.out.println(memberType);
 
         Registartion registartion = new Registartion();
 //        registartion.setMember_id(memberID);
         try {
-            registartion = EditProfileDAO.retriveRegistration(memberID);
+            //physical_member
+            if(memberType.equals("physical_member") || memberType.equals("virtual_member") ){
+                registartion = EditProfileDAO.retriveRegistration(memberID);
+            }else {
+                //instructor
+                registartion = EditProfileDAO.retriveInstructorRegistration(memberID);
+            }
+
             System.out.println(registartion);
             Gson gson = new Gson();
             String registerJSON = gson.toJson(registartion);
