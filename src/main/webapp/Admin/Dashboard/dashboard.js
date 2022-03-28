@@ -36,7 +36,7 @@ function employeechart() {
     }
   });
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 }
@@ -88,7 +88,7 @@ function admindashboardcount(){
     // alert(result);
     // alert("Data is comming babe");
   }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 }
@@ -125,7 +125,7 @@ function mychart() {
     }
   });
 }).fail(function(a,b,err){
-    alert("Error");
+    // alert("Error");
     console.log(a,b,err);
   });
 }
