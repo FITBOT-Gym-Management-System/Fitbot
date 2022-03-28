@@ -533,7 +533,7 @@ function managerins_view(){
 function managerins_view_count(){
   const date = new Date();
   let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
-  console.log(currentDate);
+  // console.log(currentDate);
 
   $.ajax({
     method: 'POST',
