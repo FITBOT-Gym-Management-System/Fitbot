@@ -170,18 +170,6 @@ function physical_workoutplan_open_demo(plan_type){
 
 }
 
-// function sendWorkoutRequest(user_id,notification_date,notification_title,notification_time,notification_type,notification_status){
-//
-//
-// }
-
-// function saveNotificationWorkoutRequest(user_id,notification_date,notification_title,notification_time,notification_type,notification_status){
-//
-// }
-
-// function close_physical_workoutplan_Popup(){
-//     $('#physical_workout_packages1').hide();
-// }
 
 let data_arr = [];
 function open_virtual_workout_plan(value_attri,num_plan){
@@ -191,7 +179,7 @@ function open_virtual_workout_plan(value_attri,num_plan){
     $('#physical_member_workout_plans').load('http://localhost:8080/group39_fitbot_war_exploded/Physical%20Member/Workout_Plans/Virtual_Workout_Plans.html #workout_plan_virtual',function(responseTxt, statusTxt, xhr){
 
         if(statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
         }
         $('#virtual_workout_container').append(
             '<span>'+value_attri+'</span>'
@@ -256,7 +244,6 @@ $(document).ready(function (){
 });
 
 function checkBoxChecked(workout_id,id,num_plan){
-    //alert("venava");
     console.log(workout_id);
     console.log(id);
     // if($('#'+id+workout_id).prop("checked") == true){
@@ -294,6 +281,7 @@ function checkBoxChecked(workout_id,id,num_plan){
                     }
                 });
             }else if (result.isDenied){
+                document.getElementById(id+workout_id).checked = false;
                 console.log("workout not completed");
             }
             // if($('.payment_history_container_row_checkbox').prop("checked") == true) {

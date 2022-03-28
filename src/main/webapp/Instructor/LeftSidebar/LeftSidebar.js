@@ -119,6 +119,8 @@ function clear_dashboard_functions(full_background,dashboard_icon,dashboard_text
 $(document).ready(function(){
   $('#ins_dashboard_implementation').load('http://localhost:8080/group39_fitbot_war_exploded/Instructor/INSTRUCTOR_DASHBOARD/instructor_dashboard.html #home_dashboard',function(responseTxt, statusTxt, xhr){
     getBranchIdForIns();
+    mystudentcount();
+    getInstrcutorCalender();
 
     if(statusTxt == "error")
       alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -340,7 +342,7 @@ function getBranchIdForIns(){
     console.log(result);
 
   }).fail(function (a,b,err) {
-    alert("Data loading error chathuuuuu");
+    //alert("Data loading error chathuuuuu");
     console.log(a,b,err);
   });
 }
@@ -456,7 +458,8 @@ function searchMembers(){
     $.map(result,function(x){
       let instructor_id = x["instructor_id"];
       console.log(instructor_id);
-      let str_ins_id = instructor_id.slice(3).toString();
+      let str_ins_id = instructor_id.replace("Ins", "");
+      //let str_ins_id = instructor_id.slice(2).toString();
       let number = parseInt(str_ins_id);
       console.log(number);
       console.log(str_ins_id);

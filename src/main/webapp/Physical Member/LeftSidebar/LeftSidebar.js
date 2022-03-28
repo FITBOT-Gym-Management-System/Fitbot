@@ -1016,7 +1016,8 @@ function searchInstructors(){
         $.map(result,function(x){
           let instructor_id = x["instructor_id"];
           console.log(instructor_id);
-          let str_ins_id = instructor_id.slice(4).toString();
+          //let str_ins_id = instructor_id.replace("Ins", "");
+          let str_ins_id = instructor_id.slice(3).toString();
           let number = parseInt(str_ins_id);
           console.log(number);
           console.log(str_ins_id);
@@ -1130,8 +1131,8 @@ function checkWorkoutData(){
             $.map(result,function(x) {
                 //if(x.workout_id == )
                 $('#workout_container_table').append(
-                    `<tr class="payment_history_container_row workout_history_container_row" onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">'+
-                    <td>${x.exercise}</td>
+                    `<tr class="payment_history_container_row workout_history_container_row">
+                    <td onclick="load_virtual_detail_popup('${x.workout_description}','${x.workout_img_url}','${x.exercise}')">${x.exercise}</td>
                     <td>${x.workout_type}</td>
                     <td>${x.total_reps}</td>
                     <td>${x.duration}</td>
@@ -1315,7 +1316,6 @@ function getBranchMessages(){
               '<div class="branch_messages_physical_container_message_description">'+x["description"]+'</div>'+
               '<div class="branch_messages_physical_container_message_div_div">'+
                 '<div class="branch_messages_physical_container_message_date">'+x.dates["year"]+"-"+("0"+x.dates["month"]).slice(-2)+"-"+("0"+x.dates["day"]).slice(-2)+'</div>'+
-                '<div class="branch_messages_physical_container_message_branch">'+x["branch_name"]+'</div>'+
               '</div>'+
             '</div>'+
           '</div>'
