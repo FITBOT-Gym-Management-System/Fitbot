@@ -49,7 +49,7 @@ function getTodayTasks(){
 
             // let dateCompare = x.next_maintenance_date["year"]+"-"+x.next_maintenance_date["month"]+"-"+x.next_maintenance_date["day"];
             // console.log(dateCompare)
-            
+
             if(((currentDate == dateCompare) || (currentDate1 == dateCompare) )&& (equipment_has_modified.trim().toString() == "0")){
                 // alert(equipment_has_modified);
                 if(count < 2){
