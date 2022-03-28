@@ -342,7 +342,7 @@ function getBranchIdForIns(){
     console.log(result);
 
   }).fail(function (a,b,err) {
-    alert("Data loading error chathuuuuu");
+    //alert("Data loading error chathuuuuu");
     console.log(a,b,err);
   });
 }
@@ -458,7 +458,8 @@ function searchMembers(){
     $.map(result,function(x){
       let instructor_id = x["instructor_id"];
       console.log(instructor_id);
-      let str_ins_id = instructor_id.slice(3).toString();
+      let str_ins_id = instructor_id.replace("Ins", "");
+      //let str_ins_id = instructor_id.slice(2).toString();
       let number = parseInt(str_ins_id);
       console.log(number);
       console.log(str_ins_id);
