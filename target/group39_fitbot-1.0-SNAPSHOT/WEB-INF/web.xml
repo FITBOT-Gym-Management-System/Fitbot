@@ -886,6 +886,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>instructordashboard</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorDashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructordashboard</servlet-name>
+        <url-pattern>/instructordashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorprofile</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorProfileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorprofile</servlet-name>
+        <url-pattern>/instructorprofile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>instructorsStudent</servlet-name>
         <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentLoadController</servlet-class>
     </servlet>

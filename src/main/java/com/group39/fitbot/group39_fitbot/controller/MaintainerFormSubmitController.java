@@ -36,8 +36,8 @@ public class MaintainerFormSubmitController extends HttpServlet {
         formSubmit.setComp_date(Date.valueOf(req.getParameter("currentDate")).toLocalDate());
         formSubmit.setComp_time(Time.valueOf(req.getParameter("currentTime")).toLocalTime());
 
-        System.out.println(formSubmit);
-        System.out.println("in mt one thana");
+//        System.out.println(formSubmit);
+//        System.out.println("in mt one thana");
 
         boolean updateResult= false;
 
@@ -50,10 +50,10 @@ public class MaintainerFormSubmitController extends HttpServlet {
         }
 
         if(updateResult){
-            System.out.println("Update database");
+//            System.out.println("Update database");
             out.print("1");
         }else {
-            System.out.println("Not add");
+//            System.out.println("Not add");
             out.print("0");
         }
 

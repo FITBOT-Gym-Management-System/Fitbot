@@ -25,11 +25,11 @@ public class MaintainerRequestController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        FormMaintain formMaintain=new FormMaintain();
-        System.out.println("request post method called");
+//        System.out.println("request post method called");
 
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");
-        System.out.println(memberID);
+//        System.out.println(memberID);
 
         try {
             List<FormMaintain> all_form = new ArrayList<>();

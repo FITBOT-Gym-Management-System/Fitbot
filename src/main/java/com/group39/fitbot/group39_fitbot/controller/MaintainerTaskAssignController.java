@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class MaintainerTaskAssignController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("MaintainerTaskAssignController called");
+//        System.out.println("MaintainerTaskAssignController called");
 
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/plain");
@@ -26,7 +26,7 @@ public class MaintainerTaskAssignController extends HttpServlet {
         try {
             boolean added = MaintainerDAO.addMaintainerTaskDetails(maintainerID,equipmentID,dateCompare);
             boolean added1 = MaintainerDAO.updateMaintainerTaskDetails(equipmentID);
-
+//            System.out.println("added1 = "+added1);
             if(added && added1){
                 out.print("1");
             }else if(!added){
