@@ -13,7 +13,6 @@ public class ManagerAddRequestDAO {
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "INSERT INTO form (equipment_id,maintainer_id,equipment_type,no_of_maintainers,status,description,re_date,re_time,branchmanager_id,branch_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
-        System.out.println("im sachinka");
         System.out.println(manrequest);
 
         int status = Integer.parseInt("1");
