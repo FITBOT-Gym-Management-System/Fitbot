@@ -17,7 +17,7 @@ public class ManagerAddRequestDAO {
 
         int status = Integer.parseInt("1");
         pst.setString(1,manrequest.getEquipment_id());
-        pst.setString(2,"Man2");
+        pst.setString(2,"Man1");
         pst.setString(3,manrequest.getCategory());
         pst.setInt(4,2);
         pst.setInt(5,status);

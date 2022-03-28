@@ -320,6 +320,11 @@ $('#man_equipment').click(function(){
 
         $("#manager_equipment_form_page").load('http://localhost:8080/group39_fitbot_war_exploded/Manager/BRANCH_MANAGER_EQUIPMENT/MANAGER_ADD_NEW_EQUIPMENT.html #add_equipment_view',function(responseTxt, statusTxt, xhr){
           console.log("ammmmmmmmmaaaaaaaaa");
+          // $("#validation_addequip_category_id").hide();
+          // $("#validation_addequip_serialno_id").hide();
+          // $("#validation_addequip_description_id").hide();
+          // $("#validation_addequip_purchasedate_id").hide();
+
           if(statusTxt == "error")
             alert(`Error: ${xhr.status}: ${xhr.statusText}`);
         });
@@ -493,14 +498,11 @@ function log_out_man_function(){
 }
 
 function managerins_view(){
-  const date = new Date();
-  let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
-  console.log(currentDate);
 
   $.ajax({
     method: 'POST',
     url: "managerinstructorview",
-    data:{currentDate:currentDate},
+    // data:{currentDate:currentDate},
     dataType: 'json',
   }).done(function (result) {
     let count = 0;
@@ -512,11 +514,9 @@ function managerins_view(){
     $.map(result.slice(0,chunk), function (x) {
       $('#ins_manager_details_table_tbody').append(
           `<tr class="manager_instructor_row">
-          <td>  ${x.firstname + " " + x.lastname}  </td>
-          <td>  ${x.mem_count}  </td>
-          <td>  ${x.appoinment_count}  </td>
-          <td>  <input type="checkbox" class="ins_atte" id="ins_atte${count}" onclick="manager_instrucotr_attendence('${x.instructor_id}', 'ins_atte${count}')" value="Select" /> 
-          </td>
+          <td>  ${x.first_name + " " + x.last_name}  </td>
+          <td>  ${x.joined_date['year'] + "-" + ("0" + x.joined_date['month']) + "-" + x.joined_date['day']}  </td>
+          <td>  <input type="checkbox" class="ins_atte" id="ins_atte${count}" onclick="manager_instrucotr_attendence('${x.instructor_id}', 'ins_atte${count}')" value="Select" />  </td>
           </tr>`
       );
       count += 1;
@@ -533,7 +533,7 @@ function managerins_view(){
 function managerins_view_count(){
   const date = new Date();
   let currentDate = date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
-  console.log(currentDate);
+  // console.log(currentDate);
 
   $.ajax({
     method: 'POST',
@@ -585,7 +585,7 @@ function member_view(){
             `<tr class="manager_member_row"> 
           <td> ${x.firstname + " " + x.lastname} </td>
           <td> ${x.membertype.replace("_", " ")} </td>
-          <td> ${x.intructorname} </td>
+          <td> ${x.date["year"]+ "-"+ ("0"+x.date["month"]) +"-"+ x.date["day"]} </td>
           <td> <input type="checkbox" class="atte" id="atte${count}" onclick="manager_member_attendence('${x.member_id}', 'atte${count}')" value="Select" /> </td> 
           </tr>`
         );
@@ -883,6 +883,7 @@ function updaterequest_table(){
 
 
 function manager_instrucotr_attendence(instructor_id,id_check){
+  console.log("nidimathaaaaaaaaaaaaaaaaaaaaai");
   //if($('.atte').prop("checked") == true){
   if($('#'+id_check).prop("checked") == true){
     console.log(instructor_id);
