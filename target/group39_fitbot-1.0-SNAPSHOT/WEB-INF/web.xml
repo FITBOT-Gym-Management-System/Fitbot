@@ -1112,4 +1112,40 @@
         <url-pattern>/maintainerDailyTaskForm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>instructoreachstudent</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructoreachstudent</servlet-name>
+        <url-pattern>/instructoreachstudent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>studentupdateweightdata</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.StudentUpdateWeightDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentupdateweightdata</servlet-name>
+        <url-pattern>/studentupdateweightdata</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorstudentcount</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.InstructorStudentCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorstudentcount</servlet-name>
+        <url-pattern>/instructorstudentcount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>instructorstudentcalories</servlet-name>
+        <servlet-class>com.group39.fitbot.group39_fitbot.controller.StudentCaloriesBurnedController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>instructorstudentcalories</servlet-name>
+        <url-pattern>/instructorstudentcalories</url-pattern>
+    </servlet-mapping>
+
 </web-app>
