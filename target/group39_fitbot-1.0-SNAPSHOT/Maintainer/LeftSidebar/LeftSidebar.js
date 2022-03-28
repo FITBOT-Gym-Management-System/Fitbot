@@ -217,7 +217,7 @@ $(document).ready(function (){
 
 
 function reloadRequestData(){
-  alert("call load function");
+  // alert("call load function");
   var newCount =0;
   var progressCount =0;
   var completCount =0;

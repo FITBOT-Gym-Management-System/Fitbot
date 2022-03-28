@@ -24,23 +24,6 @@ public class ManagerMarkMemberAttendenceDAO {
     }
     }
 
-//    public static ManagerMarkMemberAttendence getManagerMarkMemberAttendence(LocalDate currentDate, LocalTime currentTime, String memberId) throws SQLException,ClassNotFoundException{
-//        System.out.println("hasaraaa");
-//        Connection connection = DBConnection.getInstance().getConnection();
-//        String query = "INSERT INTO member_attendance (member_id,date,start_time,status) VALUES (?,?,?,?)";
-//        PreparedStatement pst = connection.prepareStatement(query);
-//        System.out.println("is attendence part worked?");
-//
-//        int status = 1;
-//        pst.setString(1,memberId);
-//        pst.setDate(2, Date.valueOf(currentDate));
-//        pst.setTime(3,Time.valueOf(currentTime));
-//        pst.setInt(4,status);
-//
-//        return null;
-////        return pst.executeUpdate() > 0;
-//}
-//
-//}
+
 
 

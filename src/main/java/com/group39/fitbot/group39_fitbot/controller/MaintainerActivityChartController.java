@@ -24,7 +24,7 @@ public class MaintainerActivityChartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("kkkkkkk");
+//        System.out.println("kkkkkkk");
 
         HttpSession session = req.getSession();
         String memberID = (String) session.getAttribute("MemberID");

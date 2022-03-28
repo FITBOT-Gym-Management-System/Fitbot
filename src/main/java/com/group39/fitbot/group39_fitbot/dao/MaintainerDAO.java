@@ -53,9 +53,9 @@ public class MaintainerDAO {
                ));
            }
         }
-        System.out.println("DDDDDDDDDDDDDDDDDDDD");
-        System.out.println(MaintainerList);
-        System.out.println("DDDDDDDDDDDDDDDDDDDDD");
+//        System.out.println("DDDDDDDDDDDDDDDDDDDD");
+//        System.out.println(MaintainerList);
+//        System.out.println("DDDDDDDDDDDDDDDDDDDDD");
 
         return MaintainerList;
     }
@@ -92,7 +92,6 @@ public class MaintainerDAO {
         pst.setString(2,maintainerID);
         pst.setDate(3, Date.valueOf(dateCompare));
 
-        System.out.println("Payment added addPaymentDetails");
 
         return pst.executeUpdate() > 0;
     }
@@ -105,7 +104,6 @@ public class MaintainerDAO {
         pst.setInt(1,1);
         pst.setString(2,equipment_id);
 
-        System.out.println("Payment added updateMembershipRenewalDetails");
 
         return pst.executeUpdate() > 0;
     }

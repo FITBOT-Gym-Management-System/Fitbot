@@ -68,19 +68,6 @@ public class ManagerMarkMemberAttendenceController extends HttpServlet {
             out.print("0");
         }
 
-//        try {
-//            markMemberAttendence = ManagerMarkMemberAttendenceDAO.getManagerMarkMemberAttendence( currentDate, currentTime, memberId);
-//            System.out.println(markMemberAttendence);
-//            Gson gson = new Gson();
-//            String attendenceJSON = gson.toJson(markMemberAttendence);
-//            resp.setContentType("application/json");
-//            resp.setCharacterEncoding("UTF-8");
-//            resp.getWriter().write(attendenceJSON);
-//
-//        }catch (SQLException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+
     }
 }

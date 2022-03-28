@@ -25,7 +25,7 @@ public class MaintainerListController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("in get maintainer");
+//        System.out.println("in get maintainer");
 
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/plain");
