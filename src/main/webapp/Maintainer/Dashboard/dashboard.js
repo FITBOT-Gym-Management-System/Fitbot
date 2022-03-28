@@ -35,7 +35,7 @@ $(document).ready(function(){
             );
         // alert(data);
     }).fail(function(a,b,err){
-        alert("Error name print");
+        // alert("Error name print");
         console.log(a,b,err)
     });
 
@@ -59,7 +59,7 @@ function loadNewMaintainers(){
         );
         // alert(data);
     }).fail(function(a,b,err){
-        alert("Error name print");
+        // alert("Error name print");
         console.log(a,b,err)
     });
 }
@@ -120,7 +120,7 @@ function getActivityChart(){
         });
 
     }).fail(function(a,b,err){
-        alert("Error name print");
+        // alert("Error name print");
         console.log(a,b,err)
     });
 

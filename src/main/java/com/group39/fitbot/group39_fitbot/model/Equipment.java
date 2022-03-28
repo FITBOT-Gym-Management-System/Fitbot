@@ -18,6 +18,10 @@ public class Equipment {
       public Equipment() {
       }
 
+      public Equipment(String equipment_id) {
+            this.equipment_id = equipment_id;
+      }
+
       public Equipment(String branch_name, String equipment_id, String description, String category, LocalDate purchase_date, LocalDate last_modified_date, LocalDate next_maintenance_date, int duration, int equipment_has_modified) {
             this.branch_name = branch_name;
             this.equipment_id = equipment_id;

@@ -16,9 +16,9 @@ function dataLoadEquipments(str){
   // alert("click search");
   let Equipments_id = $('#search_equipment_by_ID').val();
   let Branch_selecter = str;
-  let List_order = $('#select_Filter_List_order').val();
+  // let List_order = $('#select_Filter_List_order').val();
 
-  reloadEquipmentsData(Equipments_id,Branch_selecter,List_order);
+  reloadEquipmentsData(Equipments_id,Branch_selecter);
 }
 
 function dataOrderEquipments(order){
@@ -26,13 +26,13 @@ function dataOrderEquipments(order){
   // alert("click search");
   let Equipments_id = $('#search_equipment_by_ID').val();
   let Branch_selecter = $('#select_Filter_List').val();
-  let List_order = order;
+  // let List_order = order;
 
-  reloadEquipmentsData(Equipments_id,Branch_selecter,List_order);
+  reloadEquipmentsData(Equipments_id,Branch_selecter);
 }
 
-function reloadEquipmentsData(Equipments_id,Branch_selecter,List_order){
-  alert(Branch_selecter);
+function reloadEquipmentsData(Equipments_id,Branch_selecter){
+  // alert(Branch_selecter);
   // console.log("+++++++++++");
   // console.log(List_order);
   // console.log(Branch_selecter);
@@ -41,7 +41,7 @@ function reloadEquipmentsData(Equipments_id,Branch_selecter,List_order){
   $.ajax({
     method:'POST',
     url:"maintainerEqupimentsLoad",
-    data:{Equipments_id:Equipments_id,Branch_selecter:Branch_selecter,List_order:List_order},
+    data:{Equipments_id:Equipments_id,Branch_selecter:Branch_selecter},
 
     // dataType: 'json',
     // contentType: "application/json",
@@ -63,7 +63,7 @@ function reloadEquipmentsData(Equipments_id,Branch_selecter,List_order){
     });
 
   }).fail(function (a,b,err) {
-    alert("Data loading error load equipments data");
+    // alert("Data loading error load equipments data");
     console.log(a,b,err);
   });
 }
@@ -86,7 +86,7 @@ function loadBranchName(){
     });
 
   }).fail(function (a,b,err) {
-    alert("Data loading error");
+    // alert("Data loading error");
     console.log(a,b,err);
   });
 }
